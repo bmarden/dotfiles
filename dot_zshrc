@@ -2,6 +2,7 @@ export LS_COLORS="$(vivid generate molokai)"
 
 bindkey -v
 
+# aliases
 alias vim="nvim"
 alias vi="nvim"
 
