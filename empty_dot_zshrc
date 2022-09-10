@@ -1,2 +1,12 @@
 export LS_COLORS="$(vivid generate molokai)"
 
+bindkey -v
+
+alias vim="nvim"
+alias vi="nvim"
+
+alias ls="gls -F --color"
+alias ll="gls -lF --color"
+alias la="gls -alF --color"
+alias laa="gls -ld .?* --color"
+
