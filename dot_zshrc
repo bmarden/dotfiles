@@ -1,13 +1,13 @@
-export LS_COLORS="$(vivid generate molokai)"
+#
+# .zshrc
+#
 
-bindkey -v
-
-# aliases
-alias vim="nvim"
-alias vi="nvim"
-
-alias ls="gls -F --color"
-alias ll="gls -lF --color"
-alias la="gls -alF --color"
-alias laa="gls -ld .?* --color"
+# Setup config from .zshrc.d
+setopt EXTENDED_GLOB
+for _zconf in $ZDOTDIR/.zshrc.d
+  # ignore files that begin with a tilde
+  case ${f:t} in '~'*) continue;; esac
+  source "$_zconf"
+done
+unset _zconf
 
