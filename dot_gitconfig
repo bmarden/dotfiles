@@ -7,10 +7,18 @@
 	editor = nvim
 [diff]
 	tool = nvim
-[mergetool "nvim"]
-  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [merge]
-  tool = nvim
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+#[mergetool "nvim"]
+#  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+#[merge]
+#  tool = nvim
 [pager]
   branch = false
   stash = false
