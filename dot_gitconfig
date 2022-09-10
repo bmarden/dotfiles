@@ -1,0 +1,16 @@
+[user]
+	email = benvmarden@gmail.com
+	name = Ben Marden
+[includeIf "gitdir:~/code/ik/"]
+  path = .gitconfig-ik
+[core]
+	editor = nvim
+[diff]
+	tool = nvim
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[merge]
+  tool = nvim
+[pager]
+  branch = false
+  stash = false
