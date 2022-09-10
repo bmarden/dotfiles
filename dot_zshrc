@@ -4,7 +4,7 @@
 
 # Setup config from .zshrc.d
 setopt EXTENDED_GLOB
-for _zconf in $ZDOTDIR/.zshrc.d
+for _zconf in $HOME/.zshrc.d/*.zsh(N); do
   # ignore files that begin with a tilde
   case ${f:t} in '~'*) continue;; esac
   source "$_zconf"

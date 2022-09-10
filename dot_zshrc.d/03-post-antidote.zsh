@@ -11,4 +11,4 @@ bindkey -v  # Vi keybindings
 
 # Set your prompt
 autoload -Uz promptinit && promptinit
-prompt pure
+prompt powerlevel10k
