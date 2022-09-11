@@ -9,4 +9,4 @@ setopt PROMPT_SUBST
 #autoload -Uz promptinit && promptinit
 
 # Set the prompt
-prompt pure
+prompt powerlevel10k
