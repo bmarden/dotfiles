@@ -1,0 +1,33 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+
+brew "chezmoi"
+brew "neovim"
+brew "vivid"
+brew "gnu-sed"
+brew "coreutils"
+brew "grep"
+brew "gnu-tar"
+brew "gawk"          # dependency for asdf node-js
+brew "gpg"           # dependency for asdf node-js
+brew "jq"            # json cli interpreter 
+brew "asdf"          # asdf version manager
+brew "fzf"
+
+# Add fonts
+cask "font-fira-code-nerd-font"
+cask "font-hack-nerd-font"
+cask "1password/tap/1password-cli"
+cask "discord"
+cask "visual-studio-code"
+cask "iterm2"
+cask "google-chrome"
+cask "brave-browser"
+cask "slack"
+cask "spotify"
+EOF
+{{ end -}}
