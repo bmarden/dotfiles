@@ -12,3 +12,6 @@ source $HOME/.config/nvim/plug-config/vim-commentary.vim
 source $HOME/.config/nvim/plug-config/rainbow.vim
 source $HOME/.config/nvim/plug-config/quickscope.vim
 source $HOME/.config/nvim/plug-config/closetags.vim
+
+# automatically run apply when editing chezmoi files 
+autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
