@@ -2,19 +2,39 @@
 # .zshrc
 #
 
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # SOURCE ZINIT PLUGIN MANAGER
 source "$(brew --prefix zinit)/zinit.zsh" \
     && debug_info "Sourcing file '$(brew --prefix zinit)/zinit.zsh'"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+setopt interactive_comments hist_ignore_dups  octal_zeroes   no_prompt_cr  notify
+setopt no_hist_no_functions no_always_to_end  append_history list_packed
+setopt inc_append_history   complete_in_word  no_auto_menu   auto_pushd
+setopt pushd_ignore_dups    no_glob_complete  no_glob_dots   c_bases
+setopt numeric_glob_sort    share_history  promptsubst    auto_cd
+setopt extended_history
+setopt rc_quotes
+
+autoload -Uz allopt zed zmv zcalc colors
+
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
+zstyle ":completion:*:descriptions" format "%B%d%b"
+zstyle ':completion:*:*:*:default' menu yes select search
+zstyle ':completion:*:*:*:default' menu yes select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# load zinit plugins
+source "${XDG_CONFIG_HOME}/zinit/plugins.zsh" 
+
 # Setup config from .zshrc.d
-#setopt EXTENDED_GLOB
+setopt EXTENDED_GLOB
 for _zconf in $HOME/.zshrc.d/*.zsh(N); do
  # ignore files that begin with a tilde
  case ${f:t} in '~'*) continue;; esac
  source "$_zconf"
 done
 unset _zconf
-
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
