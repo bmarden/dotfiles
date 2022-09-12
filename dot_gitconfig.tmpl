@@ -1,5 +1,5 @@
 [user]
-	email = benvmarden@gmail.com
+	email = {{ .email }}
 	name = Ben Marden
 [includeIf "gitdir:~/code/ik/"]
   path = .gitconfig-ik
@@ -15,10 +15,6 @@
   tool = vscode
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
-#[mergetool "nvim"]
-#  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
-#[merge]
-#  tool = nvim
 [pager]
   branch = false
   stash = false

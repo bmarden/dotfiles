@@ -21,6 +21,6 @@ set cursorline                          " Enable highlighting of the current lin
 set background=dark                     " tell vim what the background color looks like
 set showtabline=2                       " Always show tabs
 set noshowmode                          " We don't need to see things like -- INSERT -- anymore
-set clipboard+=unnamed,unnamedplus               " Copy paste between vim and everything else
+set clipboard+=unnamed,unnamedplus      " Copy paste between vim and everything else
 set guifont=Fira\ Code\ Nerd\ Font
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
