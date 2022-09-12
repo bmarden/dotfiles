@@ -27,6 +27,8 @@ call plug#begin('~/.config/nvim/plugins')
 		Plug 'jiangmiao/auto-pairs'
     " Better Syntax Support
     Plug 'sheerun/vim-polyglot'
+		" Syntax highlighting for zinit files
+		Plug 'zdharma-continuum/zinit-vim-syntax'
 endif
 
 call plug#end()

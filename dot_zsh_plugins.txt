@@ -84,7 +84,10 @@ romkatv/zsh-bench kind:path
 ####
 ohmyzsh/ohmyzsh path:lib/clipboard.zsh
 ohmyzsh/ohmyzsh path:plugins/extract
-ohmyzsh/ohmyzsh path:plugins/magic-enter
+# ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/asdf
+ohmyzsh/ohmyzsh path:plugins/brew
+
 
 ### (Micro-)Framework: zsh-utils
 #
@@ -125,6 +128,8 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 # assume GitHub.com, then you can use the user/repo shorthand.
 #
 ###
+jeffreytse/zsh-vi-mode
+
 # Popular plugins for Fish-like behavior:
 mattmc3/zfunctions
 zsh-users/zsh-autosuggestions

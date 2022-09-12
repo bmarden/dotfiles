@@ -2,17 +2,43 @@
 # .zshenv
 #
 
-# ZDOTDIR gives an alternate home for zsh rather than $HOME
-# default to HOME for now
-export ZDOTDIR=${ZDOTDIR:-$HOME}
+# Enable debugging
+DEBUG=0
+function debug_info() {
+  [ "$DEBUG" -eq 1 ] &&
+    reset="$(tput sgr0)" &&
+    green="$(tput setaf 2)" &&
+    printf "${green}[INFO] ${@} ${reset}\n" \
+      >&2
+  return 0
+}
 
-# XDG basedirs (https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
-# export XDG_CONFIG_HOME=~/.config
-# export XDG_CACHE_HOME=~/.cache
-# export XDG_DATA_HOME=~/.local/share
-# export XDG_RUNTIME_DIR=~/.xdg
+# SETUP XDG BASE DIRECTORIES
+# https://wiki.archlinux.org/index.php/XDG_Base_Directory
+export XDG_DATA_HOME="$HOME/.local/share" \
+    && debug_info "Exporting XDG_DATA_HOME='$XDG_DATA_HOME'"
+export XDG_CACHE_HOME="$HOME/.cache"      \
+    && debug_info "Exporting XDG_CACHE_HOME='$XDG_CACHE_HOME'"
+export XDG_CONFIG_HOME="$HOME/.config"    \
+    && debug_info "Exporting XDG_CONFIG_HOME='$XDG_CONFIG_HOME'"
 
-# define environment for non-login, non-interactive shells which don't source .zprofile
-if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s $ZDOTDIR/.zprofile ]]; then
-  source $ZDOTDIR/.zprofile
-fi
+# SETUP HISTORY SETTINGS
+export SAVEHIST=32768                           \
+    && debug_info "Exporting SAVEHIST='$SAVEHIST'"
+export HISTSIZE=4096                            \
+    && debug_info "Exporting HISTSIZE='$HISTSIZE'"
+export HISTFILE="$XDG_CONFIG_HOME/zsh/.zsh_history" \
+    && debug_info "Exporting HISTFILE='$HISTFILE'"
+
+# SETUP EDITOR
+export EDITOR="nvim" \
+    && debug_info "Exporting LANG='$EDITOR'"
+
+# SETUP LANGUAGE SETTINGS
+export LANG="en_US.UTF-8" \
+    && debug_info "Exporting LANG='$LANG'"
+
+
+# VI MODE SETTINGS
+export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+export ZVM_VI_ESCAPE_BINDKEY=jk
