@@ -37,13 +37,13 @@ setopt rc_quotes
 
 autoload -Uz allopt zed zmv zcalc colors
 
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 zstyle ":completion:*:descriptions" format "%B%d%b"
 zstyle ':completion:*:*:*:default' menu yes select search
 zstyle ':completion:*:*:*:default' menu yes select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
 
 [ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
 

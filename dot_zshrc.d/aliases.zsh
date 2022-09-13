@@ -53,3 +53,15 @@ alias urlencode='python3 -c "import sys, urllib.parse as ul; \
 # list the ten most used commands
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 alias history="fc -li"
+
+# IF CHEZMOI IS INSTALLED
+[ -n "$(command -v chezmoi)" ]               \
+    && alias cm="chezmoi"                    \
+    && alias cma="chezmoi add"               \
+    && alias cmi="chezmoi init"              \
+    && alias cmd="chezmoi diff"              \
+    && alias cme="chezmoi edit"              \
+    && alias cmcd="chezmoi cd"               \
+    && alias cmat="chezmoi add --template"   \
+    && alias cmap="chezmoi apply --verbose"  \
+    && alias cmet="chezmoi execute-template"
