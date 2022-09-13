@@ -1,8 +1,10 @@
+# vim: syntax=gitconfig
+
 [user]
 	email = {{ .email }}
 	name = Ben Marden
 [includeIf "gitdir:~/code/ik/"]
-  path = .gitconfig-ik
+  path = "$XDG_CONFIG/HOME/git/config-ik" 
 [core]
 	editor = nvim
 [diff]
