@@ -38,4 +38,8 @@ zinit ice depth"1"
 zinit light romkatv/powerlevel10k
 
 # Load fzf 
-[ -n "$(command -v go)" ] && zinit pack for fzf
+zinit lucid as=program pick="$ZPFX/bin/(fzf|fzf-tmux)" \
+    atclone="cp shell/completion.zsh _fzf_completion; \
+      cp bin/(fzf|fzf-tmux) $ZPFX/bin" \
+    make="PREFIX=$ZPFX install" for \
+        junegunn/fzf
