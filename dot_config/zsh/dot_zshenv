@@ -18,10 +18,10 @@ export EDITOR="nvim"
 # setup language settings
 export LANG="en_US.UTF-8"
 
-# SETUP HISTORY SETTINGS
+# setup history settings
 export SAVEHIST=32768
 export HISTSIZE=4096
-export HISTFILE="$XDG_CONFIG_HOME/zsh/.zsh_history"
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
 
 # zinit package manager
 declare -A ZINIT
@@ -46,4 +46,10 @@ export ANDROID_HOME="$XDG_DATA_HOME"/android
 [ -n "$(command -v asdf)" ] && export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
 
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+
+# set npm paths
+export npm_config_userconfig="$XDG_CONFIG_HOME/npm/config"
+export npm_config_cache="$XDG_CACHE_HOME/npm"
+export npm_config_prefix="$XDG_DATA_HOME/npm"
+
 

@@ -5,7 +5,7 @@ call plug#begin('~/.config/nvim/plugins')
 	Plug 'tpope/vim-repeat'
 	" Surround 
 	Plug 'tpope/vim-surround'
-  Plug 'terryma/vim-multiple-cursors'
+	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 	if exists('g:vscode')
 		Plug 'asvetliakov/vim-easymotion'

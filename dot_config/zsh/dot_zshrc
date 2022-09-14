@@ -2,7 +2,12 @@
 # .zshrc
 #
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] || source $XDG_CONFIG_HOME/p10k/p10k.zsh
+
+# Set history here since MacOS sets them in /etc/zshrc
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE="$XDG_STATE_HOME/zsh/history"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -27,14 +32,28 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-setopt interactive_comments hist_ignore_dups  octal_zeroes   no_prompt_cr  notify
-setopt no_hist_no_functions no_always_to_end  append_history list_packed
-setopt inc_append_history   complete_in_word  no_auto_menu   auto_pushd
-setopt pushd_ignore_dups    no_glob_complete  no_glob_dots   c_bases
-setopt numeric_glob_sort    share_history  promptsubst    auto_cd
+setopt interactive_comments
+setopt hist_ignore_dups
+setopt octal_zeroes
+setopt no_prompt_cr
+setopt notify
+setopt no_hist_no_functions
+setopt no_always_to_end
+setopt append_history
+setopt list_packed
+setopt inc_append_history
+setopt complete_in_word
+setopt no_auto_menu
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt no_glob_complete
+setopt no_glob_dots
+setopt c_bases
+setopt numeric_glob_sort
+setopt share_history promptsubst
+setopt auto_cd
 setopt extended_history
 setopt rc_quotes
-
 autoload -Uz allopt zed zmv zcalc colors
 
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
@@ -58,3 +77,4 @@ for _zconf in $HOME/.zshrc.d/*.zsh(N); do
  source "$_zconf"
 done
 unset _zconf
+

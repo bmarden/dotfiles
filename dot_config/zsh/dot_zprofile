@@ -14,3 +14,8 @@
 # CHEZMOI COMPLETIONS
 [ -n "$(command -v chezmoi)" ] &&
   eval "$(chezmoi completion zsh)"
+
+# Set path
+export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
+
+typeset -aU path;
