@@ -2,7 +2,9 @@
 # .zshrc
 #
 
-### Added by Zinit's installer
+[[ -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] && source $XDG_CONFIG_HOME/p10k/p10k.zsh
+
+### Setup zinit
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
@@ -10,18 +12,7 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
         print -P "%F{33} %F{34}Installation successful.%f%b" || \
         print -P "%F{160} The clone has failed.%f%b"
 fi
-
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-
-[[ ! -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] || source $XDG_CONFIG_HOME/p10k/p10k.zsh
-
-# Set history here since MacOS sets them in /etc/zshrc
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE="$XDG_STATE_HOME/zsh/history"
-
-### Setup zinit
-# source "$(brew --prefix zinit)/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -33,7 +24,10 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-### End of Zinit's installer chunk
+# Set history here since MacOS sets them in /etc/zshrc
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE="$XDG_STATE_HOME/zsh/history"
 
 setopt interactive_comments
 setopt hist_ignore_dups
@@ -68,9 +62,20 @@ zstyle ':completion:*:*:*:default' menu yes select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 [ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
+[ -f ~/.local/bin/.fzf.zsh ] && source ~/.local/bin/.fzf.zsh
+[ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
 
-# load zinit plugins
+zinit creinstall -Q $(brew --prefix)/share/zsh/site-functions
+
+# Load zinit plugins
 source "${XDG_CONFIG_HOME}/zinit/plugins.zsh" 
+
+# Load shell settings
+if [ -d "$XDG_CONFIG_HOME/shell" ]; then
+    for file in "$XDG_CONFIG_HOME"/shell/*.zsh; do
+        source "$file"
+    done
+fi
 
 # Setup config from .zshrc.d
 setopt EXTENDED_GLOB
@@ -82,5 +87,4 @@ done
 unset _zconf
 
 
-[ -f ~/.local/bin/.fzf.zsh ] && source ~/.local/bin/.fzf.zsh
 

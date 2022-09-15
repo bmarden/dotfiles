@@ -63,5 +63,5 @@ alias history="fc -li"
     && alias cme="chezmoi edit"              \
     && alias cmcd="chezmoi cd"               \
     && alias cmat="chezmoi add --template"   \
-    && alias cmap="chezmoi apply --verbose"  \
+    && alias cmap="chezmoi apply"            \
     && alias cmet="chezmoi execute-template"
