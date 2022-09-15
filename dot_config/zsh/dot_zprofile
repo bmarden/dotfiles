@@ -16,6 +16,6 @@
   eval "$(chezmoi completion zsh)"
 
 # Set path
-export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
+export PATH="$PATH:$XDG_DATA_HOME/npm/bin:$XDG_DATA_HOME/../bin"
 
 typeset -aU path;
