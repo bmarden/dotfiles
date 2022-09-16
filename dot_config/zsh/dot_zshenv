@@ -1,7 +1,7 @@
 #
 # .zshenv
 #
-#
+
 # SETUP XDG BASE DIRECTORIES
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -53,4 +53,9 @@ export npm_config_userconfig="$XDG_CONFIG_HOME/npm/config"
 export npm_config_cache="$XDG_CACHE_HOME/npm"
 export npm_config_prefix="$XDG_DATA_HOME/npm"
 
+# set gem paths
+export GEM_HOME="${XDG_DATA_HOME}"/gem
+export GEM_SPEC_CACHE="${XDG_CACHE_HOME}"/gem
 
+# set cocoapods path, stores cache and repos here
+export CP_HOME_DIR="$XDG_DATA_HOME/cocoapods"

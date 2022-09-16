@@ -1,0 +1,15 @@
+let mapleader=" "
+
+""" Plugins 
+set surround
+set ideajoin
+set multiple-cursors
+set highlightedyank
+
+""" Common settings
+set clipboard+=unnamed
+
+""" Mappings
+:imap jk <Esc>
+map <leader>r <Action>(RenameElement)
+
