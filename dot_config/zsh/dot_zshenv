@@ -41,7 +41,10 @@ export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 export ZVM_VI_ESCAPE_BINDKEY=jk
 
 # android studio
-export ANDROID_SDK_ROOT="$XDG_DATA_HOME"/android
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
+
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home/"
 
 # asdf package manager
