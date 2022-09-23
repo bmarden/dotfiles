@@ -51,6 +51,7 @@ setopt share_history promptsubst
 setopt auto_cd
 setopt extended_history
 setopt rc_quotes
+setopt extended_glob
 autoload -Uz allopt zed zmv zcalc colors
 
 [ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
@@ -71,6 +72,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 REPORTTIME=2
 TIMEFMT="%U user %S system %P cpu %*Es total"
 
+# Load completions located in homebrew
 zinit creinstall -Q $(brew --prefix)/share/zsh/site-functions
 
 # Load zinit plugins
@@ -83,14 +85,6 @@ if [ -d "$XDG_CONFIG_HOME/shell" ]; then
     done
 fi
 
-# Setup config from .zshrc.d
-setopt EXTENDED_GLOB
-for _zconf in $HOME/.zshrc.d/*.zsh(N); do
- # ignore files that begin with a tilde
- case ${f:t} in '~'*) continue;; esac
- source "$_zconf"
-done
-unset _zconf
-
-
-
+# Load custom functions into fpath
+fpath=($XDG_CONFIG_HOME/zfuncs "${fpath[@]}")
+autoload -Uz $XDG_CONFIG_HOME/zfuncs/*

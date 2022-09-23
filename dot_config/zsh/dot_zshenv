@@ -65,5 +65,5 @@ export GEM_SPEC_CACHE="${XDG_CACHE_HOME}"/gem
 export CP_HOME_DIR="$XDG_DATA_HOME/cocoapods"
 
 # set expo config
-export EAS_LOCAL_BUILD_ARTIFACTS_DIR="$HOME/Desktop"
+export EAS_LOCAL_BUILD_ARTIFACTS_DIR="$HOME/code/ik/builds"
 
