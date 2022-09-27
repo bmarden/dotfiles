@@ -23,3 +23,8 @@ path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulato
       /Applications/Android Studio.app/Contents/jre/Contents/Home/bin)
 
 typeset -aU path;
+
+# Set up fzf env vars
+export FZF_DEFAULT_COMMAND='fd --type file --color=always --follow --hidden --exclude .git'
+# export FZF_DEFAULT_OPS='--ansi'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
