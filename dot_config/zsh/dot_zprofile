@@ -25,6 +25,7 @@ path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulato
 typeset -aU path;
 
 # Set up fzf env vars
-export FZF_DEFAULT_COMMAND='fd --type file --color=always --follow --hidden --exclude .git'
-export FZF_DEFAULT_OPS='--ansi'
+export FZF_DEFAULT_COMMAND='fd --type file --color=never --follow --hidden --exclude .git'
+export FZF_DEFAULT_OPS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
