@@ -5,17 +5,18 @@ brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 
-brew "chezmoi"
-brew "neovim"
-brew "vivid"
-brew "gnu-sed"
-brew "coreutils"
-brew "grep"
-brew "gnu-tar"
-brew "gawk"          # dependency for asdf node-js
-brew "gpg"           # dependency for asdf node-js
-brew "jq"            # json cli interpreter 
-brew "asdf"          # asdf version manager
+brew "chezmoi"      # dotfile manager
+brew "neovim"       # vim
+brew "vivid"        # LS_COLORS generator
+brew "gnu-sed"      # sed (GNU)
+brew "coreutils"    # GNU core utilities
+brew "grep"         # grep (GNU)
+brew "gnu-tar"      # tar (GNU)
+brew "fd"           # find alternative
+brew "gawk"         # dependency for asdf node-js
+brew "gpg"          # dependency for asdf node-js
+brew "jq"           # json cli interpreter 
+brew "asdf"         # asdf version manager
 
 # Add fonts
 cask "font-fira-code-nerd-font"

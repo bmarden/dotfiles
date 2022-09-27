@@ -25,6 +25,9 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
+# pnpm
+alias pn="pnpm"
+
 # tar
 alias tarls="tar -tvf"
 alias untar="tar -xf"
