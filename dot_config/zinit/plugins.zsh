@@ -29,6 +29,7 @@ zinit wait lucid light-mode for \
   zsh-users/zsh-history-substring-search \
   unixorn/1password-op.plugin.zsh \
   djui/alias-tips \
+  ntnyq/omz-plugin-pnpm
 
 zinit ice --lucid \
     && zinit light "jeffreytse/zsh-vi-mode"
