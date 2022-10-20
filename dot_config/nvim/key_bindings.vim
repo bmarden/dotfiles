@@ -72,8 +72,8 @@ inoremap <expr> <c-k> ("\<C-p>")
 vmap <leader>ds :g/^\s*$/d
 
 " Quick find and replace
-noremap <leader>/ :%s//gc<LEFT><LEFT><LEFT>
-nnoremap <leader>R *yiw:%s/<C-R>"//gc<LEFT><LEFT><LEFT>
+noremap <leader>/ :%s//g<LEFT><LEFT><LEFT>
+nnoremap <leader>R *yiw:%s/<C-R>"//g<LEFT><LEFT><LEFT>
 
 " Shortcuts to open terminal
 noremap <leader>: :split \| terminal<CR>
