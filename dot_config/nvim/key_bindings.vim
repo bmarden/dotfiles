@@ -75,5 +75,15 @@ vmap <leader>ds :g/^\s*$/d
 noremap <leader>/ :%s//gc<LEFT><LEFT><LEFT>
 nnoremap <leader>R *yiw:%s/<C-R>"//gc<LEFT><LEFT><LEFT>
 
+" Shortcuts to open terminal
 noremap <leader>: :split \| terminal<CR>
 noremap <leader>; :vsplit \| terminal<CR>
+
+" Clear the current query when hitting leader-n
+nnoremap <leader>n :noh<CR>
+
+" Make a new vertical split and switch to it
+nnoremap <leader>w <C-w>v<C-w>l
+" Make a new horizontal split and switch to it
+nnoremap <leader>W <C-w>s<C-w>j
+
