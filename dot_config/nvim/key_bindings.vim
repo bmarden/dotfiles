@@ -71,3 +71,9 @@ inoremap <expr> <c-k> ("\<C-p>")
 " Shortcut for removing empty lines
 vmap <leader>ds :g/^\s*$/d
 
+" Quick find and replace
+noremap <leader>/ :%s//gc<LEFT><LEFT><LEFT>
+nnoremap <leader>R *yiw:%s/<C-R>"//gc<LEFT><LEFT><LEFT>
+
+noremap <leader>: :split \| terminal<CR>
+noremap <leader>; :vsplit \| terminal<CR>
