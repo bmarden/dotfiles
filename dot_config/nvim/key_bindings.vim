@@ -83,7 +83,7 @@ noremap <leader>; :vsplit \| terminal<CR>
 nnoremap <leader>n :noh<CR>
 
 " Make a new vertical split and switch to it
-nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>v <C-w>v<C-w>l
 " Make a new horizontal split and switch to it
-nnoremap <leader>W <C-w>s<C-w>j
+nnoremap <leader>h <C-w>s<C-w>j
 
