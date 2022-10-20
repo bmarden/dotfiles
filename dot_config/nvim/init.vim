@@ -16,8 +16,6 @@ source $HOME/.config/nvim/plug-config/closetags.vim
 " automatically run apply when editing chezmoi files 
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
 
-" Shortcut for removing empty lines
-vmap <leader>ds :g/^\s*$/d
 
 
 
