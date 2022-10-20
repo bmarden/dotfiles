@@ -67,3 +67,7 @@ nnoremap <silent> <M-l>    :vertical resize +2<CR>
 " Better nav for omnicomplete
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+
+" Shortcut for removing empty lines
+vmap <leader>ds :g/^\s*$/d
+
