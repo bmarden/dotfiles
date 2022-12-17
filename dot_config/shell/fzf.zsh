@@ -28,3 +28,14 @@ fzf_kill() {
     fi
 }
 alias fkill='fzf_kill'
+
+fzf_brew_install() {
+    local inst=$(brew search | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[brew:install]'")
+
+    if [[ $inst ]]; then
+        for prog in $(echo $inst); do
+            brew install $prod
+        done
+    fi
+}
+alias bip='fzf_brew_install'
