@@ -1,3 +1,5 @@
+# Example setup https://zdharma-continuum.github.io/zinit/wiki/Example-Minimal-Setup/
+
 # Must Load OMZ Git library
 zinit snippet OMZL::git.zsh
 # Load Git plugin from OMZ
@@ -29,7 +31,8 @@ zinit wait lucid light-mode for \
   zsh-users/zsh-history-substring-search \
   unixorn/1password-op.plugin.zsh \
   djui/alias-tips \
-  ntnyq/omz-plugin-pnpm
+  ntnyq/omz-plugin-pnpm \
+  thirteen37/fzf-brew
 
 zinit ice --lucid \
     && zinit light "jeffreytse/zsh-vi-mode"
