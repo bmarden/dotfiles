@@ -20,8 +20,8 @@
 path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulator \
       $HOME/Library/Android/sdk/platform-tools \
       $HOME/Library/Android/sdk/cmdline-tools/latest/bin \
-      "/Applications/Android Studio.app/Contents/jre/Contents/Home/bin" \
-      "/Users/bmarden/Library/Application Support/JetBrains/Toolbox/scripts")
+      /Applications/Android Studio.app/Contents/jre/Contents/Home/bin \
+      /Users/bmarden/Library/Application Support/JetBrains/Toolbox/scripts)
 
 typeset -aU path;
 
@@ -30,3 +30,9 @@ export FZF_DEFAULT_COMMAND='fd --type file --color=never --follow --hidden --exc
 export FZF_DEFAULT_OPS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+
+# Go values
+export GOPATH=$(go env GOPATH)
+# export GOBIN="$GOPATH/bin"
+path+=($GOPATH/bin)
+
