@@ -88,3 +88,9 @@ fi
 # Load custom functions into fpath
 fpath=($XDG_CONFIG_HOME/zfuncs "${fpath[@]}")
 autoload -Uz $XDG_CONFIG_HOME/zfuncs/*
+
+
+# GO setup
+export GOPATH=$(go env GOPATH)
+path+=($GOPATH/bin)
+
