@@ -92,5 +92,9 @@ autoload -Uz $XDG_CONFIG_HOME/zfuncs/*
 
 # GO setup
 export GOPATH=$(go env GOPATH)
-path+=($GOPATH/bin)
+export GOROOT=$(go env GOROOT)
+# export GOBIN=$(go env GOBIN)
+
+path+=($GOPATH/bin $GOROOT/bin)
+# path+=($GOBIN)
 
