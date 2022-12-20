@@ -71,8 +71,4 @@ export EAS_LOCAL_BUILD_ARTIFACTS_DIR="$HOME/code/ik/builds"
 
 export ASDF_NPM_DEFAULT_PACKAGES_FILE="$ASDF_DATA_DIR/.default-npm-packages"
 
-# GO setup
-export GOPATH=$(go env GOPATH)
-path+=($GOPATH/bin)
-
 
