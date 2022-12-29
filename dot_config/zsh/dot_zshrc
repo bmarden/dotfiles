@@ -75,6 +75,9 @@ TIMEFMT="%U user %S system %P cpu %*Es total"
 # Load completions located in homebrew
 zinit creinstall -Q $(brew --prefix)/share/zsh/site-functions
 
+[ -n "$(command -v eas)" ] &&
+    zinit creinstall -Q "/Users/bmarden/Library/Caches/eas-cli/autocomplete/functions/zsh"
+
 # Load zinit plugins
 source "${XDG_CONFIG_HOME}/zinit/plugins.zsh" 
 
