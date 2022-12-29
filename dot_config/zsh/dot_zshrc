@@ -101,13 +101,3 @@ export GOROOT=$(go env GOROOT)
 path+=($GOPATH/bin $GOROOT/bin)
 # path+=($GOBIN)
 
-
-# android studio
-export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
-export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android"
-export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/avd"
-
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home/"
-
