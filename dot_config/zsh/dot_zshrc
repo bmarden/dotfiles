@@ -98,5 +98,3 @@ export GOROOT=$(go env GOROOT)
 path+=($GOPATH/bin $GOROOT/bin)
 # path+=($GOBIN)
 
-eval $(eas autocomplete:script zsh)
-
