@@ -15,9 +15,6 @@
 [ -n "$(command -v chezmoi)" ] &&
   eval "$(chezmoi completion zsh)"
 
-[ -n "$(command -v ng)" ] &&
-  eval "$(ng completion script)"
-
 # Set path
 # export PATH="$PATH:$XDG_DATA_HOME/npm/bin:$XDG_DATA_HOME/../bin:"
 path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulator \
