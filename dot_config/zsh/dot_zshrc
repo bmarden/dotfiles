@@ -80,8 +80,9 @@ zinit creinstall -Q $(brew --prefix)/share/zsh/site-functions
 [ -n "$(command -v eas)" ] &&
     zinit creinstall -Q "/Users/bmarden/Library/Caches/eas-cli/autocomplete/functions/zsh"
 
-[ -n "$(command -v ng)" ] &&
-    source <(ng completion script)
+# [ -n "$(command -v ng)" ] &&
+    
+source <(ng completion script)
 
 # Load zinit plugins
 source "${XDG_CONFIG_HOME}/zinit/plugins.zsh" 
