@@ -82,7 +82,7 @@ zinit creinstall -Q $(brew --prefix)/share/zsh/site-functions
 
 # Completions for angular
 [ -n "$(command -v ng)" ] &&
-    zinit creinstall -Q <(ng completion script)
+    zinit creinstall -Q ng completion script
 
 # Load zinit plugins
 source "${XDG_CONFIG_HOME}/zinit/plugins.zsh" 
