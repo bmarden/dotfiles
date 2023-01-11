@@ -12,4 +12,7 @@ set clipboard+=unnamed
 """ Mappings
 :imap jk <Esc>
 map <leader>r <Action>(RenameElement)
-
+" Show tooltip with `gh`
+nnoremap gh :action QuickJavaDoc<cr>
+" Show error tooltip with `ge`
+nnoremap ge :action ShowErrorDescription<cr>
