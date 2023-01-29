@@ -91,15 +91,15 @@ if [ -d "$XDG_CONFIG_HOME/shell" ]; then
 fi
 
 # Load custom functions into fpath
-fpath=($XDG_CONFIG_HOME/zfuncs "${fpath[@]}")
-autoload -Uz $XDG_CONFIG_HOME/zfuncs/*
+fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
+autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*
 
 
 # GO setup
-export GOPATH=$(go env GOPATH)
-export GOROOT=$(go env GOROOT)
-# export GOBIN=$(go env GOBIN)
+# export GOPATH=$(go env GOPATH)
+# export GOROOT=$(go env GOROOT)
+# # export GOBIN=$(go env GOBIN)
 
-path+=($GOPATH/bin $GOROOT/bin)
+# path+=($GOPATH/bin $GOROOT/bin)
 # path+=($GOBIN)
 
