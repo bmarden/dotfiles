@@ -90,6 +90,8 @@ if [ -d "$XDG_CONFIG_HOME/shell" ]; then
     done
 fi
 
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
 # Load custom functions into fpath
 fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
 autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*
