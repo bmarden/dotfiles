@@ -1,14 +1,21 @@
 # vim: syntax=gitconfig
 
 [user]
-	email = {{ .email }}
-	name = Ben Marden
+  email = {{ .email }}
+  name = Ben Marden
+  signingKey = {{- (onepasswordDetailsFields "Mac SSH Key").public_key.value }}
+[commit]
+  gpgsign = true
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  allowedSignersFile = ~/.config/git/allowed_signers
 [includeIf "gitdir:~/code/ik/"]
   path = ~/.config/git/config-ik 
 [core]
-	editor = nvim
+  editor = nvim
 [diff]
-	tool = nvim
+  tool = nvim
 [merge]
   tool = vscode
 [mergetool "vscode"]
@@ -20,3 +27,5 @@
 [pager]
   branch = false
   stash = false
+[init]
+  defaultBranch = main
