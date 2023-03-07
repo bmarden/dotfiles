@@ -72,9 +72,10 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 REPORTTIME=2
 TIMEFMT="%U user %S system %P cpu %*Es total"
 
-# TODO: Move additional completions to another file
 # Load completions located in homebrew
 zinit creinstall -Q $(brew --prefix)/share/zsh/site-functions
+# Load other completions defined in $XDG_CONFIG_HOME/completions
+zinit creinstall -Q "$XDG_CONFIG_HOME/completions"
 
 # Completions for eas-cli
 [ -n "$(command -v eas)" ] &&
