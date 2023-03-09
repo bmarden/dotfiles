@@ -55,7 +55,6 @@ setopt extended_glob
 autoload -Uz allopt zed zmv zcalc colors
 
 [ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
-[ -f ~/.local/bin/.fzf.zsh ] && source ~/.local/bin/.fzf.zsh
 [ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
 
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
