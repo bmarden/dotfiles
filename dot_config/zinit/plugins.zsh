@@ -13,7 +13,7 @@ zinit wait lucid for \
   OMZP::encode64 \
   OMZP::extract \
   OMZP::jsontools \
-  OMZP::brew
+  OMZP::brew 
 
 # Load other plugins
 zinit wait lucid light-mode for \
@@ -34,12 +34,15 @@ zinit wait lucid light-mode for \
   ntnyq/omz-plugin-pnpm \
   thirteen37/fzf-brew
 
-zinit ice --lucid \
-    && zinit light "jeffreytse/zsh-vi-mode"
+zinit light "jeffreytse/zsh-vi-mode"
+
+# This is the fzf plugin and it must be loaded after zsh-vi-mode
+zinit ice lucid wait
+zinit snippet OMZP::fzf
 
 # Load powerlevel10k theme
 zinit ice depth"1" 
 zinit light romkatv/powerlevel10k
 
 # Load fzf 
-zinit pack for fzf
+# zinit pack for fzf

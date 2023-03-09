@@ -33,7 +33,6 @@ alias untar="tar -xf"
 alias timestamp="date '+%Y-%m-%d %H:%M:%S'"
 alias datestamp="date '+%Y-%m-%d'"
 
-
 # disk usage
 alias biggest='du -s ./* | sort -nr | awk '\''{print $2}'\'' | xargs du -sh'
 alias dux='du -x --max-depth=1 | sort -n'
