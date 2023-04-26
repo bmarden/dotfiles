@@ -25,6 +25,12 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
+# npm
+alias n="npm"
+alias ni="npm install"
+alias nr="npm run"
+
+
 # tar
 alias tarls="tar -tvf"
 alias untar="tar -xf"
