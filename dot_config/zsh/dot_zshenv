@@ -47,7 +47,7 @@ export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android"
 export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/avd"
 
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home/"
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home/"
 
 # asdf package manager
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
