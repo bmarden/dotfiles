@@ -28,8 +28,9 @@ alias -g ......='../../../../..'
 # npm
 alias n="npm"
 alias ni="npm install"
+alias nid="npm install -D"
 alias nr="npm run"
-
+alias ns="npm start"
 
 # tar
 alias tarls="tar -tvf"
