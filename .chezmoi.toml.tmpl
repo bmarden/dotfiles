@@ -10,7 +10,7 @@
   command = "nvim"
 [diff]
   command = "code"
-  args = ["--wait",  "--diff", "{{ .Target }}", "{{ .Destination }}"]
+  args = ["--wait",  "--diff", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
 [merge]
   command = "nvim"
-  args = ["-d", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]
+  args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
