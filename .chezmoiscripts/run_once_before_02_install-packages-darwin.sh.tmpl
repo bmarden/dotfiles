@@ -1,6 +1,15 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
+# SETUP HOMEBREW PATH
+[ -d "/opt/homebrew/bin/" ] &&
+  _BREW="/opt/homebrew/bin" ||
+  _BREW="/usr/local/bin"
+
+# INITIALIZE CLI TOOLS FUNCTIONS
+[ -n "$(command -v $_BREW/brew)" ] &&
+  eval "$($_BREW/brew shellenv)"
+
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
