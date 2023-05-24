@@ -1,22 +1,22 @@
-#
-# .zprofile
-#
+# #
+# # .zprofile
+# #
 
-# SETUP HOMEBREW PATH
-[ -d "/opt/homebrew/bin/" ] &&
-  _BREW="/opt/homebrew/bin" ||
-  _BREW="/usr/local/bin"
+# # SETUP HOMEBREW PATH
+# [ -d "/opt/homebrew/bin/" ] &&
+#   _BREW="/opt/homebrew/bin" ||
+#   _BREW="/usr/local/bin"
 
-# INITIALIZE CLI TOOLS FUNCTIONS
-[ -n "$(command -v $_BREW/brew)" ] &&
-  eval "$($_BREW/brew shellenv)"
+# # INITIALIZE CLI TOOLS FUNCTIONS
+# [ -n "$(command -v $_BREW/brew)" ] &&
+#   eval "$($_BREW/brew shellenv)"
 
-# CHEZMOI COMPLETIONS
+# # CHEZMOI COMPLETIONS
 [ -n "$(command -v chezmoi)" ] &&
   eval "$(chezmoi completion zsh)"
 
 
-# Set path
+# # Set path
 path=(/opt/homebrew/opt/ruby@3.1/bin /opt/homebrew/lib/ruby/gems/3.1.0/bin $path)
 path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulator \
       $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/cmdline-tools/latest/bin \
@@ -25,7 +25,7 @@ path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulato
 
 typeset -aU path;
 
-# Set up fzf env vars
+# # Set up fzf env vars
 export FZF_DEFAULT_COMMAND='fd --type file --color=never --follow --hidden --exclude .git'
 export FZF_DEFAULT_OPS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
