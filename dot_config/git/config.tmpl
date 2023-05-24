@@ -3,15 +3,15 @@
 [user]
   email = {{ .email }}
   name = Ben Marden
+  {{- if not .is_work }}
   signingKey = {{- (onepasswordDetailsFields "Mac SSH Key").public_key.value }}
+  {{- end }}
 [commit]
   gpgsign = true
 [gpg]
   format = ssh
 [gpg "ssh"]
   allowedSignersFile = ~/.config/git/allowed_signers
-[includeIf "gitdir:~/code/ik/"]
-  path = ~/.config/git/config-ik 
 [core]
   editor = nvim
 [diff]

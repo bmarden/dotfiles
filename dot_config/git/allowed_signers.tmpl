@@ -1,1 +1,3 @@
-benvmarden@gmail.com {{ (onepasswordDetailsFields "Mac SSH Key").public_key.value }}
+{{- if not .is_work }}
+{{- .email }} {{ (onepasswordDetailsFields "Mac SSH Key").public_key.value }}
+{{- end }}

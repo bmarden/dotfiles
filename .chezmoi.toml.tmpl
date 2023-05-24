@@ -1,9 +1,9 @@
+{{- $is_work := promptBoolOnce . "is_work" "Is this a work machine?" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $work_email := promptStringOnce . "work_email" "Work email address" -}}
 
 [data]
   email = {{ $email | quote }}
-  work_email = {{ $work_email | quote }}
+  is_work = {{ $is_work }}
 [git]
   autoCommit = true
 [edit]
