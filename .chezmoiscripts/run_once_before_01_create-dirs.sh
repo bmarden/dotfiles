@@ -19,6 +19,7 @@ REQUIRED_DIRS=(
   "$XDG_DATA_HOME/../bin"
   "$XDG_CACHE_HOME/zim"
   "$XDG_CACHE_HOME/zsh"
+  "$XDG_CACHE_HOME/zsh/completions"
 )
 
 for DIR in "${REQUIRED_DIRS[@]}"; do

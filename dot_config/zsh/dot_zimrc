@@ -3,26 +3,31 @@
 # --------------------------------
 # Sets sane Zsh built-in environment options.
 zmodule environment
-# Provides handy git aliases and functions.
-# zmodule git
-# Utility aliases and functions. Adds colour to ls, grep and less.
+# Utility aliases and functions. Adds color to ls, grep and less.
 zmodule utility
-# Initializes asdf, installing it using git if not installed yet. 
-# Also, bypasses the shims if you're using the direnv plugin, as suggested by the plugin pro-tips.
+# Adds duration info after each command.
+zmodule duration-info
+# Initializes asdf, installing it using git if not installed yet.
 zmodule asdf
+# Defines homebrew aliases, functions and completions.
 zmodule homebrew
 zmodule fzf
 # Setup chezmoi completions
 zmodule joke/zim-chezmoi
+# Outputs a suggested alias if full command was used
+zmodule djui/alias-tips
+# Aliases for pnpm command
+zmodule ntnyq/omz-plugin-pnpm -s pnpm.plugin.zsh
 
 # --------------------------------
 # Completions
 # --------------------------------
-zmodule unixorn/1password-op.plugin.zsh
-zmodule djui/alias-tips
-zmodule ntnyq/omz-plugin-pnpm
 # More completions for Zsh.
 zmodule zsh-users/zsh-completions --fpath src
+# Load completions from custom directory
+zmodule "$XDG_CONFIG_HOME/completions" --fpath .
+# Load generated completions
+zmodule "$XDG_CACHE_HOME/zsh/completions" --fpath .
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
 zmodule completion
@@ -35,7 +40,7 @@ zmodule ohmyzsh/ohmyzsh --root plugins/git
 # Syntax highlighting for Zsh. Must be sourced after completions
 zmodule zdharma-continuum/fast-syntax-highlighting
 # Fish-like history search (up arrow) for Zsh.
-# zsh-users/zsh-history-substring-search must be sourced after fast-syntax-highlighting 
+# zsh-users/zsh-history-substring-search must be sourced after fast-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 # Fish-like autosuggestions for Zsh.
 zmodule zsh-users/zsh-autosuggestions

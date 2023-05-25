@@ -46,5 +46,10 @@ export CP_HOME_DIR="$XDG_DATA_HOME/cocoapods"
 export EAS_LOCAL_BUILD_ARTIFACTS_DIR="$HOME/builds"
 
 # Add vars to path
-path=($PNPM_HOME $path)
-path+=($GOPATH/bin $GOROOT/bin)
+path+=($GOPATH/bin $GOROOT/bin $XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulator \
+  $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/cmdline-tools/latest/bin \
+  /Applications/Android Studio.app/Contents/jre/Contents/Home/bin $HOME/Library/Application Support/JetBrains/Toolbox/scripts \
+  $HOME/.dotnet/tools $PNPM_HOME 
+)
+
+typeset -aU path

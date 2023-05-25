@@ -29,18 +29,14 @@ source ${ZIM_HOME}/init.zsh
 
 [[ -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] && source $XDG_CONFIG_HOME/p10k/p10k.zsh
 
-
-
 # # Set history here since MacOS sets them in /etc/zshrc
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 
 # setopt octal_zeroes
 # setopt c_bases
 # setopt notify
-
 # try to make the completion list smaller (occupying less lines) by printing the matches in columns with different widths.
 # setopt list_packed
-
 # share history across multiple zsh sessions
 setopt append_history
 # add more data to history file 
@@ -67,30 +63,16 @@ zstyle ':completion:*:*:*:default' menu yes select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# # Long running processes should return time after they complete. Specified
-# # in seconds.
-# REPORTTIME=2
-# TIMEFMT="%U user %S system %P cpu %*Es total"
-
-# # Load completions located in homebrew
-# zinit creinstall -Q $(brew --prefix)/share/zsh/site-functions 2>&1 > /dev/null
-# # Load other completions defined in $XDG_CONFIG_HOME/completions
-# zinit creinstall -Q "$XDG_CONFIG_HOME/completions" 2>&1 > /dev/null
-
-# # Completions for eas-cli
-# [ -n "$(command -v eas)" ] &&
-#     zinit creinstall -Q "/Users/bmarden/Library/Caches/eas-cli/autocomplete/functions/zsh" 2>&1 > /dev/null
-
-# # Load zinit plugins
-# source "${XDG_CONFIG_HOME}/zinit/plugins.zsh"
-
 # Load shell settings
 if [ -d "$XDG_CONFIG_HOME/shell" ]; then
-    for file in "$XDG_CONFIG_HOME"/shell/*.zsh; do
-        source "$file"
-    done
+  for file in "$XDG_CONFIG_HOME"/shell/*.zsh; do
+    source "$file"
+  done
 fi
 
+# Load 1password completions
+eval "$(op completion zsh)"; compdef _op op
+
 # # Load custom functions into fpath
-# fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
-# autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*
+fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
+autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*

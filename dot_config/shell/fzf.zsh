@@ -12,7 +12,7 @@ fi
 # Key bindings
 # ------------
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
-# End of /opt/homebrew/opt/fzf/install
+# End of generation from /opt/homebrew/opt/fzf/install
 
 fzf_change_directory() {
     local directory=$(
