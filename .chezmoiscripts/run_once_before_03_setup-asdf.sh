@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Ensure homebrew is initialized
+[ -n "$(command -v /opt/homebrew/bin/brew)" ] &&
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
 ## Setup and install asdf plugins ##
 # nodejs
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
