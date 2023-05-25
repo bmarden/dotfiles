@@ -6,11 +6,15 @@
 
 ## Setup and install asdf plugins ##
 # nodejs
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs lts
-asdf global nodejs lts
 
-# golang
-asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
-asdf install golang latest
-asdf global golang latest
+plugins=("golang" "nodejs" "python")  # List of plugins to check and install
+
+# Iterate over each plugin
+for plugin in "${plugins[@]}"; do
+  if [[ $(asdf plugin-list) != *"$plugin"* ]]; then
+    echo "Installing $plugin..."
+    asdf plugin-add "$plugin"
+  else
+    echo "$plugin is already installed."
+  fi
+done

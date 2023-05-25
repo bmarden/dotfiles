@@ -2,8 +2,11 @@
 export EDITOR="nvim"
 
 # GO setup
-export GOPATH=$(go env GOPATH)
-export GOROOT=$(go env GOROOT)
+if [ -n "$(command -v go)" ]; then
+  export GOPATH=$(go env GOPATH)
+  export GOROOT=$(go env GOROOT)
+  path+=($GOPATH/bin $GOROOT/bin)
+fi
 
 # pnpm setup
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
@@ -46,7 +49,7 @@ export CP_HOME_DIR="$XDG_DATA_HOME/cocoapods"
 export EAS_LOCAL_BUILD_ARTIFACTS_DIR="$HOME/builds"
 
 # Add vars to path
-path+=($GOPATH/bin $GOROOT/bin $XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulator
+path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulator
   $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/cmdline-tools/latest/bin
   /Applications/Android Studio.app/Contents/jre/Contents/Home/bin $HOME/Library/Application Support/JetBrains/Toolbox/scripts
   $HOME/.dotnet/tools $PNPM_HOME)
