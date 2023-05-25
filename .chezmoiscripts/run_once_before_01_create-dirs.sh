@@ -17,6 +17,8 @@ REQUIRED_DIRS=(
   "$XDG_DATA_HOME/npm"
   "$XDG_DATA_HOME/gem"
   "$XDG_DATA_HOME/../bin"
+  "$XDG_CACHE_HOME/zim"
+  "$XDG_CACHE_HOME/zsh"
 )
 
 for DIR in "${REQUIRED_DIRS[@]}"; do

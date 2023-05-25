@@ -1,10 +1,15 @@
+P=''
+if [[ $(uname) == "Darwin" ]]; then
+  P=g
+fi
+
 alias vim="nvim"
 alias vi="nvim"
 
-alias ls="gls -F --color"
-alias ll="gls -lF --color"
-alias la="gls -alF --color"
-alias laa="gls -ld .?* --color"
+alias ls="${P}ls -F --color"
+alias ll="${P}ls -lF --color"
+alias la="${P}ls -alF --color"
+alias laa="${P}ls -ld .?* --color"
 
 alias -g H='| head'
 alias -g T='| tail'
@@ -41,10 +46,9 @@ alias timestamp="date '+%Y-%m-%d %H:%M:%S'"
 alias datestamp="date '+%Y-%m-%d'"
 
 # disk usage
-alias biggest='du -s ./* | sort -nr | awk '\''{print $2}'\'' | xargs du -sh'
-alias dux='du -x --max-depth=1 | sort -n'
-alias dud='du -d 1 -h'
-alias duf='du -sh *'
+alias dux="${P}du -x --max-depth=1 | sort -n"
+alias dud="${P}du -d 1 -h"
+alias duf="${P}du -sh *"
 
 # url encode/decode
 alias urldecode='python3 -c "import sys, urllib.parse as ul; \

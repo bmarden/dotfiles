@@ -1,0 +1,47 @@
+# --------------------------------
+# Modules
+# --------------------------------
+# Sets sane Zsh built-in environment options.
+zmodule environment
+# Provides handy git aliases and functions.
+# zmodule git
+# Utility aliases and functions. Adds colour to ls, grep and less.
+zmodule utility
+# Initializes asdf, installing it using git if not installed yet. 
+# Also, bypasses the shims if you're using the direnv plugin, as suggested by the plugin pro-tips.
+zmodule asdf
+zmodule homebrew
+zmodule fzf
+# Setup chezmoi completions
+zmodule joke/zim-chezmoi
+
+# --------------------------------
+# Completions
+# --------------------------------
+zmodule unixorn/1password-op.plugin.zsh
+zmodule djui/alias-tips
+zmodule ntnyq/omz-plugin-pnpm
+# More completions for Zsh.
+zmodule zsh-users/zsh-completions --fpath src
+# Enables and configures smart and extensive tab completion.
+# completion must be sourced after all modules that add completion definitions.
+zmodule completion
+
+# -------------------------------------
+# Modules that must be initialized last
+# -------------------------------------
+# Must be loaded after completion, since it calls `compdef`
+zmodule ohmyzsh/ohmyzsh --root plugins/git
+# Syntax highlighting for Zsh. Must be sourced after completions
+zmodule zdharma-continuum/fast-syntax-highlighting
+# Fish-like history search (up arrow) for Zsh.
+# zsh-users/zsh-history-substring-search must be sourced after fast-syntax-highlighting 
+zmodule zsh-users/zsh-history-substring-search
+# Fish-like autosuggestions for Zsh.
+zmodule zsh-users/zsh-autosuggestions
+
+# --------------------------------
+# Additional modules
+# --------------------------------
+zmodule romkatv/powerlevel10k --use degit
+zmodule jeffreytse/zsh-vi-mode

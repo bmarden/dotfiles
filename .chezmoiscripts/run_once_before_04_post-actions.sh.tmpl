@@ -6,8 +6,4 @@ if [ ! -f /etc/zshenv ]; then
   printf "%s\n%s\n" 'ZDOTDIR="$HOME/.config/zsh"' 'source $ZDOTDIR/.zshenv' | sudo tee /etc/zshenv > /dev/null
 fi
 
-# set iterm2 to load settings from a file
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.config/iterm2"
-defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-
 {{ end }}

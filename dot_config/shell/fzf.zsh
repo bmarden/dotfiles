@@ -1,3 +1,19 @@
+# Following was generated from /opt/homebrew/opt/fzf/install 
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+# End of /opt/homebrew/opt/fzf/install
+
 fzf_change_directory() {
     local directory=$(
       fd --type d | \

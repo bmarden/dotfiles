@@ -2,62 +2,63 @@
 # .zshrc
 #
 
+# Use zim's degit tool to install modules
+zstyle ':zim:zmodule' use 'degit'
+
+# Set ZIM home directory
+ZIM_HOME="${XDG_CACHE_HOME}/zim"
+
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+    https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+
+# Activate Powerlevel10k Instant Prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
 [[ -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] && source $XDG_CONFIG_HOME/p10k/p10k.zsh
 
-### Setup zinit
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
 
-# Set history here since MacOS sets them in /etc/zshrc
-HISTSIZE=10000
-SAVEHIST=10000
+# # Set history here since MacOS sets them in /etc/zshrc
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 
-setopt interactive_comments
-setopt hist_ignore_dups
-setopt octal_zeroes
-setopt no_prompt_cr
-setopt notify
-setopt no_hist_no_functions
-setopt no_always_to_end
-setopt append_history
-setopt list_packed
-setopt inc_append_history
-setopt complete_in_word
-setopt no_auto_menu
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt no_glob_complete
-setopt no_glob_dots
-setopt c_bases
-setopt numeric_glob_sort
-setopt share_history promptsubst
-setopt auto_cd
-setopt extended_history
-setopt rc_quotes
-setopt extended_glob
-autoload -Uz allopt zed zmv zcalc colors
+# setopt octal_zeroes
+# setopt c_bases
+# setopt notify
 
+# try to make the completion list smaller (occupying less lines) by printing the matches in columns with different widths.
+# setopt list_packed
+
+# share history across multiple zsh sessions
+setopt append_history
+# add more data to history file 
+setopt extended_history
+# adds commands as they are typed, not at shell exit
+setopt inc_append_history
+# attempt to correct command spelling errors
+setopt correct
+# correct spelling errors for all arguments supplied to a command
+setopt correctall
+
+autoload -Uz zcalc colors
+
+# Not sure if this asdf script is needed in addition to zim asdf module
 [ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
 [ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
 
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
+zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 zstyle ":completion:*:descriptions" format "%B%d%b"
@@ -66,22 +67,22 @@ zstyle ':completion:*:*:*:default' menu yes select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# Long running processes should return time after they complete. Specified
-# in seconds.
-REPORTTIME=2
-TIMEFMT="%U user %S system %P cpu %*Es total"
+# # Long running processes should return time after they complete. Specified
+# # in seconds.
+# REPORTTIME=2
+# TIMEFMT="%U user %S system %P cpu %*Es total"
 
-# Load completions located in homebrew
-zinit creinstall -Q $(brew --prefix)/share/zsh/site-functions
-# Load other completions defined in $XDG_CONFIG_HOME/completions
-zinit creinstall -Q "$XDG_CONFIG_HOME/completions"
+# # Load completions located in homebrew
+# zinit creinstall -Q $(brew --prefix)/share/zsh/site-functions 2>&1 > /dev/null
+# # Load other completions defined in $XDG_CONFIG_HOME/completions
+# zinit creinstall -Q "$XDG_CONFIG_HOME/completions" 2>&1 > /dev/null
 
-# Completions for eas-cli
-[ -n "$(command -v eas)" ] &&
-    zinit creinstall -Q "/Users/bmarden/Library/Caches/eas-cli/autocomplete/functions/zsh"
+# # Completions for eas-cli
+# [ -n "$(command -v eas)" ] &&
+#     zinit creinstall -Q "/Users/bmarden/Library/Caches/eas-cli/autocomplete/functions/zsh" 2>&1 > /dev/null
 
-# Load zinit plugins
-source "${XDG_CONFIG_HOME}/zinit/plugins.zsh" 
+# # Load zinit plugins
+# source "${XDG_CONFIG_HOME}/zinit/plugins.zsh"
 
 # Load shell settings
 if [ -d "$XDG_CONFIG_HOME/shell" ]; then
@@ -90,6 +91,6 @@ if [ -d "$XDG_CONFIG_HOME/shell" ]; then
     done
 fi
 
-# Load custom functions into fpath
-fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
-autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*
+# # Load custom functions into fpath
+# fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
+# autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*

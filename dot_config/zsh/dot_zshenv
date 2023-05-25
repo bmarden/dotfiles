@@ -12,64 +12,9 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # Set the default dotfile location
 export ZDOTDIR="$HOME/.config/zsh"
 
-# setup editor
-export EDITOR="nvim"
-
 # setup language settings
 export LANG="en_US.UTF-8"
 
-# setup history settings
-export SAVEHIST=32768
-export HISTSIZE=4096
-export HISTFILE="$XDG_STATE_HOME/zsh/history"
-
-# zinit package manager
-declare -A ZINIT
-ZINIT[BIN_DIR]="$XDG_DATA_HOME/zinit/bin"
-ZINIT[HOME_DIR]="$XDG_DATA_HOME/zinit"
-ZINIT[PLUGINS_DIR]="$XDG_DATA_HOME/zinit/plugins"
-ZINIT[SNIPPETS_DIR]="$XDG_DATA_HOME/zinit/snippets"
-ZINIT[ZCOMPDUMP_PATH]="$XDG_DATA_HOME/zinit/dump"
-ZINIT[COMPLETIONS_DIR]="$XDG_DATA_HOME/zinit/completions"
-
-ZINIT[MUTE_WARNINGS]=0
-ZINIT[OPTIMIZE_OUT_DISK_ACCESSES]=1
-export ZPFX="$XDG_DATA_HOME/zinit/polaris" 
-
-# vi mode settings
-export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-export ZVM_VI_ESCAPE_BINDKEY=jk
-
-# android studio
-export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
-export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android"
-export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/avd"
-
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home/"
-
 # asdf package manager
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
-
-export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
-
-# set npm paths
-export npm_config_userconfig="$XDG_CONFIG_HOME/npm/config"
-export npm_config_cache="$XDG_CACHE_HOME/npm"
-export npm_config_prefix="$XDG_DATA_HOME/npm"
-
-# set gem paths
-export GEM_HOME="${XDG_DATA_HOME}"/gem
-export GEM_SPEC_CACHE="${XDG_CACHE_HOME}"/gem
-
-# set cocoapods path, stores cache and repos here
-export CP_HOME_DIR="$XDG_DATA_HOME/cocoapods"
-
-# set expo config
-export EAS_LOCAL_BUILD_ARTIFACTS_DIR="$HOME/code/ik/builds"
-
 export ASDF_NPM_DEFAULT_PACKAGES_FILE="$ASDF_DATA_DIR/.default-npm-packages"
-
-
