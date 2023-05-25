@@ -5,7 +5,10 @@ My personal dotfiles repo. Uses chezmoi
 ## Installing
 
 1. Install homebrew  
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+   `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
-2. Use chezmoi binary to clone dotfiles and setup  
-`sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME`
+2. Install chezmoi  
+   `brew install chezmoi`
+
+3. Use chezmoi to install dotfiles
+   `chezmoi init --apply $GITHUB_USERNAME`
