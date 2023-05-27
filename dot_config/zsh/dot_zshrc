@@ -36,7 +36,7 @@ HISTFILE="$XDG_STATE_HOME/zsh/history"
 # setopt c_bases
 # setopt notify
 # try to make the completion list smaller (occupying less lines) by printing the matches in columns with different widths.
-# setopt list_packed
+setopt list_packed
 # share history across multiple zsh sessions
 setopt append_history
 # add more data to history file 
@@ -52,7 +52,10 @@ autoload -Uz zcalc colors
 
 # Not sure if this asdf script is needed in addition to zim asdf module
 [ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
+# Use vivid to generate a themed LS_COLORS
 [ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
+# Load 1password completions
+[ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
 
 zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
 zstyle ':completion:*:*:kill:*' menu yes select
@@ -69,9 +72,6 @@ if [ -d "$XDG_CONFIG_HOME/shell" ]; then
     source "$file"
   done
 fi
-
-# Load 1password completions
-eval "$(op completion zsh)"; compdef _op op
 
 # # Load custom functions into fpath
 fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
