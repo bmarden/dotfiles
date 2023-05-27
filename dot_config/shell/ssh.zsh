@@ -45,7 +45,7 @@ load-our-ssh-keys() {
       # https://scriptingosx.com/2020/09/macos-version-big-sur-update/
       if [[ $(sw_vers -buildVersion) > "21" ]]; then
         # Load all ssh keys that have pass phrases stored in macOS keychain using new flags
-        ssh-add --apple-load-keychain
+        ssh-add --apple-load-keychain &> /dev/null
       else ssh-add -qA
       fi
     fi
