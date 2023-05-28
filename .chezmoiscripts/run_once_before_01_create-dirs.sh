@@ -11,7 +11,6 @@ REQUIRED_DIRS=(
   "$XDG_CONFIG_HOME/gem"
   "$XDG_STATE_HOME/zsh"
   "$XDG_CACHE_HOME/npm"
-  "$XDG_DATA_HOME/zinit"
   "$XDG_DATA_HOME/asdf"
   "$XDG_DATA_HOME/android"
   "$XDG_DATA_HOME/npm"
