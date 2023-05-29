@@ -7,7 +7,7 @@
   signingKey = {{- (onepasswordDetailsFields "Mac SSH Key").public_key.value }}
   {{- end }}
 [commit]
-  gpgsign = true
+  gpgsign = {{ if not .is_work }}true{{ else }}false{{ end }}
 [gpg]
   format = ssh
 [gpg "ssh"]

@@ -8,6 +8,10 @@ if [ -n "$(command -v go)" ]; then
   path+=($GOPATH/bin $GOROOT/bin)
 fi
 
+if [ -n "$(command -v java)" ] && [ -f "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh" ]; then
+  . "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh"
+fi
+
 # pnpm setup
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 
@@ -22,14 +26,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 
 # android studio
-export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
-export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android"
-export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/avd"
-
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home/"
 
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 
@@ -38,20 +35,12 @@ export npm_config_userconfig="$XDG_CONFIG_HOME/npm/config"
 export npm_config_cache="$XDG_CACHE_HOME/npm"
 export npm_config_prefix="$XDG_DATA_HOME/npm"
 
-# set gem paths
-export GEM_HOME="${XDG_DATA_HOME}"/gem
-export GEM_SPEC_CACHE="${XDG_CACHE_HOME}"/gem
-
-# set cocoapods path, stores cache and repos here
-export CP_HOME_DIR="$XDG_DATA_HOME/cocoapods"
-
 # set expo config
 export EAS_LOCAL_BUILD_ARTIFACTS_DIR="$HOME/builds"
 
 # Add vars to path
-path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $HOME/Library/Android/sdk/emulator
-  $HOME/Library/Android/sdk/platform-tools $HOME/Library/Android/sdk/cmdline-tools/latest/bin
-  /Applications/Android Studio.app/Contents/jre/Contents/Home/bin $HOME/Library/Application Support/JetBrains/Toolbox/scripts
-  $HOME/.dotnet/tools $PNPM_HOME)
+path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $ANDROID_HOME/emulator $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools
+  $ANDROID_HOME/cmdline-tools/latest/bin /Applications/Android Studio.app/Contents/jre/Contents/Home/bin
+  $HOME/Library/Application Support/JetBrains/Toolbox/scripts $HOME/.dotnet/tools $PNPM_HOME)
 
 typeset -aU path
