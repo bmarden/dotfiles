@@ -5,6 +5,9 @@ set surround
 set ideajoin
 set multiple-cursors
 set highlightedyank
+" Disable visual bell sounds
+set visualbell
+set noerrorbells
 
 """ Common settings
 set clipboard+=unnamed
@@ -16,3 +19,9 @@ map <leader>r <Action>(RenameElement)
 nnoremap gh :action QuickJavaDoc<cr>
 " Show error tooltip with `ge`
 nnoremap ge :action ShowErrorDescription<cr>
+" Set tab to switch between tabs in normal mode
+nnoremap <Tab> gt
+" Set shift-tab to navigate to the previous tab in normal mode
+nnoremap <S-Tab> gT
+" Bind "gr" to "Find Usages" in normal mode
+nnoremap gr :action FindUsages<cr>
