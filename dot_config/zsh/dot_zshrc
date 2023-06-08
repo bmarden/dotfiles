@@ -43,10 +43,6 @@ setopt append_history
 setopt extended_history
 # adds commands as they are typed, not at shell exit
 setopt inc_append_history
-# attempt to correct command spelling errors
-setopt correct
-# correct spelling errors for all arguments supplied to a command
-setopt correctall
 
 autoload -Uz zcalc colors
 
