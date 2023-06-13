@@ -43,6 +43,8 @@ setopt append_history
 setopt extended_history
 # adds commands as they are typed, not at shell exit
 setopt inc_append_history
+# don't try to correct command line spelling for command args
+unsetopt correctall
 
 autoload -Uz zcalc colors
 
@@ -52,6 +54,8 @@ autoload -Uz zcalc colors
 [ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
 # Load 1password completions
 [ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
+# Load dotnet env vars if installed
+[ -n "$(command -v dotnet)" ] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
 
 zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
 zstyle ':completion:*:*:kill:*' menu yes select
