@@ -54,8 +54,8 @@ autoload -Uz zcalc colors
 [ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
 # Load 1password completions
 [ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
-# Load dotnet env vars if installed
-[ -n "$(command -v dotnet)" ] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
+# Load dotnet env vars if installed - commented out since dotnet not installed via asdf currently 
+# [ -n "$(command -v dotnet)" ] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
 
 zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
 zstyle ':completion:*:*:kill:*' menu yes select
