@@ -76,3 +76,4 @@ fi
 # # Load custom functions into fpath
 fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
 autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
