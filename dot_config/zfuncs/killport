@@ -1,0 +1,4 @@
+# vim syntax=sh
+# 
+port=$1
+lsof -t -sTCP:LISTEN -i:"$port" | xargs -I {} sh -c "kill {} && echo 'Killed process with PID {} on port $port'" || echo "No process on port $port"
