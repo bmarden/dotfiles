@@ -7,7 +7,7 @@
 # Ensure asdf is initialized
 if [ -n "$(command -v asdf)" ]; then
   source "$(brew --prefix asdf)/libexec/asdf.sh"
-  export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+  export ASDF_DATA_DIR="$HOME/.local/share/asdf"
   export ASDF_NPM_DEFAULT_PACKAGES_FILE="$ASDF_DATA_DIR/.default-npm-packages"
 else
   echo "asdf not installed. Skipping asdf setup."
