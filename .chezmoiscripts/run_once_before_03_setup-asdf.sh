@@ -4,9 +4,17 @@
 [ -n "$(command -v /opt/homebrew/bin/brew)" ] &&
   eval "$(/opt/homebrew/bin/brew shellenv)"
 
-## Setup and install asdf plugins ##
-# nodejs
+# Ensure asdf is initialized
+if [ -n "$(command -v asdf)" ]; then
+  source "$(brew --prefix asdf)/libexec/asdf.sh"
+  export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+  export ASDF_NPM_DEFAULT_PACKAGES_FILE="$ASDF_DATA_DIR/.default-npm-packages"
+else
+  echo "asdf not installed. Skipping asdf setup."
+  exit 0
+fi
 
+## Setup and install asdf plugins ##
 plugins=("golang" "nodejs" "python" "ruby" "dotnet")  # List of plugins to check and install
 
 # Iterate over each plugin
