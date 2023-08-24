@@ -8,7 +8,7 @@ zmodule utility
 # Adds duration info after each command.
 zmodule duration-info
 # Initializes asdf, installing it using git if not installed yet.
-zmodule asdf
+# zmodule asdf
 # Defines homebrew aliases, functions and completions.
 zmodule homebrew
 zmodule fzf
