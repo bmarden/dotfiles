@@ -6,7 +6,7 @@ call plug#begin('~/.config/nvim/plugins')
 	" Surround 
 	Plug 'tpope/vim-surround'
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-	Plug 'github/copilot.vim'	
+
 	if exists('g:vscode')
 		Plug 'asvetliakov/vim-easymotion'
 	else
@@ -28,7 +28,8 @@ call plug#begin('~/.config/nvim/plugins')
 		Plug 'jiangmiao/auto-pairs'
     " Better Syntax Support
     Plug 'sheerun/vim-polyglot'
-endif
+    Plug 'github/copilot.vim'	
+  endif
 
 call plug#end()
 

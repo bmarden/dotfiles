@@ -18,4 +18,6 @@ brew install chezmoi
 3. Use chezmoi to install dotfiles
 ```bash
 chezmoi init --apply $GITHUB_USERNAME
+# or 
+chezmoi init --apply https://github.com/bmarden/dotfiles.git
 ```
