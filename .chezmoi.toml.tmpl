@@ -1,9 +1,9 @@
-{{- $is_work := promptBoolOnce . "is_work" "Is this a work machine?" -}}
+{{- $setup_1password := promptBoolOnce . "setup_1password" "Do you want to setup 1password?" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
 [data]
   email = {{ $email | quote }}
-  is_work = {{ $is_work }}
+  setup_1password = {{ $setup_1password }}
 [git]
   autoCommit = false
 [edit]

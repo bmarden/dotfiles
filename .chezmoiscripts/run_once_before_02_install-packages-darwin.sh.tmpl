@@ -37,7 +37,7 @@ cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
 
 # Add casks
-{{ if not .is_work }}
+{{ if .setup_1password }}
 cask "1password/tap/1password-cli"
 {{ end }}
 cask "visual-studio-code"
