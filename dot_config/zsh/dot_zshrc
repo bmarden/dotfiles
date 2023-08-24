@@ -56,6 +56,8 @@ autoload -Uz zcalc colors
 [ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
 # Load dotnet env vars if installed - commented out since dotnet not installed via asdf currently 
 [[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
+# Load asdf-direnv if installed
+[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 
 zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
 zstyle ':completion:*:*:kill:*' menu yes select
@@ -76,4 +78,3 @@ fi
 # # Load custom functions into fpath
 fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
 autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
