@@ -55,7 +55,7 @@ autoload -Uz zcalc colors
 # Load 1password completions
 [ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
 # Load dotnet env vars if installed - commented out since dotnet not installed via asdf currently 
-# [ -n "$(command -v dotnet)" ] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
+[[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
 
 zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
 zstyle ':completion:*:*:kill:*' menu yes select

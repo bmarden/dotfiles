@@ -7,7 +7,7 @@
 ## Setup and install asdf plugins ##
 # nodejs
 
-plugins=("golang" "nodejs" "python" "ruby")  # List of plugins to check and install
+plugins=("golang" "nodejs" "python" "ruby" "dotnet")  # List of plugins to check and install
 
 # Iterate over each plugin
 for plugin in "${plugins[@]}"; do
