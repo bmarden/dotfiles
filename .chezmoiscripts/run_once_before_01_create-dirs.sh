@@ -20,6 +20,7 @@ REQUIRED_DIRS=(
   "$XDG_CACHE_HOME/zsh"
   "$XDG_CACHE_HOME/zsh/completions"
   "$HOME/.ssh"
+  "$HOME/code"
 )
 
 for DIR in "${REQUIRED_DIRS[@]}"; do

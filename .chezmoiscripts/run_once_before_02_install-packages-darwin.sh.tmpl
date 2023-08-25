@@ -31,6 +31,7 @@ brew "bat"          # syntax enabled cat
 brew "httpie"       # http cli
 brew "wget"         
 brew "fzf"          # fuzzy finder  
+brew "gh"           # github cli
 
 # Add fonts casks
 cask "font-fira-code-nerd-font"
@@ -38,7 +39,7 @@ cask "font-hack-nerd-font"
 
 # Add casks
 {{ if .setup_1password }}
-cask "1password/tap/1password-cli"
+cask "1password-cli"
 {{ end }}
 cask "visual-studio-code"
 cask "iterm2"
