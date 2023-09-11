@@ -51,7 +51,7 @@ autoload -Uz zcalc colors
 # Use vivid to generate a themed LS_COLORS
 [ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
 # Load 1password completions
-[ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
+[ -n "$(command -v op)" ] && eval "$(op completion zsh)" && compdef _op op
 # Load dotnet env vars if installed - commented out since dotnet not installed via asdf currently 
 [[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && source "$HOME/.asdf/plugins/dotnet/set-dotnet-env.zsh"
 
@@ -72,4 +72,4 @@ fi
 
 # # Load custom functions into fpath
 fpath=("$ZSH_EXTRAS/functions" "${fpath[@]}")
-autoload -Uz "$ZSH_EXTRAS/functions/*
+autoload -Uz "$ZSH_EXTRAS"/functions/*
