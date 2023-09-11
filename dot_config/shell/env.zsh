@@ -43,7 +43,8 @@ export DIRENV_LOG_FORMAT=""
 
 # Add vars to path
 path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $ANDROID_HOME/emulator $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools
-  $ANDROID_HOME/cmdline-tools/latest/bin /Applications/Android Studio.app/Contents/jre/Contents/Home/bin
+  $ANDROID_HOME/cmdline-tools/latest/bin "/Applications/Android Studio.app/Contents/jre/Contents/Home/bin"
+  "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   $HOME/Library/Application Support/JetBrains/Toolbox/scripts $HOME/.dotnet/tools $PNPM_HOME)
 
 typeset -aU path
