@@ -1,24 +1,9 @@
 #!/bin/bash
 
-XDG_DATA_HOME="$HOME/.local/share"
-XDG_CACHE_HOME="$HOME/.cache"
-XDG_CONFIG_HOME="$HOME/.config"
-XDG_STATE_HOME="$HOME/.local/state"
-
 REQUIRED_DIRS=(
-  "$XDG_CONFIG_HOME/zsh"
-  "$XDG_CONFIG_HOME/npm"
-  "$XDG_CONFIG_HOME/gem"
-  "$XDG_STATE_HOME/zsh"
-  "$XDG_CACHE_HOME/npm"
-  "$XDG_DATA_HOME/asdf"
-  "$XDG_DATA_HOME/android"
-  "$XDG_DATA_HOME/npm"
-  "$XDG_DATA_HOME/gem"
-  "$XDG_DATA_HOME/../bin"
-  "$XDG_CACHE_HOME/zim"
-  "$XDG_CACHE_HOME/zsh"
-  "$XDG_CACHE_HOME/zsh/completions"
+  "$HOME/bin"
+  "$HOME/.zsh/completions"
+  "$HOME/.zsh/functions"
   "$HOME/.ssh"
   "$HOME/code"
 )

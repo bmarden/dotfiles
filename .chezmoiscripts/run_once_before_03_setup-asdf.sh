@@ -7,15 +7,15 @@
 # Ensure asdf is initialized
 if [ -n "$(command -v asdf)" ]; then
   source "$(brew --prefix asdf)/libexec/asdf.sh"
-  export ASDF_DATA_DIR="$HOME/.local/share/asdf"
-  export ASDF_NPM_DEFAULT_PACKAGES_FILE="$ASDF_DATA_DIR/.default-npm-packages"
+  # export ASDF_DATA_DIR="$HOME/.local/share/asdf"
+  # export ASDF_NPM_DEFAULT_PACKAGES_FILE="$ASDF_DATA_DIR/.default-npm-packages"
 else
   echo "asdf not installed. Skipping asdf setup."
   exit 0
 fi
 
 ## Setup and install asdf plugins ##
-plugins=("golang" "nodejs" "python" "ruby" "dotnet")  # List of plugins to check and install
+plugins=("nodejs" "ruby" "dotnet" "java")  # List of plugins to check and install
 
 # Iterate over each plugin
 for plugin in "${plugins[@]}"; do

@@ -7,17 +7,14 @@ zmodule environment
 zmodule utility
 # Adds duration info after each command.
 zmodule duration-info
-# Initializes asdf, installing it using git if not installed yet.
-# zmodule asdf
 # Defines homebrew aliases, functions and completions.
 zmodule homebrew
+# The fuzzy finder
 zmodule fzf
 # Setup chezmoi completions
 zmodule joke/zim-chezmoi
 # Outputs a suggested alias if full command was used
 zmodule djui/alias-tips
-# Aliases for pnpm command
-zmodule ntnyq/omz-plugin-pnpm -s pnpm.plugin.zsh
 
 # --------------------------------
 # Completions
@@ -25,7 +22,7 @@ zmodule ntnyq/omz-plugin-pnpm -s pnpm.plugin.zsh
 # More completions for Zsh.
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
-zmodule "$XDG_CONFIG_HOME/completions" --fpath .
+zmodule "$HOME/completions" --fpath .
 # Load generated completions
 zmodule "$XDG_CACHE_HOME/zsh/completions" --fpath .
 # Enables and configures smart and extensive tab completion.

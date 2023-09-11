@@ -5,8 +5,9 @@
 # Use zim's degit tool to install modules
 zstyle ':zim:zmodule' use 'degit'
 
-# Set ZIM home directory
-ZIM_HOME="${XDG_CACHE_HOME}/zim"
+# Set dependant variables
+ZIM_HOME="${HOME}/.zim"
+ZSH_EXTRAS="${HOME}/.zsh"
 
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
@@ -27,14 +28,11 @@ fi
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
 
-[[ -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] && source $XDG_CONFIG_HOME/p10k/p10k.zsh
+[[ -f $HOME/.p10k.zsh ]] && source $HOME/.p10k.zsh
 
 # # Set history here since MacOS sets them in /etc/zshrc
-HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTFILE="$ZSH_EXTRAS/.zsh_history"
 
-# setopt octal_zeroes
-# setopt c_bases
-# setopt notify
 # try to make the completion list smaller (occupying less lines) by printing the matches in columns with different widths.
 setopt list_packed
 # share history across multiple zsh sessions
@@ -55,11 +53,8 @@ autoload -Uz zcalc colors
 # Load 1password completions
 [ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
 # Load dotnet env vars if installed - commented out since dotnet not installed via asdf currently 
-[[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
-# Load asdf-direnv if installed
-[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+[[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && source "$HOME/.asdf/plugins/dotnet/set-dotnet-env.zsh"
 
-zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 zstyle ":completion:*:descriptions" format "%B%d%b"
@@ -69,12 +64,12 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # Load shell settings
-if [ -d "$XDG_CONFIG_HOME/shell" ]; then
-  for file in "$XDG_CONFIG_HOME"/shell/*.zsh; do
+if [ -d "$ZSH_EXTRAS/" ]; then
+  for file in "$ZSH_EXTRAS"/*.zsh; do
     source "$file"
   done
 fi
 
 # # Load custom functions into fpath
-fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
-autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*
+fpath=("$ZSH_EXTRAS/functions" "${fpath[@]}")
+autoload -Uz "$ZSH_EXTRAS/functions/*

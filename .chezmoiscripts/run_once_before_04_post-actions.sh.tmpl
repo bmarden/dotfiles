@@ -1,11 +1,6 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
-if [ ! -f /etc/zshenv ]; then
-  echo "No /etc/zshenv found, creating one"
-  printf "%s\n%s\n" 'ZDOTDIR="$HOME/.config/zsh"' 'source $ZDOTDIR/.zshenv' | sudo tee /etc/zshenv > /dev/null
-fi
-
 # Set key repeating defaults for vim in vscode
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
 defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider

@@ -1,0 +1,16 @@
+{{- $email := promptStringOnce . "email" "Email address (used for git)" -}}
+{{- $name := promptStringOnce . "name" "Full name (used for git)" -}}
+
+data:
+  email: {{ $email | quote }}
+git:
+  autoCommit: false
+edit:
+  command: "code"
+  args: "--wait"
+diff:
+  command: "code"
+  args: ["--wait",  "--diff", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
+merge:
+  command: "code"
+  args: ["--wait",  "--diff", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
