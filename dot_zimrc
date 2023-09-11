@@ -22,9 +22,7 @@ zmodule djui/alias-tips
 # More completions for Zsh.
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
-zmodule "$HOME/completions" --fpath .
-# Load generated completions
-zmodule "$XDG_CACHE_HOME/zsh/completions" --fpath .
+zmodule "$ZSH_EXTRAS/completions" --fpath .
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
 zmodule completion
@@ -32,7 +30,6 @@ zmodule completion
 # --------------------------------
 # Additional modules
 # --------------------------------
-zmodule jeffreytse/zsh-vi-mode
 zmodule thirteen37/fzf-brew -s fzf-brew.plugin.zsh
 
 # -------------------------------------
