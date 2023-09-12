@@ -15,6 +15,9 @@ fi
 # pnpm setup
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 
+# bun setup
+export BUN_INSTALL="$HOME/.bun"
+
 # vi mode settings
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 export ZVM_VI_ESCAPE_BINDKEY=jk
@@ -42,9 +45,11 @@ export EAS_LOCAL_BUILD_ARTIFACTS_DIR="$HOME/builds"
 export DIRENV_LOG_FORMAT=""
 
 # Add vars to path
-path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $ANDROID_HOME/emulator $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools
-  $ANDROID_HOME/cmdline-tools/latest/bin "/Applications/Android Studio.app/Contents/jre/Contents/Home/bin"
-  "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-  $HOME/Library/Application Support/JetBrains/Toolbox/scripts $HOME/.dotnet/tools $PNPM_HOME)
+path+=($XDG_DATA_HOME/npm/bin $HOME/.local/bin $ANDROID_HOME/emulator $ANDROID_HOME/tools \ 
+  $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools \
+  $ANDROID_HOME/cmdline-tools/latest/bin "/Applications/Android Studio.app/Contents/jre/Contents/Home/bin" \
+  "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" \
+  $HOME/Library/Application Support/JetBrains/Toolbox/scripts $HOME/.dotnet/tools $PNPM_HOME \
+  "$BUN_INSTALL/bin")
 
 typeset -aU path
