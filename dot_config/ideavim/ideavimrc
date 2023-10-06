@@ -26,6 +26,8 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 " Bind "gr" to "Find Usages" in normal mode
 nnoremap gr :action FindUsages<cr>
+" Bind "gi" to "Go to Implementation" in normal mode
+nnoremap gi :action GotoImplementation<cr>
 
 " Define keybindings for moving between split windows
 nnoremap <C-h> <C-w>h
