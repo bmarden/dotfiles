@@ -19,10 +19,22 @@ plugins=("golang" "nodejs" "python" "ruby" "dotnet")  # List of plugins to check
 
 # Iterate over each plugin
 for plugin in "${plugins[@]}"; do
-  if [[ $(asdf plugin-list) != *"$plugin"* ]]; then
-    echo "Installing $plugin..."
-    asdf plugin-add "$plugin"
-  else
-    echo "$plugin is already installed."
+  echo "Adding $plugin..."
+  asdf plugin-add "$plugin"
+
+  # Construct the env variable name
+  plugin_upper=$(echo "$plugin" | tr '[:lower:]' '[:upper:]')
+  asdf_plugin_version="ASDF_${plugin_upper}_VERSION"
+  
+  if [ -z "${!asdf_plugin_version}" ]; then
+
+    echo "No version set for plugin $plugin. Skipping..."
+    continue
   fi
+
+  echo "Installing AH version for plugin $plugin..."
+  asdf install "$plugin" "${!asdf_plugin_version}"
+
+  echo "Setting global version for $plugin..."
+  asdf global "$plugin" "${!asdf_plugin_version}"
 done
