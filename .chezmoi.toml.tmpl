@@ -1,9 +1,11 @@
 {{- $setup_1password := promptBoolOnce . "setup_1password" "Do you want to setup 1password?" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $code_home := promptStringOnce . "code_home" "Where do you want to store code?" "code" -}}
 
 [data]
   email = {{ $email | quote }}
   setup_1password = {{ $setup_1password }}
+  code_home = "{{ .chezmoi.homeDir }}/{{ $code_home }}"
 [git]
   autoCommit = false
 [edit]

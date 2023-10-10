@@ -1,5 +1,5 @@
 # setup editor
-export EDITOR="nvim"
+export EDITOR=nvim
 
 # GO setup
 if [ -n "$(command -v go)" ]; then
@@ -21,6 +21,7 @@ export BUN_INSTALL="$HOME/.bun"
 # vi mode settings
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 export ZVM_VI_ESCAPE_BINDKEY=jk
+export ZVM_VI_EDITOR=nvim
 
 # # Set up fzf env vars
 export FZF_DEFAULT_COMMAND='fd --type file --color=never --follow --hidden --exclude .git'

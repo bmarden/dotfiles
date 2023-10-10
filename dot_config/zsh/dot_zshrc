@@ -10,7 +10,7 @@ ZIM_HOME="${XDG_CACHE_HOME}/zim"
 
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+  curl -fsSL --create-dirs -o "${ZIM_HOME}"/zimfw.zsh \
     https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
 fi
 
@@ -59,13 +59,19 @@ autoload -Uz zcalc colors
 # Load asdf-direnv if installed
 [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 
-zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*'   force-list always
-zstyle ":completion:*:descriptions" format "%B%d%b"
+# Sets the cache path for zsh completions
+zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME}"/zsh/zcompcache
+# Enables an interactive selection menu for tab completions where you can select the completion with tab/shift-tab
 zstyle ':completion:*:*:*:default' menu yes select search
-zstyle ':completion:*:*:*:default' menu yes select
+# Shows a list of processes to kill when using kill commands
+zstyle ':completion:*:*:kill:*' menu yes select
+# Ensures a list is always shown when using kill commands
+zstyle ':completion:*:kill:*' force-list always
+# Sets description text to bold for completion menu
+zstyle ":completion:*:descriptions" format "%B%d%b"
+# Allows for case-insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# Use colors in LS_COLORS for displaying file lists in completion
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # Load shell settings

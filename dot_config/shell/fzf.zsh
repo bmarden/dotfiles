@@ -1,4 +1,4 @@
-# Following was generated from /opt/homebrew/opt/fzf/install 
+# Following was generated from /opt/homebrew/opt/fzf/install
 # Setup fzf
 # ---------
 if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
@@ -7,40 +7,43 @@ fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2>/dev/null
 
-# Key bindings
+# Key bindings (modified)
 # ------------
-source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+# Use the zvm_after_init_commands array to add commands to be run after vi-mode is initialized. This
+# makes sure that zsh-vi-mode doesn't overwrite Ctrl-R keybinding for fzf.
+zvm_after_init_commands+=('source /opt/homebrew/opt/fzf/shell/key-bindings.zsh')
+
 # End of generation from /opt/homebrew/opt/fzf/install
 
 fzf_change_directory() {
-    local directory=$(
-      fd --type d | \
+  local directory=$(
+    fd --type d |
       fzf --query="$1" --no-multi --select-1 --exit-0 \
-          --preview 'tree -C {} | head -100'
-      )
-    if [[ -n $directory ]]; then
-        cd "$directory"
-    fi
+        --preview 'tree -C {} | head -100'
+  )
+  if [[ -n $directory ]]; then
+    cd "$directory"
+  fi
 }
 alias fcd='fzf_change_directory'
 
 fzf_kill() {
-    local pid_col
-    if [[ $(uname) = Linux ]]; then
-        pid_col=2
-    elif [[ $(uname) = Darwin ]]; then
-        pid_col=3;
-    else
-        echo 'Error: unknown platform'
-        return
-    fi
-    local pids=$(
-      ps -f -u $USER | sed 1d | fzf --multi | tr -s [:blank:] | cut -d' ' -f"$pid_col"
-      )
-    if [[ -n $pids ]]; then
-        echo "$pids" | xargs kill -9 "$@"
-    fi
+  local pid_col
+  if [[ $(uname) = Linux ]]; then
+    pid_col=2
+  elif [[ $(uname) = Darwin ]]; then
+    pid_col=3
+  else
+    echo 'Error: unknown platform'
+    return
+  fi
+  local pids=$(
+    ps -f -u $USER | sed 1d | fzf --multi | tr -s [:blank:] | cut -d' ' -f"$pid_col"
+  )
+  if [[ -n $pids ]]; then
+    echo "$pids" | xargs kill -9 "$@"
+  fi
 }
 alias fkill='fzf_kill'
