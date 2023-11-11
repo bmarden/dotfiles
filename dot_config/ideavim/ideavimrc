@@ -17,9 +17,9 @@ set clipboard+=unnamed
 :imap jk <Esc>
 map <leader>r <Action>(RenameElement)
 " Show tooltip with `gh`
-nnoremap gh :action QuickJavaDoc<cr>
+map gh <Action>(QuickJavaDoc)
 " Show error tooltip with `ge`
-nnoremap ge :action ShowErrorDescription<cr>
+map ge <Action>(ShowErrorDescription)
 " Set tab to switch between tabs in normal mode
 nnoremap <Tab> gt
 " Set shift-tab to navigate to the previous tab in normal mode
@@ -28,6 +28,14 @@ nnoremap <S-Tab> gT
 nnoremap gr :action FindUsages<cr>
 " Bind "gi" to "Go to Implementation" in normal mode
 nnoremap gi :action GotoImplementation<cr>
+
+" Bind Ctrl-e to show the explorer in normal mode
+map <C-e> <Action>(ActivateProjectToolWindow)
+
+" Bind fold and unfold to leader + [ and leader + ]
+nnoremap <leader>[ :action CollapseRegion<CR>
+nnoremap <leader>] :action ExpandRegion<CR>
+
 
 " Define keybindings for moving between split windows
 nnoremap <C-h> <C-w>h
