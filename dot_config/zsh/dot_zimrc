@@ -12,6 +12,8 @@ zmodule duration-info
 # Defines homebrew aliases, functions and completions.
 zmodule homebrew
 zmodule fzf
+# Aliases and functions for git.
+# zmodule git
 # Setup chezmoi completions
 zmodule joke/zim-chezmoi
 # Outputs a suggested alias if full command was used
@@ -43,6 +45,7 @@ zmodule thirteen37/fzf-brew -s fzf-brew.plugin.zsh
 # -------------------------------------
 # Must be loaded after completion, since it calls `compdef`
 zmodule ohmyzsh/ohmyzsh --root plugins/git
+zmodule ohmyzsh/ohmyzsh --root lib --source git.zsh
 # Syntax highlighting for Zsh. Must be sourced after completions
 zmodule zdharma-continuum/fast-syntax-highlighting
 # Fish-like history search (up arrow) for Zsh.
