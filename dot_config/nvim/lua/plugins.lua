@@ -8,14 +8,6 @@ local function load_plugins()
       cond = not vim.g.vscode,
     },
 
-    -- Telescope (Fuzzy Finder)
-    {
-      'nvim-telescope/telescope.nvim',
-      lazy = true,
-      dependencies = {
-        { 'nvim-lua/plenary.nvim' },
-      }
-    },
 
     -- Alpha (Dashboard)
     {
@@ -82,30 +74,22 @@ local function load_plugins()
     {
       'folke/tokyonight.nvim',
     },
-    -- Language Support
-    -- Added this plugin.
     {
-      'VonHeikemen/lsp-zero.nvim',
-      branch = 'v1.x',
-      dependencies = {
-        -- LSP Support
-        { 'neovim/nvim-lspconfig' },             -- Required
-        { 'williamboman/mason.nvim' },           -- Optional
-        { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
-        -- Autocompletion
-        { 'hrsh7th/nvim-cmp' },         -- Required
-        { 'hrsh7th/cmp-nvim-lsp' },     -- Required
-        { 'hrsh7th/cmp-buffer' },       -- Optional
-        { 'hrsh7th/cmp-path' },         -- Optional
-        { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-        { 'hrsh7th/cmp-nvim-lua' },     -- Optional
-
-        -- Snippets
-        { 'L3MON4D3/LuaSnip' },             -- Required
-        { 'rafamadriz/friendly-snippets' }, -- Optional
-      }
+      "olimorris/onedarkpro.nvim",
+      priority = 1000 -- Ensure it loads first
     },
+    {
+      'sainnhe/sonokai'
+    },
+
+    -- Language Support
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
+    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+    { 'neovim/nvim-lspconfig' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/nvim-cmp' },
+    { 'L3MON4D3/LuaSnip' },
     -- Lualine
     {
       'nvim-lualine/lualine.nvim',
@@ -113,7 +97,17 @@ local function load_plugins()
         'nvim-tree/nvim-web-devicons'
       },
     },
-    { 'github/copilot.vim' }
+    {
+      'github/copilot.vim'
+    },
+    -- Telescope (Fuzzy Finder)
+    {
+      'nvim-telescope/telescope.nvim',
+      lazy = true,
+      dependencies = {
+        { 'nvim-lua/plenary.nvim' },
+      }
+    },
   }
 
   -- Add all plugins to the list

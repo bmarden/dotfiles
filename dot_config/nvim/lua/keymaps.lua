@@ -1,12 +1,10 @@
-local opts = { noremap = true, silent = true }
-
-local term_opts = { silent = true }
+local m_opts = { noremap = true, silent = true }
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+map("", "<Space>", "<Nop>", m_opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -20,57 +18,77 @@ vim.g.maplocalleader = " "
 
 -- insert --
 -- press jk fast to exit insert mode
-keymap("i", "jk", "<esc>", opts) -- Insert mode -> jk -> Normal mode
-keymap("i", "kj", "<esc>", opts) -- Insert mode -> kj -> Normal mode
+map("i", "jk", "<esc>", m_opts) -- Insert mode -> jk -> Normal mode
+map("i", "kj", "<esc>", m_opts) -- Insert mode -> kj -> Normal mode
 
 -- visual --
 -- stay in indent mode
-keymap("v", ">", ">gv", opts) -- Left Indentation
-keymap("v", "<", "<gv", opts) -- Right Indentation
+map("v", ">", ">gv", m_opts) -- Left Indentation
+map("v", "<", "<gv", m_opts) -- Right Indentation
 
-keymap('n', '<leader>n', ':noh<CR>', { noremap = true, silent = true })
+map('n', '<leader>n', ':noh<CR>', { noremap = true, silent = true })
+
+map('n', '<leader>/', ':%s//g<Left><Left>', { noremap = true, silent = true })
 
 
 if vim.g.vscode then
   local vscode = require("vscode-neovim")
+  local function vscode_map(mode, key, action)
+    local default_opts = { noremap = true, silent = true }
+    map(mode, key, '', { callback = function() vscode.call(action) end, noremap = true, silent = true })
+  end
 
-  keymap('n', '<C-j>', '',
-    { callback = function() vscode.call('workbench.action.navigateDown') end, noremap = true, silent = true })
-  keymap('x', '<C-j>', '',
-    { callback = function() vscode.call('workbench.action.navigateDown') end, noremap = true, silent = true })
-  keymap('n', '<C-k>', '',
-    { callback = function() vscode.call('workbench.action.navigateUp') end, noremap = true, silent = true })
-  keymap('x', '<C-k>', '',
-    { callback = function() vscode.call('workbench.action.navigateUp') end, noremap = true, silent = true })
-  keymap('n', '<C-h>', '',
-    { callback = function() vscode.call('workbench.action.navigateLeft') end, noremap = true, silent = true })
-  keymap('x', '<C-h>', '',
-    { callback = function() vscode.call('workbench.action.navigateLeft') end, noremap = true, silent = true })
-  keymap('n', '<C-l>', '',
-    { callback = function() vscode.call('workbench.action.navigateRight') end, noremap = true, silent = true })
-  keymap('x', '<C-l>', '',
-    { callback = function() vscode.call('workbench.action.navigateRight') end, noremap = true, silent = true })
+  -- Navigating between windows
+  vscode_map({ 'n', 'x' }, '<C-j>', 'workbench.action.navigateDown')
+  vscode_map({ 'n', 'x' }, '<C-k>', 'workbench.action.navigateUp')
+  vscode_map({ 'n', 'x' }, '<C-h>', 'workbench.action.navigateLeft')
+  vscode_map({ 'n', 'x' }, '<C-l>', 'workbench.action.navigateRight')
+  -- Leader shortcuts
+  vscode_map('n', '<leader>r', 'editor.action.rename')
+  vscode_map('n', 'ga', 'editor.action.marker.next')
+  vscode_map('n','gA', 'editor.action.marker.prev')
+  vscode_map('n', '<leader>[', 'editor.fold')
+  vscode_map('n', '<leader>]', 'editor.unfold')
+  vscode_map('n', '<leader>e', 'workbench.action.toggleSidebarVisibility')
+  vscode_map('n', '<leader>h', 'workbench.action.splitEditorDown')
+  vscode_map('n', '<leader>v', 'workbench.action.splitEditorRight')
 
+  -- Go to references
+  vscode_map('n', 'gr', 'references-view.findReferences')
+  vscode_map('n', 'gt', 'editor.action.goToTypeDefinition')
+  vscode_map('n', 'gi', 'editor.action.goToImplementation')
+
+  -- Use ? to search for the word under the cursor
+  map('n', '?<CR>', '',
+    {
+      callback = function()
+        vscode.action('workbench.action.findInFiles',
+          { args = { { query = vim.fn.expand('<cword>') } } })
+      end,
+      noremap = true,
+      silent = true
+    }
+  )
 else
   -- Normal --
   -- Better window navigation
-  keymap("n", "<C-h>", "<C-w>h", opts) -- left window
-  keymap("n", "<C-k>", "<C-w>k", opts) -- up window
-  keymap("n", "<C-j>", "<C-w>j", opts) -- down window
-  keymap("n", "<C-l>", "<C-w>l", opts) -- right window
+  map("n", "<C-h>", "<C-w>h", m_opts) -- left window
+  map("n", "<C-k>", "<C-w>k", m_opts) -- up window
+  map("n", "<C-j>", "<C-w>j", m_opts) -- down window
+  map("n", "<C-l>", "<C-w>l", m_opts) -- right window
 
   -- Resize with arrows when using multiple windows
-  keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-  keymap("n", "<c-down>", ":resize +2<cr>", opts)
-  keymap("n", "<c-right>", ":vertical resize -2<cr>", opts)
-  keymap("n", "<c-left>", ":vertical resize +2<cr>", opts)
+  map("n", "<C-Up>", ":resize -2<CR>", m_opts)
+  map("n", "<c-down>", ":resize +2<cr>", m_opts)
+  map("n", "<c-right>", ":vertical resize -2<cr>", m_opts)
+  map("n", "<c-left>", ":vertical resize +2<cr>", m_opts)
 
   -- navigate buffers
-  keymap("n", "<tab>", ":bnext<cr>", opts)          -- Next Tab
-  keymap("n", "<s-tab>", ":bprevious<cr>", opts)    -- Previous tab
-  keymap("n", "<leader>h", ":nohlsearch<cr>", opts) -- No highlight search
+  map("n", "<tab>", ":bnext<cr>", m_opts)          -- Next Tab
+  map("n", "<s-tab>", ":bprevious<cr>", m_opts)    -- Previous tab
+  map("n", "<leader>h", ":nohlsearch<cr>", m_opts) -- No highlight search
 
   -- Shortcuts for splitting windows
-  keymap("n", "<leader>h", ":split<CR>", { noremap = true, silent = true })
-  keymap("n", "<leader>v", ":vsplit<CR>", { noremap = true, silent = true })
+  map("n", "<leader>h", ":split<CR>", m_opts)
+  map("n", "<leader>v", ":vsplit<CR>", m_opts)
 end
