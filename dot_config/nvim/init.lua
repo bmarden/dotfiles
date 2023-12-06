@@ -19,3 +19,4 @@ else
 end
 
 vim.cmd(string.format('let @%s="%s"', 'i', "f'l:s/\\\\(\\\\.\\\\+\\\\/\\\\)\\\\+/@\\\\/\\<CR>j"))
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
