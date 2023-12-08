@@ -14,8 +14,8 @@
   command = "code"
   args = ["--wait",  "--diff", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
 [merge]
-  command = "nvim"
-  args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+  command = "code"
+  args = ["--wait",  "--diff", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
 [scriptEnv]
   OP_ACCOUNT = "my.1password.com"
   ASDF_RUBY_VERSION = "3.2.2"
