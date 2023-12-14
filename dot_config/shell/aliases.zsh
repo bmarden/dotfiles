@@ -30,6 +30,8 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
+alias cl="clear"
+
 # npm
 alias n="npm"
 alias ni="npm install"
