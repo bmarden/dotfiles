@@ -34,10 +34,6 @@ local function load_plugins()
       cond = not not vim.g.vscode,
     },
     {
-      'xiyaowong/fast-cursor-move.nvim',
-      cond = not not vim.g.vscode,
-    },
-    {
       'echasnovski/mini.nvim',
       version = false,
     },
