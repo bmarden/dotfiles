@@ -46,7 +46,7 @@ if vim.g.vscode then
   -- Leader shortcuts
   vscode_map('n', '<leader>r', 'editor.action.rename')
   vscode_map('n', 'ga', 'editor.action.marker.next')
-  vscode_map('n','gA', 'editor.action.marker.prev')
+  vscode_map('n', 'gA', 'editor.action.marker.prev')
   vscode_map('n', '<leader>[', 'editor.fold')
   vscode_map('n', '<leader>]', 'editor.unfold')
   vscode_map('n', '<leader>e', 'workbench.action.toggleSidebarVisibility')
@@ -69,6 +69,22 @@ if vim.g.vscode then
       silent = true
     }
   )
+
+  local function moveCursor(direction)
+    if (vim.fn.reg_recording() == '' and vim.fn.reg_executing() == '') then
+      return ('g' .. direction)
+    else
+      return direction
+    end
+  end
+
+  -- Ensures that moving the cursor over wrapped lines works correctly
+  vim.keymap.set('n', 'k', function()
+    return moveCursor('k')
+  end, { expr = true, remap = true })
+  vim.keymap.set('n', 'j', function()
+    return moveCursor('j')
+  end, { expr = true, remap = true })
 else
   -- Normal --
   -- Better window navigation
