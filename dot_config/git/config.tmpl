@@ -13,17 +13,13 @@
 [gpg "ssh"]
   allowedSignersFile = ~/.config/git/allowed_signers
 [core]
-  editor = nvim
+	editor = nvim
 [diff]
-  tool = nvim
+	tool = nvim
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [merge]
-  tool = vscode
-[mergetool "vscode"]
-  cmd = code --wait $MERGED
-[diff]
-  tool = vscode
-[difftool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+  tool = nvim
 [pager]
   branch = false
   stash = false

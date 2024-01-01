@@ -1,11 +1,11 @@
 {{- $setup_1password := promptBoolOnce . "setup_1password" "Do you want to setup 1password?" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $code_home := promptStringOnce . "code_home" "Where do you want to store code?" "code" -}}
+{{- $code_home_dir := promptStringOnce . "code_home_dir" "Where do you want to store code?" "code" -}}
 
 [data]
   email = {{ $email | quote }}
   setup_1password = {{ $setup_1password }}
-  code_home = "{{ .chezmoi.homeDir }}/{{ $code_home }}"
+  code_home = "{{ joinPath .chezmoi.homeDir $code_home_dir }}"
 [git]
   autoCommit = false
 [edit]
@@ -16,8 +16,3 @@
 [merge]
   command = "code"
   args = ["--wait",  "--diff", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
-[scriptEnv]
-  OP_ACCOUNT = "my.1password.com"
-  ASDF_RUBY_VERSION = "3.2.2"
-  ASDF_NODEJS_VERSION = "20.8.0"
-  ASDF_JAVA_VERSION = "zulu-20.30.11"
