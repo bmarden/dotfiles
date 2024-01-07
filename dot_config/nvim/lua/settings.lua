@@ -4,8 +4,6 @@ if not vim.g.vscode then
   vim.o.shiftwidth = 2
   vim.o.smarttab = true
   vim.o.expandtab = true
-  vim.o.smartindent = true
-  vim.o.autoindent = true
   vim.o.wrap = false
   vim.o.encoding = 'utf-8'
   vim.o.pumheight = 10
@@ -26,6 +24,8 @@ if not vim.g.vscode then
   vim.o.guifont = 'Fira Code Nerd Font'
 end
 
+vim.o.smartindent = true
+vim.o.autoindent = true
 
 -- Interface and visual settings
 vim.o.clipboard = 'unnamed,unnamedplus'
