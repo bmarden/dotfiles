@@ -52,6 +52,7 @@ if vim.g.vscode then
   vscode_map('n', '<leader>e', 'workbench.action.toggleSidebarVisibility')
   vscode_map('n', '<leader>h', 'workbench.action.splitEditorDown')
   vscode_map('n', '<leader>v', 'workbench.action.splitEditorRight')
+  vscode_map('n', '<leader>w', 'whichkey.show')
 
   -- Go to references
   vscode_map('n', 'gr', 'references-view.findReferences')

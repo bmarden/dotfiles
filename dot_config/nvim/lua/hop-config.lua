@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 hop.setup {
-  keys = 'etovxqpdygfblzhckisuran'
 }
 
 local opts = {
