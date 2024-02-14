@@ -29,6 +29,7 @@ map("v", "<", "<gv", m_opts) -- Right Indentation
 map('n', '<leader>n', ':noh<CR>', { noremap = true, silent = true })
 
 map('n', '<leader>/', ':%s//g<Left><Left>', { noremap = true, silent = true })
+map({ 'n', 'v' }, '<leader>p', '"_dP', { noremap = true, silent = true })
 
 
 if vim.g.vscode then
