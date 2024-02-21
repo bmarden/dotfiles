@@ -31,6 +31,7 @@ export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 
 # android studio
 export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_USER_HOME="$XDG_CONFIG_HOME/android"
 
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 
