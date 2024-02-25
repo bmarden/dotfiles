@@ -2,6 +2,8 @@
 # .zshrc
 #
 
+# shellcheck disable=SC1090,SC1091,SC2296
+
 # Use zim's degit tool to install modules
 zstyle ':zim:zmodule' use 'degit'
 
@@ -16,7 +18,7 @@ fi
 
 # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
+  source "${ZIM_HOME}"/zimfw.zsh init -q
 fi
 
 # Activate Powerlevel10k Instant Prompt.
@@ -25,9 +27,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Initialize modules.
-source ${ZIM_HOME}/init.zsh
+source "${ZIM_HOME}"/init.zsh
 
-[[ -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] && source $XDG_CONFIG_HOME/p10k/p10k.zsh
+[[ -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] && source "$XDG_CONFIG_HOME"/p10k/p10k.zsh
 
 # # Set history here since MacOS sets them in /etc/zshrc
 HISTFILE="$XDG_STATE_HOME/zsh/history"
@@ -72,7 +74,7 @@ zstyle ":completion:*:descriptions" format "%B%d%b"
 # Allows for case-insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # Use colors in LS_COLORS for displaying file lists in completion
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
 # Load shell settings
 if [ -d "$XDG_CONFIG_HOME/shell" ]; then
