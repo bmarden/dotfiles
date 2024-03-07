@@ -1,0 +1,12 @@
+# vim syntax=sh
+
+# This script will recursively remove node_modules directories from the current directory
+# Pass in --dry-run to see what would be removed
+
+if [ "$1" = "--dry-run" ] || [ "$1" = "-d" ]; then
+  echo "Dry run"
+  find . -name 'node_modules' -type d -prune -print0 | xargs -0 du -chs
+else
+  echo "Removing node_modules"
+  find . -name "node_modules" -type d -prune -exec sh -c 'echo "Deleting $1"; rm -rf "$1"' sh {} \;
+fi
