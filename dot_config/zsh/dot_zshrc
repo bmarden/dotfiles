@@ -26,6 +26,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Set some intial values in PATH. The rest will be set in shell/env.zsh
+path+=("$XDG_DATA_HOME/npm/bin" "$HOME/bin" "$HOME/.local/bin")
+
 # Initialize modules.
 source "${ZIM_HOME}"/init.zsh
 
@@ -50,12 +53,16 @@ unsetopt correctall
 
 autoload -Uz zcalc colors
 
+## Completion scripts
+# Load 1password completions
+[ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
+# Load eas cli completions
+[ -n "$(command -v eas)" ] && eval "$(eas autocomplete:script zsh)"
+
 # Not sure if this asdf script is needed in addition to zim asdf module
 [ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
 # Use vivid to generate a themed LS_COLORS
 [ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
-# Load 1password completions
-[ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
 # Load dotnet env vars if installed - commented out since dotnet not installed via asdf currently 
 [[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
 # Load asdf-direnv if installed
