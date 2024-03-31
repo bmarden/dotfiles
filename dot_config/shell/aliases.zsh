@@ -63,6 +63,9 @@ alias urlencode='python3 -c "import sys, urllib.parse as ul; \
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 alias history="fc -li"
 
+# git
+alias glo="git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
+
 # IF CHEZMOI IS INSTALLED
 [ -n "$(command -v chezmoi)" ]               \
     && alias cm="chezmoi"                    \
