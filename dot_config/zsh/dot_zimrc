@@ -34,7 +34,10 @@ zmodule "$XDG_CONFIG_HOME/completions" --fpath .
 # Load generated completions
 zmodule "$XDG_CACHE_HOME/zsh/completions" --fpath .
 # Load eas completions if command exists
-type eas &>/dev/null && zmodule "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh" --fpath . 
+if [ "$(command -v eas)" ]; then
+  [[ ! -d "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh" ]] && eas autocomplete -r zsh;
+  zmodule "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh" --fpath .
+fi
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
 zmodule completion
