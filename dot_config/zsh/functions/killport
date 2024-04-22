@@ -1,3 +1,4 @@
+#!/bin/zsh
 # vim syntax=sh
 # 
 port=$1

@@ -1,1 +1,3 @@
+#!/bin/zsh
+
 lsof -i -n -P | grep LISTEN | grep "$1"

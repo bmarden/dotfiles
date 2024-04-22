@@ -82,7 +82,3 @@ if [ -d "$XDG_CONFIG_HOME/shell" ]; then
     source "$file"
   done
 fi
-
-# # Load custom functions into fpath
-fpath=("$XDG_CONFIG_HOME"/zfuncs "${fpath[@]}")
-autoload -Uz "$XDG_CONFIG_HOME"/zfuncs/*

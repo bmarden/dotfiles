@@ -19,6 +19,12 @@ zmodule djui/alias-tips
 zmodule ntnyq/omz-plugin-pnpm -s pnpm.plugin.zsh
 
 # --------------------------------
+# Custom zsh functions
+# --------------------------------
+# Load all the custom functions defined in the zfuncs directory
+zmodule "$XDG_CONFIG_HOME/zsh" 
+
+# --------------------------------
 # Completions
 # --------------------------------
 # More completions for Zsh.
