@@ -9,6 +9,7 @@ REQUIRED_DIRS=(
   "$XDG_CONFIG_HOME/zsh"
   "$XDG_CONFIG_HOME/npm"
   "$XDG_CONFIG_HOME/gem"
+  "$XDG_CONFIG_HOME/iterm2"
   "$XDG_STATE_HOME/zsh"
   "$XDG_CACHE_HOME/npm"
   "$XDG_DATA_HOME/asdf"

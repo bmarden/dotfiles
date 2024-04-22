@@ -16,4 +16,10 @@ defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool fa
 defaults write -g InitialKeyRepeat -int 15
 defaults write -g KeyRepeat -int 2
 
+cp "$HOME/.local/share/chezmoi/com.googlecode.iterm2.plist" "$HOME/.config/iterm2"
+
+# Set iterm to use custom preferences
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$HOME/.config/iterm2"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
 {{ end }}

@@ -53,11 +53,6 @@ unsetopt correctall
 
 autoload -Uz zcalc colors
 
-## Completion scripts
-# Load 1password completions
-[ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
-# Load eas cli completions
-[ -n "$(command -v eas)" ] && eval "$(eas autocomplete:script zsh)"
 
 # Not sure if this asdf script is needed in addition to zim asdf module
 [ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
@@ -67,6 +62,11 @@ autoload -Uz zcalc colors
 [[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
 # Load asdf-direnv if installed
 [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+
+## Completion scripts
+# Load 1password completions
+[ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
+[ -n "$(command -v eas)" ] && eval "$(eas autocomplete:script zsh)"
 
 # Sets the cache path for zsh completions
 zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME}"/zsh/zcompcache
