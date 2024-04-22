@@ -1,15 +1,11 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
-# SETUP HOMEBREW PATH
-[ -d "/opt/homebrew/bin/" ] &&
-  _BREW="/opt/homebrew/bin" ||
-  _BREW="/usr/local/bin"
+# Make sure brew is setup
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# INITIALIZE CLI TOOLS FUNCTIONS
-[ -n "$(command -v $_BREW/brew)" ] &&
-  eval "$($_BREW/brew shellenv)"
-
+# ensure brew is updated
+brew update
 
 {{- $brewfile := joinPath .chezmoi.sourceDir "dot_config/brew/Brewfile" -}}
 # Brewfile hash: {{ include $brewfile | sha256sum }}
