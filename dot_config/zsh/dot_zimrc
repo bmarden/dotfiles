@@ -7,13 +7,10 @@ zmodule environment
 zmodule utility
 # Adds duration info after each command.
 zmodule duration-info
-# Initializes asdf, installing it using git if not installed yet.
-# zmodule asdf
 # Defines homebrew aliases, functions and completions.
 zmodule homebrew
+# The fuzzy finder for your shell.
 zmodule fzf
-# Aliases and functions for git.
-# zmodule git
 # Setup chezmoi completions
 zmodule joke/zim-chezmoi
 # Outputs a suggested alias if full command was used
@@ -30,6 +27,8 @@ zmodule zsh-users/zsh-completions --fpath src
 zmodule "$XDG_CONFIG_HOME/completions" --fpath .
 # Load generated completions
 zmodule "$XDG_CACHE_HOME/zsh/completions" --fpath .
+# Load eas completions if command exists
+type eas &>/dev/null && zmodule "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh" --fpath . 
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
 zmodule completion

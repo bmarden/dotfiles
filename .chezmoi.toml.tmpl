@@ -1,5 +1,5 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $code_home_dir := promptStringOnce . "code_home_dir" "Where do you want to store code?" "code" -}}
+{{- $code_home_dir := promptStringOnce . "code_home_dir" "Where do you want to store git repositories (relative to $HOME. For example to store repos in /Users/user/my-repos, enter 'my-repos')" "code" -}}
 
 [data]
   email = {{ $email | quote }}

@@ -29,6 +29,22 @@ fi
 # Set some intial values in PATH. The rest will be set in shell/env.zsh
 path+=("$XDG_DATA_HOME/npm/bin" "$HOME/bin" "$HOME/.local/bin")
 
+zstyle ':zim:completion' dumpfile ${XDG_CACHE_HOME}/zsh/zcompdump
+# Sets the cache path for zsh completions
+zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
+# Enables an interactive selection menu for tab completions where you can select the completion with tab/shift-tab
+zstyle ':completion:*:*:*:default' menu yes select search
+# Shows a list of processes to kill when using kill commands
+zstyle ':completion:*:*:kill:*' menu yes select
+# Ensures a list is always shown when using kill commands
+zstyle ':completion:*:kill:*' force-list always
+# Sets description text to bold for completion menu
+zstyle ":completion:*:descriptions" format "%B%d%b"
+# Allows for case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# Use colors in LS_COLORS for displaying file lists in completion
+zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
+
 # Initialize modules.
 source "${ZIM_HOME}"/init.zsh
 
@@ -37,9 +53,6 @@ source "${ZIM_HOME}"/init.zsh
 # # Set history here since MacOS sets them in /etc/zshrc
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 
-# setopt octal_zeroes
-# setopt c_bases
-# setopt notify
 # try to make the completion list smaller (occupying less lines) by printing the matches in columns with different widths.
 setopt list_packed
 # share history across multiple zsh sessions
@@ -53,7 +66,6 @@ unsetopt correctall
 
 autoload -Uz zcalc colors
 
-
 # Not sure if this asdf script is needed in addition to zim asdf module
 [ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
 # Use vivid to generate a themed LS_COLORS
@@ -63,25 +75,6 @@ autoload -Uz zcalc colors
 # Load asdf-direnv if installed
 [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 
-## Completion scripts
-# Load 1password completions
-[ -n "$(command -v op)" ] && eval "$(op completion zsh)"; compdef _op op
-[ -n "$(command -v eas)" ] && eval "$(eas autocomplete:script zsh)"
-
-# Sets the cache path for zsh completions
-zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME}"/zsh/zcompcache
-# Enables an interactive selection menu for tab completions where you can select the completion with tab/shift-tab
-zstyle ':completion:*:*:*:default' menu yes select search
-# Shows a list of processes to kill when using kill commands
-zstyle ':completion:*:*:kill:*' menu yes select
-# Ensures a list is always shown when using kill commands
-zstyle ':completion:*:kill:*' force-list always
-# Sets description text to bold for completion menu
-zstyle ":completion:*:descriptions" format "%B%d%b"
-# Allows for case-insensitive completion
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-# Use colors in LS_COLORS for displaying file lists in completion
-zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
 # Load shell settings
 if [ -d "$XDG_CONFIG_HOME/shell" ]; then
