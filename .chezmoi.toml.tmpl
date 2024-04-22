@@ -17,4 +17,4 @@
 [scriptEnv]
   OP_ACCOUNT="my.1password.com"
 [hooks.read-source-state.pre]
-  command = ".local/share/chezmoi/.install-homebrew.sh"
+  command = {{ joinPath .chezmoi.sourceDir ".pre-read-source-state.sh" | quote }}
