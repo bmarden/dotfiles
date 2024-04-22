@@ -28,7 +28,7 @@ fi
 cp "$HOME/.local/share/chezmoi/com.googlecode.iterm2.plist" "$HOME/.config/iterm2"
 
 # Create code_home directory
-user_code_home={{- .code_home | quote -}}
+user_code_home={{ .code_home | quote }}
 if [[ ! -d "$user_code_home" ]]; then
   mkdir -p "$user_code_home"
 fi
