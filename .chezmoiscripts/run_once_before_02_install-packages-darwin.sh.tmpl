@@ -2,13 +2,13 @@
 #!/usr/bin/env bash
 
 # SETUP HOMEBREW PATH
-[ -d "/opt/homebrew/bin/" ] &&
-  _BREW="/opt/homebrew/bin" ||
-  _BREW="/usr/local/bin"
+# [ -d "/opt/homebrew/bin/" ] &&
+#   _BREW="/opt/homebrew/bin" ||
+#   _BREW="/usr/local/bin"
 
 # INITIALIZE CLI TOOLS FUNCTIONS
-[ -n "$(command -v $_BREW/brew)" ] &&
-  eval "$($_BREW/brew shellenv)"
+# [ -n "$(command -v $_BREW/brew)" ] &&
+#   eval "$($_BREW/brew shellenv)"
 
 
 {{- $brewfile := joinPath .chezmoi.sourceDir "dot_config/brew/Brewfile" -}}
