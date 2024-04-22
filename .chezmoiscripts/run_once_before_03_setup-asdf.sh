@@ -8,7 +8,8 @@
 if [ -n "$(command -v asdf)" ]; then
   source "$(brew --prefix asdf)/libexec/asdf.sh"
   export ASDF_DATA_DIR="$HOME/.local/share/asdf"
-  export ASDF_NPM_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/asdf/default-npm-packages"
+  # Temporarily point to the location in chezmoi source since it may not be available in $XDG_CONFIG_HOME yet
+  export ASDF_NPM_DEFAULT_PACKAGES_FILE="$HOME/.local/share/chezmoi/dot_config/asdf/default-npm-packages"
 else
   echo "asdf not installed. Skipping asdf setup."
   exit 0
