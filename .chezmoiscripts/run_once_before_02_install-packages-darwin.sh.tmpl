@@ -7,7 +7,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # ensure brew is updated
 brew update
 
-{{- $brewfile := joinPath .chezmoi.sourceDir "dot_config/brew/Brewfile" -}}
+{{ $brewfile := joinPath .chezmoi.sourceDir "dot_config/brew/Brewfile" -}}
 # Brewfile hash: {{ include $brewfile | sha256sum }}
 brew bundle --no-lock --force --file={{ joinPath .chezmoi.sourceDir "dot_config/brew/Brewfile" | quote }}
 {{ end -}}
