@@ -1,6 +1,7 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
+# Sets up zshenv to source the .zshenv file in $HOME/.config/zsh
 if [ ! -f /etc/zshenv ]; then
   echo "No /etc/zshenv found, creating one"
   printf "%s\n%s\n" 'ZDOTDIR="$HOME/.config/zsh"' 'source $ZDOTDIR/.zshenv' | sudo tee /etc/zshenv > /dev/null
@@ -16,10 +17,20 @@ defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool fa
 defaults write -g InitialKeyRepeat -int 15
 defaults write -g KeyRepeat -int 2
 
-cp "$HOME/.local/share/chezmoi/com.googlecode.iterm2.plist" "$HOME/.config/iterm2"
-
 # Set iterm to use custom preferences
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$HOME/.config/iterm2"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+# Copy iterm2 preferences
+if [[ ! -d "$HOME/.config/iterm2" ]]; then
+  mkdir -p "$HOME/.config/iterm2"
+fi
+cp "$HOME/.local/share/chezmoi/com.googlecode.iterm2.plist" "$HOME/.config/iterm2"
+
+# Create code_home directory
+user_code_home={{- .code_home | quote -}}
+if [[ ! -d "$user_code_home" ]]; then
+  mkdir -p "$user_code_home"
+fi
 
 {{ end }}
