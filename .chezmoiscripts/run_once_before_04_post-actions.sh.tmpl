@@ -1,5 +1,5 @@
 {{- if eq .chezmoi.os "darwin" -}}
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ ! -f /etc/zshenv ]; then
   echo "No /etc/zshenv found, creating one"

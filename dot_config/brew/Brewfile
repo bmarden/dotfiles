@@ -1,0 +1,37 @@
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+
+brew "chezmoi"      # dotfile manager
+brew "git"          
+brew "neovim"       # vim
+brew "vivid"        # LS_COLORS generator
+brew "gnu-sed"      # sed (GNU)
+brew "coreutils"    # GNU core utilities
+brew "grep"         # grep (GNU)
+brew "gnu-tar"      # tar (GNU)
+brew "fd"           # find alternative
+brew "gawk"         # dependency for asdf node-js
+brew "gpg"          # dependency for asdf node-js
+brew "jq"           # json cli interpreter 
+brew "asdf"         # asdf version manager
+brew "bat"          # syntax enabled cat
+brew "httpie"       # http cli
+brew "wget"         
+brew "fzf"          # fuzzy finder  
+brew "gh"           # github cli
+brew "bash"         # use non ancient version of bash
+
+# Add fonts casks
+cask "font-fira-code-nerd-font"
+cask "font-hack-nerd-font"
+
+# Add casks
+cask "1password-cli"
+cask "visual-studio-code"
+cask "iterm2"
+cask "google-chrome"
+cask "brave-browser"
+cask "slack"
+cask "spotify"
+cask "docker"
+cask "reactotron"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Ensure homebrew is initialized
 [ -n "$(command -v /opt/homebrew/bin/brew)" ] &&

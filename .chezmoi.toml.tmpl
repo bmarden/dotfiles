@@ -1,10 +1,8 @@
-{{- $setup_1password := promptBoolOnce . "setup_1password" "Do you want to setup 1password?" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $code_home_dir := promptStringOnce . "code_home_dir" "Where do you want to store code?" "code" -}}
 
 [data]
   email = {{ $email | quote }}
-  setup_1password = {{ $setup_1password }}
   code_home = "{{ joinPath .chezmoi.homeDir $code_home_dir }}"
 [git]
   autoCommit = false

@@ -1,5 +1,5 @@
 {{- if eq .chezmoi.os "darwin" -}}
-#!/bin/bash
+#!/usr/bin/env bash
 
 # SETUP HOMEBREW PATH
 [ -d "/opt/homebrew/bin/" ] &&
@@ -10,43 +10,8 @@
 [ -n "$(command -v $_BREW/brew)" ] &&
   eval "$($_BREW/brew shellenv)"
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 
-brew "chezmoi"      # dotfile manager
-brew "git"          
-brew "neovim"       # vim
-brew "vivid"        # LS_COLORS generator
-brew "gnu-sed"      # sed (GNU)
-brew "coreutils"    # GNU core utilities
-brew "grep"         # grep (GNU)
-brew "gnu-tar"      # tar (GNU)
-brew "fd"           # find alternative
-brew "gawk"         # dependency for asdf node-js
-brew "gpg"          # dependency for asdf node-js
-brew "jq"           # json cli interpreter 
-brew "asdf"         # asdf version manager
-brew "bat"          # syntax enabled cat
-brew "httpie"       # http cli
-brew "wget"         
-brew "fzf"          # fuzzy finder  
-brew "gh"           # github cli
-
-# Add fonts casks
-cask "font-fira-code-nerd-font"
-cask "font-hack-nerd-font"
-
-# Add casks
-{{ if .setup_1password }}
-cask "1password-cli"
-{{ end }}
-cask "visual-studio-code"
-cask "iterm2"
-cask "google-chrome"
-cask "brave-browser"
-cask "slack"
-cask "spotify"
-cask "docker"
-EOF
+{{- $brewfile := joinPath .chezmoi.sourceDir "dot_config/brew/Brewfile" -}}
+# Brewfile hash: {{ include $brewfile | sha256sum }}
+brew bundle --no-lock --force --file={{ joinPath .chezmoi.sourceDir "dot_config/brew/Brewfile" | quote }}
 {{ end -}}

@@ -3,11 +3,9 @@
 [user]
   email = {{ .email }}
   name = Ben Marden
-  {{- if .setup_1password }}
   signingKey = {{- (onepasswordDetailsFields "GitHub SSH Key").public_key.value }}
-  {{- end }}
 [commit]
-  gpgsign = {{ if .setup_1password }}true{{ else }}false{{ end }}
+  gpgsign = true
 [gpg]
   format = ssh
 [gpg "ssh"]

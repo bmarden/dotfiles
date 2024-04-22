@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 XDG_DATA_HOME="$HOME/.local/share"
 XDG_CACHE_HOME="$HOME/.cache"
