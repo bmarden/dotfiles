@@ -18,3 +18,5 @@ export LANG="en_US.UTF-8"
 # asdf package manager
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
 export ASDF_NPM_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/asdf/default-npm-packages"
+
+export OP_ACCOUNT="my.1password.com"

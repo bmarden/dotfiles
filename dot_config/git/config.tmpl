@@ -3,13 +3,13 @@
 [user]
   email = {{ .email }}
   name = Ben Marden
-  signingKey = {{- (onepasswordDetailsFields "GitHub SSH Key").public_key.value }}
+  signingKey = {{- (onepasswordDetailsFields "GH SSH Key").public_key.value }}
 [commit]
   gpgsign = true
 [gpg]
   format = ssh
 [gpg "ssh"]
-  allowedSignersFile = ~/.config/git/allowed_signers
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [core]
 	editor = nvim
 [diff]
