@@ -39,6 +39,12 @@ alias nid="npm install -D"
 alias nr="npm run"
 alias ns="npm start"
 
+# bun
+alias b="bun"
+alias bi="bun install"
+alias bid="bun install -D"
+alias br="bun run"
+
 # tar
 alias tarls="tar -tvf"
 alias untar="tar -xf"
