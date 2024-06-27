@@ -23,6 +23,7 @@ plugins[ruby]="3.2.2"
 plugins[python]="3.12.1"
 plugins[cocoapods]="1.15.2"
 plugins[golang]="1.22.2"
+plugins[dotnet]="8.0.302"
 
 # Add each plugin, install AH version and set global
 for plugin in "${!plugins[@]}"; do
@@ -31,7 +32,7 @@ for plugin in "${!plugins[@]}"; do
 
   ah_plugin_version="${plugins[$plugin]}"
 
-  echo "Installing AH version for plugin $plugin..."
+  echo "Installing specified version for plugin $plugin..."
   asdf install "$plugin" "$ah_plugin_version"
 
   echo "Setting global version for $plugin..."
