@@ -33,7 +33,7 @@ map({ 'n', 'v' }, '<leader>p', '"_dP', { noremap = true, silent = true })
 
 
 if vim.g.vscode then
-  local vscode = require("vscode-neovim")
+  local vscode = require("vscode")
   local function vscode_map(mode, key, action)
     local default_opts = { noremap = true, silent = true }
     map(mode, key, '', { callback = function() vscode.call(action) end, noremap = true, silent = true })

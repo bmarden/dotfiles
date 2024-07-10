@@ -1,11 +1,8 @@
-local vscode = require("vscode-neovim")
-
 local status_ok, multi = pcall(require, "vscode-multi-cursor")
 if not status_ok then
   return
 end
 
-print(vscode.call("_ping"))
 multi.setup {
   default_mappings = true,
   -- If set to true, only multiple cursors will be created without multiple selections

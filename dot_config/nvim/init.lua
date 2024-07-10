@@ -1,7 +1,6 @@
 require("keymaps")
 require("settings")
 require("lazy-config")
--- require("hop-config")
 require("lualine-config")
 require('mini.move').setup()  -- Move lines and blocks of text
 require('autocmd-config')
