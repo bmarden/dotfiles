@@ -5,15 +5,19 @@
   eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Ensure asdf is initialized
-if [ -n "$(command -v asdf)" ]; then
-  source "$(brew --prefix asdf)/libexec/asdf.sh"
-  export ASDF_DATA_DIR="$HOME/.local/share/asdf"
-  # Temporarily point to the location in chezmoi source since it may not be available in $XDG_CONFIG_HOME yet
-  export ASDF_NPM_DEFAULT_PACKAGES_FILE="$HOME/.local/share/chezmoi/dot_config/asdf/default-npm-packages"
-else
+if [ ! "$(command -v asdf)" ]; then
   echo "asdf not installed. Skipping asdf setup."
   exit 0
 fi
+
+# shellcheck source=/dev/null
+source "$(brew --prefix asdf)/libexec/asdf.sh"
+export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+# Temporarily point to the location in chezmoi source since it may not be available in $XDG_CONFIG_HOME yet
+export ASDF_NPM_DEFAULT_PACKAGES_FILE="$XDG_DATA_HOME/chezmoi/dot_config/asdf/default-npm-packages"
+export npm_config_userconfig="$XDG_CONFIG_HOME/npm/config"
+export npm_config_cache="$XDG_CACHE_HOME/npm"
+export npm_config_prefix="$XDG_DATA_HOME/npm"
 
 ## Setup and install asdf plugins ##
 declare -A plugins
@@ -38,3 +42,7 @@ for plugin in "${!plugins[@]}"; do
   echo "Setting global version for $plugin..."
   asdf global "$plugin" "$ah_plugin_version"
 done
+
+# Install asdf-direnv separately 
+asdf plugin-add direnv
+asdf direnv setup --shell zsh --version latest

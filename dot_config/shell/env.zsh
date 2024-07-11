@@ -1,6 +1,13 @@
 # setup editor
 export EDITOR=nvim
 
+# asdf package manager
+export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+export ASDF_NPM_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/asdf/default-npm-packages"
+
+# Default 1password account
+export OP_ACCOUNT="my.1password.com"
+
 # GO setup
 if [ -n "$(command -v go)" ]; then
   export GOPATH=$(go env GOPATH)

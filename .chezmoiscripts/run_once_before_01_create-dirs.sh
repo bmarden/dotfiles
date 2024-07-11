@@ -15,6 +15,8 @@ REQUIRED_DIRS=(
   "$XDG_DATA_HOME/asdf"
   "$XDG_DATA_HOME/android"
   "$XDG_DATA_HOME/npm"
+  "$XDG_DATA_HOME/npm/bin"
+  "$XDG_DATA_HOME/npm/lib"
   "$XDG_DATA_HOME/gem"
   "$XDG_DATA_HOME/../bin"
   "$XDG_CACHE_HOME/zim"

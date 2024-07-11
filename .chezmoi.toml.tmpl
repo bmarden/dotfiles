@@ -18,3 +18,8 @@
   OP_ACCOUNT="my.1password.com"
 [hooks.read-source-state.pre]
   command = {{ joinPath .chezmoi.sourceDir ".pre-read-source-state.sh" | quote }}
+[scriptEnv]
+  XDG_DATA_HOME = "{{ joinPath .chezmoi.homeDir ".local/share" }}"
+  XDG_CACHE_HOME = "{{ joinPath .chezmoi.homeDir ".cache" }}"
+  XDG_CONFIG_HOME = "{{ joinPath .chezmoi.homeDir ".config" }}"
+  XDG_STATE_HOME = "{{ joinPath .chezmoi.homeDir ".local/state" }}"
