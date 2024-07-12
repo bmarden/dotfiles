@@ -28,21 +28,40 @@ plugins[python]="3.12.1"
 plugins[cocoapods]="1.15.2"
 plugins[golang]="1.22.2"
 plugins[dotnet]="8.0.302"
+plugins[direnv]="latest"
 
-# Add each plugin, install AH version and set global
-for plugin in "${!plugins[@]}"; do
+install_order=(
+  "nodejs"
+  "java"
+  "ruby"
+  "python"
+  "golang"
+  "dotnet"
+  "direnv"
+)
+
+# Function to install a plugin
+install_plugin() {
+  local plugin=$1
+  local version=${plugins[$plugin]}
+
   echo "Adding $plugin..."
   asdf plugin-add "$plugin"
-
-  ah_plugin_version="${plugins[$plugin]}"
-
-  echo "Installing specified version for plugin $plugin..."
-  asdf install "$plugin" "$ah_plugin_version"
-
+  echo "Installing AH version for plugin $plugin..."
+  asdf install "$plugin" "$version"
   echo "Setting global version for $plugin..."
-  asdf global "$plugin" "$ah_plugin_version"
+  asdf global "$plugin" "$version"
+}
+
+# Install plugins in the specified order
+for plugin in "${install_order[@]}"; do
+  install_plugin "$plugin"
 done
 
-# Install asdf-direnv separately 
-asdf plugin-add direnv
-asdf direnv setup --shell zsh --version latest
+# List current asdf configuration
+asdf current
+
+# Reload asdf so that the asdf version of ruby is used when installing cocoapods
+# shellcheck source=/dev/null
+. "$(brew --prefix asdf)/libexec/asdf.sh"
+install_plugin "cocoapods"

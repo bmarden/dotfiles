@@ -18,18 +18,18 @@ fi
 
 # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  source "${ZIM_HOME}"/zimfw.zsh init -q
+  . "${ZIM_HOME}"/zimfw.zsh init -q
 fi
 
 # Activate Powerlevel10k Instant Prompt.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  . "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Load shell settings
 if [ -d "$XDG_CONFIG_HOME/shell" ]; then
   for file in "$XDG_CONFIG_HOME"/shell/*.zsh; do
-    source "$file"
+    . "$file"
   done
 fi
 
@@ -50,9 +50,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
 # Initialize modules.
-source "${ZIM_HOME}"/init.zsh
+. "${ZIM_HOME}"/init.zsh
 
-[[ -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] && source "$XDG_CONFIG_HOME"/p10k/p10k.zsh
+[[ -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] && . "$XDG_CONFIG_HOME"/p10k/p10k.zsh
 
 # # Set history here since MacOS sets them in /etc/zshrc
 HISTFILE="$XDG_STATE_HOME/zsh/history"
@@ -71,10 +71,10 @@ unsetopt correctall
 autoload -Uz zcalc colors
 
 # Not sure if this asdf script is needed in addition to zim asdf module
-[ -n "$(command -v asdf)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
+[ -n "$(command -v asdf)" ] && . "$(brew --prefix asdf)/libexec/asdf.sh"
 # Use vivid to generate a themed LS_COLORS
 [ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
 # Load dotnet env vars if installed - commented out since dotnet not installed via asdf currently 
-[[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && source "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
+[[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && . "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
 # Load asdf-direnv if installed
-[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+[[ -n "$(command -v direnv)" ]] && [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && . "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
