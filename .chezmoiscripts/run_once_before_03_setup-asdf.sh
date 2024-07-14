@@ -65,3 +65,6 @@ asdf current
 # shellcheck source=/dev/null
 . "$(brew --prefix asdf)/libexec/asdf.sh"
 install_plugin "cocoapods"
+
+# Adds additional direnv setup without modifying our zshrc file
+asdf direnv setup --shell zsh --version latest --no-touch-rc-file
