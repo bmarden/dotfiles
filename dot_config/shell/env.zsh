@@ -15,10 +15,6 @@ if [ -n "$(command -v go)" ]; then
   path+=($GOPATH/bin $GOROOT/bin)
 fi
 
-if [ -n "$(command -v java)" ] && [ -f "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh" ]; then
-  . "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh"
-fi
-
 # pnpm setup
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 

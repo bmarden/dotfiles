@@ -26,13 +26,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   . "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Load shell settings
-if [ -d "$XDG_CONFIG_HOME/shell" ]; then
-  for file in "$XDG_CONFIG_HOME"/shell/*.zsh; do
-    . "$file"
-  done
-fi
-
 zstyle ':zim:completion' dumpfile ${XDG_CACHE_HOME}/zsh/zcompdump
 # Sets the cache path for zsh completions
 zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
@@ -70,11 +63,20 @@ unsetopt correctall
 
 autoload -Uz zcalc colors
 
-# Not sure if this asdf script is needed in addition to zim asdf module
+# Set some configuration if commands are available
 [ -n "$(command -v asdf)" ] && . "$(brew --prefix asdf)/libexec/asdf.sh"
 # Use vivid to generate a themed LS_COLORS
 [ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
 # Load dotnet env vars if installed - commented out since dotnet not installed via asdf currently 
 [[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && . "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
+# Set JAVA_HOME if installed
+[[ -n "$(command -v java)" ]] && [[ -f "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh" ]] && . "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh"
 # Load asdf-direnv if installed
 [[ -n "$(command -v direnv)" ]] && [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && . "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+
+# Load shell settings
+if [ -d "$XDG_CONFIG_HOME/shell" ]; then
+  for file in "$XDG_CONFIG_HOME"/shell/*.zsh; do
+    . "$file"
+  done
+fi
