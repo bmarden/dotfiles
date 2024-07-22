@@ -42,6 +42,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # Use colors in LS_COLORS for displaying file lists in completion
 zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
+# source env vars from env
+. "${XDG_CONFIG_HOME}/zsh/env.zsh"
+
 # Initialize modules.
 . "${ZIM_HOME}"/init.zsh
 
