@@ -26,10 +26,16 @@ map("i", "kj", "<esc>", m_opts) -- Insert mode -> kj -> Normal mode
 map("v", ">", ">gv", m_opts) -- Left Indentation
 map("v", "<", "<gv", m_opts) -- Right Indentation
 
+-- normal --
 map('n', '<leader>n', ':noh<CR>', { noremap = true, silent = true })
 
 map('n', '<leader>/', ':%s//g<Left><Left>', { noremap = true, silent = true })
 map({ 'n', 'v' }, '<leader>p', '"_dP', { noremap = true, silent = true })
+
+-- Shortcut for vim-surround surround word
+vim.api.nvim_set_keymap('n', '<leader>s', "ysiw", { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>S', "ysiW", { noremap = false })
+
 
 
 if vim.g.vscode then
