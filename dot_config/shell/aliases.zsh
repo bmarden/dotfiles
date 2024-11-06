@@ -39,6 +39,13 @@ alias nid="npm install -D"
 alias nr="npm run"
 alias ns="npm start"
 
+# pnpm
+alias pn="pnpm"
+alias pna="pnpm add"
+alias pni="pnpm install"
+alias pnid="pnpm install -D"
+alias pnici="pnpm install --frozen-lockfile"
+
 # bun
 alias b="bun"
 alias bi="bun install"

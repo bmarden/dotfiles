@@ -15,8 +15,6 @@ zmodule fzf
 zmodule joke/zim-chezmoi
 # Outputs a suggested alias if full command was used
 zmodule djui/alias-tips
-# Aliases for pnpm command
-zmodule ntnyq/omz-plugin-pnpm -s pnpm.plugin.zsh
 
 # --------------------------------
 # Custom zsh functions
