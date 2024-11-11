@@ -19,7 +19,7 @@ zmodule djui/alias-tips
 # --------------------------------
 # Custom zsh functions
 # --------------------------------
-# Load all the custom functions defined in the zfuncs directory
+# Load all the custom functions defined in the functions directory
 zmodule "$XDG_CONFIG_HOME/zsh" 
 
 # --------------------------------
@@ -39,6 +39,9 @@ fi
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
 zmodule completion
+
+# completions for pnpm, must be loaded after completion
+zmodule git@github.com:g-plane/pnpm-shell-completion.git --on-pull './zplug.zsh'
 
 # --------------------------------
 # Additional modules

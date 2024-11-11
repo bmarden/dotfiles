@@ -1,58 +1,58 @@
-#
-# .zshrc
-#
+# #
+# # .zshrc
+# #
 
 # shellcheck disable=SC1090,SC1091,SC2296
 
-# Use zim's degit tool to install modules
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# # Use zim's degit tool to install modules
 zstyle ':zim:zmodule' use 'degit'
 
-# Set ZIM home directory
+# # Set ZIM home directory
 ZIM_HOME="${XDG_CACHE_HOME}/zim"
 
-# Download zimfw plugin manager if missing.
+# # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
   curl -fsSL --create-dirs -o "${ZIM_HOME}"/zimfw.zsh \
     https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
 fi
 
-# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+# # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
   . "${ZIM_HOME}"/zimfw.zsh init -q
 fi
 
-# Activate Powerlevel10k Instant Prompt.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  . "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 zstyle ':zim:completion' dumpfile ${XDG_CACHE_HOME}/zsh/zcompdump
-# Sets the cache path for zsh completions
+# # Sets the cache path for zsh completions
 zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
-# Enables an interactive selection menu for tab completions where you can select the completion with tab/shift-tab
+# # Enables an interactive selection menu for tab completions where you can select the completion with tab/shift-tab
 zstyle ':completion:*:*:*:default' menu yes select search
-# Shows a list of processes to kill when using kill commands
+# # Shows a list of processes to kill when using kill commands
 zstyle ':completion:*:*:kill:*' menu yes select
-# Ensures a list is always shown when using kill commands
+# # Ensures a list is always shown when using kill commands
 zstyle ':completion:*:kill:*' force-list always
-# Sets description text to bold for completion menu
+# # Sets description text to bold for completion menu
 zstyle ":completion:*:descriptions" format "%B%d%b"
-# Allows for case-insensitive completion
+# # Allows for case-insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-# Use colors in LS_COLORS for displaying file lists in completion
+# # Use colors in LS_COLORS for displaying file lists in completion
 zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
-# source env vars from env
-. "${XDG_CONFIG_HOME}/zsh/env.zsh"
-
-# Initialize modules.
+# # Initialize modules.
 . "${ZIM_HOME}"/init.zsh
 
-[[ -f $XDG_CONFIG_HOME/p10k/p10k.zsh ]] && . "$XDG_CONFIG_HOME"/p10k/p10k.zsh
-
-# # Set history here since MacOS sets them in /etc/zshrc
+# Set history here since MacOS sets them in /etc/zshrc
+HISTSIZE='1000000000'
+SAVEHIST='1000000000'
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 
+# More information on zsh options https://zsh.sourceforge.io/Doc/Release/Options.html
 # try to make the completion list smaller (occupying less lines) by printing the matches in columns with different widths.
 setopt list_packed
 # share history across multiple zsh sessions
@@ -61,31 +61,37 @@ setopt append_history
 setopt extended_history
 # adds commands as they are typed, not at shell exit
 setopt inc_append_history
+# causes oldest history event that has a duplicate to be lost before a unique event is lost
+setopt hist_expire_dups_first
+# when searching history, do not display results already cycled through
+setopt hist_find_no_dups
+# do not store a command in the history list if it matches the previous command
+setopt hist_ignore_dups
+# remove command from history list when first character is a space
+setopt hist_ignore_space
+# when entering a line with history expansion, don't execute the line 
+setopt hist_verify
+# when writing out history file, older commands that duplicate newer ones are omitted
+setopt hist_save_no_dups
 # don't try to correct command line spelling for command args
 unsetopt correctall
 
 autoload -Uz zcalc colors
 
-# Set some configuration if commands are available
-[ -n "$(command -v asdf)" ] && . "$(brew --prefix asdf)/libexec/asdf.sh"
-# Use vivid to generate a themed LS_COLORS
-[ -n "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate molokai)"
-# Load dotnet env vars if installed - commented out since dotnet not installed via asdf currently 
-[[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"asdf"* ]] && . "$XDG_DATA_HOME/asdf/plugins/dotnet/set-dotnet-env.zsh"
-# Set JAVA_HOME if installed
-[[ -n "$(command -v java)" ]] && [[ -f "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh" ]] && . "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh"
-# Load asdf-direnv if installed
-[[ -n "$(command -v direnv)" ]] && [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && . "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f "$XDG_CONFIG_HOME/zsh/.p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/.p10k.zsh"
+# Temporary solution for loading mise plugin versions in p10k right prompt
+[[ ! -f "$XDG_CONFIG_HOME/zsh/.p10k.mise.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/.p10k.mise.zsh"
 
-# Load shell settings
+# Set some configuration if commands are available
+# Use vivid to generate a themed LS_COLORS
+[[ -n "$(command -v vivid)" ]] && export LS_COLORS="$(vivid generate molokai)"
+[[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"mise"* ]] && . "$XDG_DATA_HOME/mise/plugins/dotnet/set-dotnet-env.zsh"
+eval "$(direnv hook zsh)"
+
+# # Load shell settings
 if [ -d "$XDG_CONFIG_HOME/shell" ]; then
   for file in "$XDG_CONFIG_HOME"/shell/*.zsh; do
     . "$file"
   done
 fi
-
-function zvm_vi_yank() {
-	zvm_yank
-	echo "${CUTBUFFER}" | pbcopy
-	zvm_exit_visual_mode
-}

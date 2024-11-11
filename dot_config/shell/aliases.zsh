@@ -41,6 +41,8 @@ alias ns="npm start"
 
 # pnpm
 alias pn="pnpm"
+alias pnx="pnpm exec"
+alias pdx="pnpm dlx"
 alias pna="pnpm add"
 alias pni="pnpm install"
 alias pnid="pnpm install -D"
@@ -80,13 +82,12 @@ alias history="fc -li"
 alias glo="git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
 
 # IF CHEZMOI IS INSTALLED
-[ -n "$(command -v chezmoi)" ]               \
-    && alias cm="chezmoi"                    \
-    && alias cma="chezmoi add"               \
-    && alias cmi="chezmoi init"              \
-    && alias cmd="chezmoi diff"              \
-    && alias cme="chezmoi edit"              \
-    && alias cmcd="chezmoi cd"               \
-    && alias cmat="chezmoi add --template"   \
-    && alias cmap="chezmoi apply"            \
-    && alias cmet="chezmoi execute-template"
+alias cm="chezmoi"                    \
+alias cma="chezmoi add"               \
+alias cmi="chezmoi init"              \
+alias cmd="chezmoi diff"              \
+alias cme="chezmoi edit"              \
+alias cmcd="chezmoi cd"               \
+alias cmat="chezmoi add --template"   \
+alias cmap="chezmoi apply"            \
+alias cmet="chezmoi execute-template"

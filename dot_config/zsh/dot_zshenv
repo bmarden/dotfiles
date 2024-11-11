@@ -19,8 +19,7 @@ export LANG="en_US.UTF-8"
 export EDITOR=nvim
 
 # asdf package manager
-export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
-export ASDF_NPM_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/asdf/default-npm-packages"
+export MISE_NODE_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/mise/default-node-packages"
 
 # Default 1password account
 export OP_ACCOUNT="my.1password.com"
@@ -29,7 +28,7 @@ export OP_ACCOUNT="my.1password.com"
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 
 # bun setup
-export BUN_INSTALL="$HOME/.bun"
+# export BUN_INSTALL="$HOME/.bun"
 
 # vi mode settings
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
@@ -72,7 +71,7 @@ path+=("$HOME/bin"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   "$PNPM_HOME"
-  "$BUN_INSTALL/bin"
+  # "$BUN_INSTALL/bin"
   "$HOME/.dotnet/tools")
 
 typeset -aU path
