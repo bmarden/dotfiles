@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+# If -q is passed, don't print anything
+if [[ "$1" == "-q" ]]; then
+  QUIET=1
+fi
+
+set-dotnet-env() {
+  local dotnet_path
+  dotnet_path="$(mise which dotnet)"
+  if [[ -n "${dotnet_path}" ]]; then
+    export DOTNET_ROOT
+    DOTNET_ROOT="$(dirname "$(realpath "${dotnet_path}")")"
+    export MSBuildSDKsPath
+    DOTNET_VERSION="$(dotnet --version)"
+    export MSBuildSDKsPath="$DOTNET_ROOT/sdk/$DOTNET_VERSION/Sdks"
+    export DOTNET_CLI_TELEMETRY_OPTOUT=1
+    if [[ -z "${QUIET}" ]]; then
+      echo "Setting DOTNET_ROOT to ${DOTNET_ROOT}"
+      echo "Setting MSBuildSDKsPath to ${MSBuildSDKsPath}"
+    fi
+  fi
+}
+
+set-dotnet-env "$@"

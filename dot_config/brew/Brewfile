@@ -12,7 +12,6 @@ brew "fd"           # find alternative
 brew "gawk"         # dependency for asdf node-js
 brew "gpg"          # dependency for asdf node-js
 brew "jq"           # json cli interpreter 
-brew "asdf"         # asdf version manager
 brew "mise"         # manage multiple versions of a command
 brew "bat"          # syntax enabled cat
 brew "httpie"       # http cli
