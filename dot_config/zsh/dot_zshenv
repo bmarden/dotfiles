@@ -28,7 +28,9 @@ export OP_ACCOUNT="my.1password.com"
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 
 # bun setup
-# export BUN_INSTALL="$HOME/.bun"
+export BUN_INSTALL_CACHE_DIR="$XDG_CACHE_HOME/bun"
+export BUN_INSTALL_GLOBAL_DIR="$XDG_DATA_HOME/bun/install/global"
+export BUN_INSTALL_BIN="$XDG_DATA_HOME/bun/bin"
 
 # vi mode settings
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
@@ -71,7 +73,7 @@ path+=("$HOME/bin"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   "$PNPM_HOME"
-  # "$BUN_INSTALL/bin"
+  "$BUN_INSTALL_BIN"
   "$HOME/.dotnet/tools")
 
 typeset -aU path
