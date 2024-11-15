@@ -1,0 +1,5 @@
+#!/bin/zsh
+# vim syntax=sh
+# 
+
+git remote prune origin && git removed-branches -p -f

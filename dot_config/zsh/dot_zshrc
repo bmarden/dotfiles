@@ -89,7 +89,7 @@ autoload -Uz zcalc colors
 [[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"mise"* ]] && set-dotnet-env -q
 eval "$(direnv hook zsh)"
 
-# # Load shell settings
+# Load shell settings
 if [ -d "$XDG_CONFIG_HOME/shell" ]; then
   for file in "$XDG_CONFIG_HOME"/shell/*.zsh; do
     . "$file"
