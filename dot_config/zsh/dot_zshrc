@@ -86,7 +86,7 @@ autoload -Uz zcalc colors
 # Set some configuration if commands are available
 # Use vivid to generate a themed LS_COLORS
 [[ -n "$(command -v vivid)" ]] && export LS_COLORS="$(vivid generate molokai)"
-[[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"mise"* ]] && set-dotnet-env -q
+# [[ -n "$(command -v dotnet)" ]] && [[ "$(command -v dotnet)" == *"mise"* ]] && set-dotnet-env -q
 eval "$(direnv hook zsh)"
 
 # Load shell settings
