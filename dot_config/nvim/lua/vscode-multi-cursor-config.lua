@@ -1,11 +1,11 @@
-local status_ok, multi = pcall(require, "vscode-multi-cursor")
+local status_ok, multi = pcall(require, "vscode-MULTI-cursor")
 if not status_ok then
   return
 end
 
 multi.setup {
   default_mappings = true,
-  -- If set to true, only multiple cursors will be created without multiple selections
+  -- If set to true, only MULTIple cursors will be created without multiple selections
   no_selection = false
 }
 local map = vim.keymap.set
@@ -21,6 +21,6 @@ map({ 'n' }, ']mc', multi.next_cursor, { desc = 'Goto next cursor' })
 map('n', '<M-d>', 'mciw*<Cmd>nohl<CR>', { remap = true })
 map({ 'n' }, 'mcs', multi.flash_char, { desc = 'Create cursor using flash' })
 map({ 'n' }, 'mcw', multi.flash_word, { desc = 'Create selection using flash' })
-map({ "n", "x", "i" }, "<M-d>", function()
-  multi.addSelectionToNextFindMatch()
-end)
+-- map({ "n", "x", "i" }, "<M-d>", function()
+--   multi.addSelectionToNextFindMatch()
+-- end)

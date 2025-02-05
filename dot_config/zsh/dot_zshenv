@@ -55,13 +55,13 @@ export npm_config_cache="$XDG_CACHE_HOME/npm"
 export npm_config_prefix="$XDG_DATA_HOME/npm"
 
 # set expo config
-export EAS_LOCAL_BUILD_ARTIFACTS_DIR="${CODE_HOME-$HOME}/code/MobileApplication/build"
+export EAS_LOCAL_BUILD_ARTIFACTS_DIR=${CODE_HOME:-${HOME/code}}/MobileApplication/build
 
 # set direnv to not output logs
 # export DIRENV_LOG_FORMAT=""
 
 # Add vars to path
-path+=("$HOME/bin" 
+path+=("$HOME/bin"
   "$HOME/.local/bin"
   "$XDG_DATA_HOME/npm/bin"
   "$ANDROID_HOME/emulator"
