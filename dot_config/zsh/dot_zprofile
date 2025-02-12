@@ -2,15 +2,6 @@
 # .zprofile
 #
 
-# export HOMEBREW_PREFIX="/opt/homebrew"
-# export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-# export HOMEBREW_REPOSITORY="/opt/homebrew"
-# fpath[1,0]="/opt/homebrew/share/zsh/site-functions"
-# PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/Users/bmarden/google-cloud-sdk/bin:/Users/bmarden/.local/share/asdf/shims:/opt/homebrew/opt/asdf/libexec/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Users/bmarden/.local/share/asdf/installs/golang/1.22.2/go/bin:/Applications/iTerm.app/Contents/Resources/utilities:/Users/bmarden/bin:/Users/bmarden/.local/bin:/Users/bmarden/.local/share/npm/bin:/Users/bmarden/Library/Android/sdk/emulator:/Users/bmarden/Library/Android/sdk/tools:/Users/bmarden/Library/Android/sdk/tools/bin:/Users/bmarden/Library/Android/sdk/platform-tools:/Users/bmarden/Library/Android/sdk/cmdline-tools/latest/bin:/Applications/Android Studio.app/Contents/jre/Contents/Home/bin:/Users/bmarden/Library/Application Support/JetBrains/Toolbox/scripts:/Users/bmarden/.local/share/pnpm:/Users/bmarden/.bun/bin:/Users/bmarden/.dotnet/tools:/opt/homebrew/opt/fzf/bin:/Users/bmarden/.local/share/asdf/installs/golang/1.22.2/packages/bin"
-# export PATH
-# [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}"
-# export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
-
 export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
