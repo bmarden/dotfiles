@@ -7,7 +7,7 @@ My personal dotfiles repo. Uses chezmoi
 ### One liner
 
 ```bash
-/bin/bash -c "$(curl -fsLS get.chezmoi.io)" -- init --apply bmarden
+/bin/bash -c "$(curl -fsLS get.chezmoi.io)" --init --apply bmarden
 ```
 
 ### Or install manually
