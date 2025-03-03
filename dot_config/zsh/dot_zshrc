@@ -78,6 +78,8 @@ unsetopt correctall
 
 autoload -Uz zcalc colors
 
+eval "$(mise activate zsh)"
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f "$XDG_CONFIG_HOME/zsh/.p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/.p10k.zsh"
 # Temporary solution for loading mise plugin versions in p10k right prompt
