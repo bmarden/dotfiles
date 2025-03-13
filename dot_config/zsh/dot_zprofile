@@ -11,3 +11,5 @@ export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 # export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 export MISE_ENV_FILE=.env
+
+export GOPRIVATE="github.com/amenity-health"
