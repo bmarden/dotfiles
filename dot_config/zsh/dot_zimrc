@@ -30,6 +30,9 @@ zmodule "$XDG_CONFIG_HOME/zsh"
 if [ "$(command -v kubectl)" ]; then
   kubectl completion zsh > "$XDG_CACHE_HOME/zsh/completions/_kubectl"
 fi
+if [ "$(command -v minikube)" ]; then
+  minikube completion zsh > "$XDG_CACHE_HOME/zsh/completions/_minikube"
+fi
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
 zmodule "$XDG_CONFIG_HOME/completions" --fpath .
