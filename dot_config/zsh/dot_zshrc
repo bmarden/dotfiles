@@ -76,6 +76,10 @@ setopt hist_save_no_dups
 # don't try to correct command line spelling for command args
 unsetopt correctall
 
+# Don't highlight pasted text
+# https://unix.stackexchange.com/questions/331850/zsh-selects-a-pasted-text#331877
+zle_highlight=('paste:none')
+
 autoload -Uz zcalc colors
 
 eval "$(mise activate zsh)"
