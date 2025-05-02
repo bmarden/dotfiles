@@ -20,7 +20,7 @@ zmodule djui/alias-tips
 # Custom zsh functions
 # --------------------------------
 # Load all the custom functions defined in the functions directory
-zmodule "$XDG_CONFIG_HOME/zsh" 
+zmodule "$XDG_CONFIG_HOME/zsh"
 
 # --------------------------------
 # Completions
@@ -28,10 +28,13 @@ zmodule "$XDG_CONFIG_HOME/zsh"
 # More completions for Zsh.
 
 if [ "$(command -v kubectl)" ]; then
-  kubectl completion zsh > "$XDG_CACHE_HOME/zsh/completions/_kubectl"
+  kubectl completion zsh >"$XDG_CACHE_HOME/zsh/completions/_kubectl"
 fi
 if [ "$(command -v minikube)" ]; then
-  minikube completion zsh > "$XDG_CACHE_HOME/zsh/completions/_minikube"
+  minikube completion zsh >"$XDG_CACHE_HOME/zsh/completions/_minikube"
+fi
+if [ "$(command -v docker)" ]; then
+  docker completion zsh >"$XDG_CACHE_HOME/zsh/completions/_docker"
 fi
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
@@ -40,7 +43,7 @@ zmodule "$XDG_CONFIG_HOME/completions" --fpath .
 zmodule "$XDG_CACHE_HOME/zsh/completions" --fpath .
 # Load eas completions if command exists
 if [ "$(command -v eas)" ]; then
-  [[ ! -d "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh" ]] && eas autocomplete -r zsh;
+  [[ ! -d "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh" ]] && eas autocomplete -r zsh
   zmodule "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh" --fpath .
 fi
 
@@ -67,6 +70,5 @@ zmodule zdharma-continuum/fast-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 # Fish-like autosuggestions for Zsh.
 zmodule zsh-users/zsh-autosuggestions
-# Theme 
+# Theme
 zmodule romkatv/powerlevel10k --use degit
-
