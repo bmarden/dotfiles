@@ -86,8 +86,6 @@ eval "$(mise activate zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f "$XDG_CONFIG_HOME/zsh/.p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/.p10k.zsh"
-# Temporary solution for loading mise plugin versions in p10k right prompt
-# [[ ! -f "$XDG_CONFIG_HOME/zsh/.p10k.mise.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/.p10k.mise.zsh"
 
 # Set some configuration if commands are available
 # Use vivid to generate a themed LS_COLORS
