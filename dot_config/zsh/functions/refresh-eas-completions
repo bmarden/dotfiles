@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+rm -rf "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh"  
+eas autocomplete -r zsh
+zimfw build
