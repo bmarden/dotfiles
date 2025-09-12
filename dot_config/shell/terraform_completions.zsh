@@ -9,3 +9,5 @@ fi
 
 # Add terraform completion
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+complete -o nospace -C /opt/homebrew/etc/bash_completion.d/az
