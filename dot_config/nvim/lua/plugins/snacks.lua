@@ -1,3 +1,4 @@
+---@module 'snacks'
 return {
   {
     "folke/snacks.nvim",
@@ -8,7 +9,13 @@ return {
         sources = {
           files = { hidden = true },
           grep = { hidden = true },
-          explorer = { hidden = true, show_unloaded = true, ignored = true, exclude = { ".git" } },
+
+          explorer = {
+            hidden = true,
+            show_unloaded = true,
+            ignored = true,
+            exclude = { ".git" },
+          },
         },
       },
     },
