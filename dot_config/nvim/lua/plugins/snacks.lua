@@ -4,7 +4,9 @@ return {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {
-      explorer = {},
+      explorer = {
+        replace_netrw = true,
+      },
       picker = {
         sources = {
           files = { hidden = true },
@@ -12,7 +14,6 @@ return {
 
           explorer = {
             hidden = true,
-            show_unloaded = true,
             ignored = true,
             exclude = { ".git" },
           },
