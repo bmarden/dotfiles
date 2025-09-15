@@ -36,6 +36,12 @@ fi
 if [ "$(command -v docker)" ]; then
   docker completion zsh >"$XDG_CACHE_HOME/zsh/completions/_docker"
 fi
+if [ "$(command -v argocd)" ]; then 
+  argocd completion zsh >"$XDG_CACHE_HOME/zsh/completions/_argocd"
+fi
+if [ "$(command -v helm)" ]; then
+  helm completion zsh >"$XDG_CACHE_HOME/zsh/completions/_helm"
+fi
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
 zmodule "$XDG_CONFIG_HOME/completions" --fpath .
