@@ -22,6 +22,18 @@ return {
       desc = "Reset Hunk",
     },
     {
+      "<leader>hs",
+      "<cmd>Gitsigns stage_hunk<cr>",
+      mode = "v",
+      desc = "Stage Selection",
+    },
+    {
+      "<leader>hr",
+      "<cmd>Gitsigns reset_hunk<cr>",
+      mode = "v",
+      desc = "Reset Selection",
+    },
+    {
       "<leader>hR",
       "<cmd>Gitsigns reset_buffer<cr>",
       desc = "Reset Buffer",
