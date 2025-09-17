@@ -35,3 +35,6 @@ end, { desc = "Comment line" })
 -- For visual mode (comment selection)
 -- Use Comment.nvim's built-in visual mode mapping
 map("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", { desc = "Comment selection" })
+
+-- Shortcut to launch neogit
+map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
