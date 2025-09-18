@@ -9,11 +9,16 @@
 [edit]
   command = "nvim"
 [diff]
-  command = "code"
-  args = ["--wait",  "--diff", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
+  command = "nvim"
+  args = ["-d", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
 [merge]
-  command = "code"
-  args = ["--wait",  "--diff", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
+  command = "nvim"
+  args = [
+      "-d",
+      {{ printf "%q" "{{ .Destination }}" }},
+      {{ printf "%q" "{{ .Source }}" }},
+      {{ printf "%q" "{{ .Target }}" }},
+  ]
 [hooks.read-source-state.pre]
   command = {{ joinPath .chezmoi.sourceDir ".pre-read-source-state.sh" | quote }}
 [scriptEnv]

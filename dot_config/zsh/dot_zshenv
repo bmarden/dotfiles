@@ -74,6 +74,7 @@ path+=("$HOME/bin"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   "$PNPM_HOME"
   "$BUN_INSTALL_BIN"
-  "$HOME/.dotnet/tools")
+  "$HOME/.dotnet/tools"
+  "/opt/homebrew/opt/libpq@16/bin")
 
 typeset -aU path
