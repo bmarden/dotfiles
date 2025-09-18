@@ -1,0 +1,29 @@
+[sqlfluff]
+# Set the SQL dialect to PostgreSQL
+dialect = postgres
+
+# Configure templating to handle PostgreSQL-specific features
+templater = none
+
+# Configure rules - disable problematic ones for PostgreSQL
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = upper
+
+[sqlfluff:rules:capitalisation.identifiers]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+capitalisation_policy = upper
+
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = upper
+
+# Allow PostgreSQL-specific syntax
+[sqlfluff:rules:structure.column_order]
+# Disable this rule as it can be problematic with ENUM types
+ignore = E034
+
+# Configure indentation
+[sqlfluff:indentation]
+indent_unit = space
+tab_space_size = 4
