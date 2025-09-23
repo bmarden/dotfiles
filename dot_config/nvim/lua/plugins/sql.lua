@@ -27,25 +27,25 @@ return {
   },
 
   -- Configure nvim-lint for SQL
-  -- {
-  --   "mfussenegger/nvim-lint",
-  --   opts = {
-  --     linters_by_ft = {
-  --       sql = { "sqlfluff" },
-  --     },
-  --     linters = {
-  --       sqlfluff = {
-  --         args = {
-  --           "lint",
-  --           "--format=json",
-  --           "--dialect=postgres", -- Set PostgreSQL dialect
-  --           "--stdin-filename",
-  --           "%filepath",
-  --           "-",
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        sql = { "sqlfluff" },
+      },
+      linters = {
+        sqlfluff = {
+          args = {
+            "lint",
+            "--format=json",
+            "--dialect=postgres", -- Set PostgreSQL dialect
+            "--stdin-filename",
+            "%filepath",
+            "-",
+          },
+        },
+      },
+    },
+  },
 }
 
