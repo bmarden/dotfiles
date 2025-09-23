@@ -23,6 +23,10 @@ return {
       explorer = {
         replace_netrw = true,
       },
+      lazygit = {
+        enabled = true,
+        configure = true,
+      },
       picker = {
         sources = {
           files = { hidden = true },
@@ -32,6 +36,14 @@ return {
             hidden = true,
             ignored = true,
             exclude = { ".git" },
+            win = {
+              list = {
+                keys = {
+                  ["]h"] = "explorer_git_next",
+                  ["[h"] = "explorer_git_prev",
+                },
+              },
+            },
           },
         },
       },

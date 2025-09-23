@@ -2,12 +2,14 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    on_attach = function(buffer)
-      local gs = package.loaded.gitsigns
+    event = "LazyFile",
+    opts = {
+      on_attach = function(buffer)
+        local gs = package.loaded.gitsigns
 
-      local function map(mode, l, r, desc)
-        vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc, silent = true })
-      end
+        local function map(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc, silent = true })
+        end
 
       -- stylua: ignore start
       map("n", "]h", function()
@@ -29,7 +31,7 @@ return {
       -- map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
       -- map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
       map("n", "<leader>hs", gs.stage_hunk, "Stage Hunk")
-      map("n", "<leader>hr", gs.rese_hunk, "Reset Hunk")
+      map("n", "<leader>hr", gs.reset_hunk, "Reset Hunk")
       map("v", '<leader>hs', function()
         gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
       end)
@@ -46,7 +48,8 @@ return {
       map("n", "<leader>hd", gs.diffthis, "Diff This")
       map("n", "<leader>hD", function() gs.diffthis("~") end, "Diff This ~")
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-    end,
+      end,
+    },
   },
   -- {
   --   "kdheepak/lazygit.nvim",
