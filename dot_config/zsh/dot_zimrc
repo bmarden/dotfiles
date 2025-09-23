@@ -42,6 +42,9 @@ fi
 if [ "$(command -v helm)" ]; then
   helm completion zsh >"$XDG_CACHE_HOME/zsh/completions/_helm"
 fi
+if [ "$(command -v tailscale)" ]; then
+  tailscale completion zsh>"$XDG_CACHE_HOME/zsh/completions/_tailscale"
+fi
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
 zmodule "$XDG_CONFIG_HOME/completions" --fpath .
