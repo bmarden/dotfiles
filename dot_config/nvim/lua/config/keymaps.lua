@@ -4,6 +4,9 @@
 
 local map = vim.keymap.set
 
+-- Map jk to exit
+map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
+
 -- Rename word under cursor
 map("n", "<Leader>r", function()
   local word = vim.fn.expand("<cword>")
@@ -38,3 +41,13 @@ map("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", { desc = "Commen
 
 -- Shortcut to launch neogit
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
+
+if not vim.g.vscode then
+  -- Override the default window navigation keymaps so they work with tmux plugin
+  vim.keymap.set("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", { silent = true })
+  vim.keymap.set("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>", { silent = true })
+  vim.keymap.set("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>", { silent = true })
+  vim.keymap.set("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>", { silent = true })
+  vim.keymap.set("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>", { silent = true })
+  vim.keymap.set("n", "<C-Space>", "<Cmd>NvimTmuxNavigateNavigateNext<CR>", { silent = true })
+end
