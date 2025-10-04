@@ -8,9 +8,11 @@
   autoCommit = false
 [edit]
   command = "nvim"
+# [diff]
+#   command = "nvim"
+#   args = ["-d", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
 [diff]
-  command = "nvim"
-  args = ["-d", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
+  pager = "delta"
 [merge]
   command = "nvim"
   args = [
