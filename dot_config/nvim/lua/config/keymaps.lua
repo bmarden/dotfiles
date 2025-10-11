@@ -51,3 +51,27 @@ if not vim.g.vscode then
   vim.keymap.set("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>", { silent = true })
   vim.keymap.set("n", "<C-Space>", "<Cmd>NvimTmuxNavigateNavigateNext<CR>", { silent = true })
 end
+
+if vim.g.vscode then
+  -- VSCode specific keymaps
+  -- Setup C-Left, C-Right, C-Up, C-Down to resize all panes (editor, terminal, explorer)
+  map(
+    "n",
+    "<C-Left>",
+    "<Cmd>call VSCodeNotify('workbench.action.decreaseViewSize')<CR>",
+    { desc = "Decrease view size" }
+  )
+  map(
+    "n",
+    "<C-Right>",
+    "<Cmd>call VSCodeNotify('workbench.action.increaseViewSize')<CR>",
+    { desc = "Increase view size" }
+  )
+  map("n", "<C-Up>", "<Cmd>call VSCodeNotify('workbench.action.increaseViewSize')<CR>", { desc = "Increase view size" })
+  map(
+    "n",
+    "<C-Down>",
+    "<Cmd>call VSCodeNotify('workbench.action.decreaseViewSize')<CR>",
+    { desc = "Decrease view size" }
+  )
+end

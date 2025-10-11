@@ -14,6 +14,13 @@ return {
           },
         },
       },
+      gh_actions_ls = {
+        settings = {
+          init_options = {
+            sessionToken = vim.env.GITHUB_TOKEN,
+          },
+        },
+      },
     },
     setup = {
       gopls = function(_, opts)
