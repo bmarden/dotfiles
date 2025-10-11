@@ -48,6 +48,9 @@ fi
 if [ "$(command -v gh)" ]; then
   gh completion -s zsh>"$XDG_CACHE_HOME/zsh/completions/_gh"
 fi
+if [ "$(command -v op)" ]; then
+  op completion zsh>"$XDG_CACHE_HOME/zsh/completions/_op"
+fi
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
 zmodule "$XDG_CONFIG_HOME/completions" --fpath .
