@@ -91,3 +91,6 @@ alias cmcd="chezmoi cd"               \
 alias cmat="chezmoi add --template"   \
 alias cmap="chezmoi apply"            \
 alias cmet="chezmoi execute-template"
+
+# automatically setup kitten for ssh
+alias kssh="kitten ssh"

@@ -30,29 +30,33 @@ map("v", "<Leader>r", function()
   )
 end, { desc = "Rename selected text" })
 
--- Override the default <Leader>/ mapping to comment line
-map("n", "<leader>/", function()
-  require("Comment.api").toggle.linewise.current()
-end, { desc = "Comment line" })
-
--- For visual mode (comment selection)
--- Use Comment.nvim's built-in visual mode mapping
-map("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", { desc = "Comment selection" })
-
 -- Shortcut to launch neogit
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 if not vim.g.vscode then
   -- Override the default window navigation keymaps so they work with tmux plugin
-  vim.keymap.set("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", { silent = true })
-  vim.keymap.set("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>", { silent = true })
-  vim.keymap.set("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>", { silent = true })
-  vim.keymap.set("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>", { silent = true })
-  vim.keymap.set("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>", { silent = true })
-  vim.keymap.set("n", "<C-Space>", "<Cmd>NvimTmuxNavigateNavigateNext<CR>", { silent = true })
+  map("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", { silent = true })
+  map("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>", { silent = true })
+  map("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>", { silent = true })
+  map("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>", { silent = true })
+  map("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>", { silent = true })
+  map("n", "<C-Space>", "<Cmd>NvimTmuxNavigateNavigateNext<CR>", { silent = true })
+
+  -- Override the default <Leader>/ mapping to comment line
+  map("n", "<leader>/", function()
+    require("Comment.api").toggle.linewise.current()
+  end, { desc = "Comment line" })
+
+  -- For visual mode (comment selection)
+  -- Use Comment.nvim's built-in visual mode mapping
+  map("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", { desc = "Comment selection" })
 end
 
 if vim.g.vscode then
+  local vscode = require("vscode")
+  map({ "n", "v" }, "<leader>/", function()
+    vscode.action("editor.action.commentLine")
+  end)
   -- VSCode specific keymaps
   -- Setup C-Left, C-Right, C-Up, C-Down to resize all panes (editor, terminal, explorer)
   map(
