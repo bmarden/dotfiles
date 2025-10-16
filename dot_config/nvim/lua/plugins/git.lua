@@ -28,8 +28,6 @@ return {
       end, "Prev Hunk")
       map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
       map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
-      -- map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-      -- map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
       map("n", "<leader>hs", gs.stage_hunk, "Stage Hunk")
       map("n", "<leader>hr", gs.reset_hunk, "Reset Hunk")
       map("v", '<leader>hs', function()
@@ -51,26 +49,6 @@ return {
       end,
     },
   },
-  -- {
-  --   "kdheepak/lazygit.nvim",
-  --   lazy = true,
-  --   cmd = {
-  --     "LazyGit",
-  --     "LazyGitConfig",
-  --     "LazyGitCurrentFile",
-  --     "LazyGitFilter",
-  --     "LazyGitFilterCurrentFile",
-  --   },
-  --   -- optional for floating window border decoration
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --   },
-  --   -- setting the keybinding for LazyGit with 'keys' is recommended in
-  --   -- order to load the plugin when the command is run for the first time
-  --   keys = {
-  --     { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-  --   },
-  -- },
   {
     {
       "NeogitOrg/neogit",

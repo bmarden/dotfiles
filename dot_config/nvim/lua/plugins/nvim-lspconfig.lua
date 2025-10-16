@@ -21,19 +21,27 @@ return {
           },
         },
       },
+      bashls = {
+        filetypes = { "sh", "bash", "zsh" },
+        settings = {
+          bashIde = {
+            -- Disable unused variable warnings
+            shellcheckArguments = { "-e", "SC2034" },
+          },
+        },
+      },
     },
     setup = {
       gopls = function(_, opts)
         -- workaround for gopls not supporting semanticTokensProvider
         -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
         LazyVim.lsp.on_attach(function(client, bufnr)
-          -- Detach gopls from octo:// buffers
+          -- Detach gopls from octo:// or diffview:// buffers
           local buf_name = vim.api.nvim_buf_get_name(bufnr)
-          if string.match(buf_name, "^octo://") then
+          if buf_name:find("^octo://") or buf_name:find("^diffview://") then
             vim.lsp.buf_detach_client(bufnr, client.id)
             return
           end
-
           if not client.server_capabilities.semanticTokensProvider then
             local semantic = client.config.capabilities.textDocument.semanticTokens
             client.server_capabilities.semanticTokensProvider = {

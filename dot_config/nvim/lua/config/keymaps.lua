@@ -33,6 +33,7 @@ end, { desc = "Rename selected text" })
 -- Shortcut to launch neogit
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
+-- Neovim specific keybindings
 if not vim.g.vscode then
   -- Override the default window navigation keymaps so they work with tmux plugin
   map("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", { silent = true })
@@ -52,6 +53,7 @@ if not vim.g.vscode then
   map("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", { desc = "Comment selection" })
 end
 
+-- VSCode specific keybindings
 if vim.g.vscode then
   local vscode = require("vscode")
   map({ "n", "v" }, "<leader>/", function()
