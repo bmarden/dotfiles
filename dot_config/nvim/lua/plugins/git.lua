@@ -80,6 +80,7 @@ return {
           hunk = { "", "" },
         },
         integrations = { diffview = true, snacks = true },
+        commit_editor = { kind = "floating" },
       })
     end,
   },
