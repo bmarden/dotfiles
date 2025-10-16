@@ -50,32 +50,37 @@ return {
     },
   },
   {
-    {
-      "NeogitOrg/neogit",
-      dependencies = {
-        "nvim-lua/plenary.nvim", -- required
-        "sindrets/diffview.nvim", -- optional - Diff integration
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
 
-        -- Only one of these is needed.
-        -- "nvim-telescope/telescope.nvim", -- optional
-        -- "ibhagwan/fzf-lua", -- optional
-        -- "echasnovski/mini.pick", -- optional
-        "folke/snacks.nvim", -- optional
-      },
-      cmd = "Neogit",
-
-      config = function()
-        require("neogit").setup({
-          kind = "split", -- opens neogit in a split
-          signs = {
-            -- { CLOSED, OPENED }
-            section = { "", "" },
-            item = { "", "" },
-            hunk = { "", "" },
-          },
-          integrations = { diffview = true, snacks = true },
-        })
-      end,
+      -- Only one of these is needed.
+      -- "nvim-telescope/telescope.nvim", -- optional
+      -- "ibhagwan/fzf-lua", -- optional
+      -- "echasnovski/mini.pick", -- optional
+      "folke/snacks.nvim", -- optional
     },
+    cmd = "Neogit",
+
+    config = function()
+      require("diffview").setup({
+        key_bindings = {
+          file_history_panel = { q = "<Cmd>DiffviewClose<CR>" },
+          file_panel = { q = "<Cmd>DiffviewClose<CR>" },
+          view = { q = "<Cmd>DiffviewClose<CR>" },
+        },
+      })
+      require("neogit").setup({
+        kind = "split", -- opens neogit in a split
+        signs = {
+          -- { CLOSED, OPENED }
+          section = { "", "" },
+          item = { "", "" },
+          hunk = { "", "" },
+        },
+        integrations = { diffview = true, snacks = true },
+      })
+    end,
   },
 }
