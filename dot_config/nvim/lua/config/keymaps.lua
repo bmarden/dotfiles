@@ -33,6 +33,30 @@ end, { desc = "Rename selected text" })
 -- Shortcut to launch neogit
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
+-- By default, CTRL-U and CTRL-D scroll by half a screen (50% of the window height)
+-- Scroll by 35% of the window height and keep the cursor centered
+local scroll_percentage = 0.35
+-- Scroll by a percentage of the window height and keep the cursor centered
+vim.keymap.set("n", "<C-d>", function()
+  local lines = math.floor(vim.api.nvim_win_get_height(0) * scroll_percentage)
+  vim.cmd("normal! " .. lines .. "jzz")
+end, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-u>", function()
+  local lines = math.floor(vim.api.nvim_win_get_height(0) * scroll_percentage)
+  vim.cmd("normal! " .. lines .. "kzz")
+end, { noremap = true, silent = true })
+
+-- Quit or exit neovim, easier than to do <leader>qq
+vim.keymap.set({ "n", "v", "i" }, "<M-q>", "<cmd>q!<cr>", { desc = "[P]Quit All" })
+
+-- use gh to move to the beginning of the line in normal mode
+-- use gl to move to the end of the line in normal mode
+vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
+vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
+
+-- In visual mode, after going to the end of the line, come back 1 character
+vim.keymap.set("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
+
 -- Neovim specific keybindings
 if not vim.g.vscode then
   -- Override the default window navigation keymaps so they work with tmux plugin
