@@ -24,8 +24,9 @@ return {
         replace_netrw = true,
       },
       lazygit = {
-        enabled = true,
-        configure = true,
+        -- Disabling for now in favor of neogit
+        enabled = false,
+        configure = false,
       },
       picker = {
         sources = {

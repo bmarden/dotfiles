@@ -31,6 +31,7 @@ map("v", "<Leader>r", function()
 end, { desc = "Rename selected text" })
 
 -- Shortcut to launch neogit
+map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- By default, CTRL-U and CTRL-D scroll by half a screen (50% of the window height)
@@ -47,7 +48,7 @@ vim.keymap.set("n", "<C-u>", function()
 end, { noremap = true, silent = true })
 
 -- Quit or exit neovim, easier than to do <leader>qq
-vim.keymap.set({ "n", "v", "i" }, "<M-q>", "<cmd>q!<cr>", { desc = "[P]Quit All" })
+vim.keymap.set({ "n", "v", "i" }, "<M-q>", "<cmd>qa<cr>", { desc = "[P]Quit All" })
 
 -- use gh to move to the beginning of the line in normal mode
 -- use gl to move to the end of the line in normal mode
