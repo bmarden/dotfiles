@@ -16,7 +16,7 @@ map("n", "<Leader>r", function()
 end, { desc = "Rename word under cursor" })
 
 -- Visual mode - rename selected text
-map("v", "<Leader>r", function()
+map("v", "<Leader>R", function()
   -- Exit visual mode and get the selected text
   vim.cmd('normal! "vy')
   local selected_text = vim.fn.getreg("v")
@@ -34,6 +34,9 @@ end, { desc = "Rename selected text" })
 map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
+-- Easier mapping for saving files
+vim.keymap.set({ "x", "n", "s" }, "<leader>w", "<cmd>w<cr><esc>", { desc = "Save File" })
+
 -- By default, CTRL-U and CTRL-D scroll by half a screen (50% of the window height)
 -- Scroll by 35% of the window height and keep the cursor centered
 local scroll_percentage = 0.35
@@ -49,6 +52,7 @@ end, { noremap = true, silent = true })
 
 -- Quit or exit neovim, easier than to do <leader>qq
 vim.keymap.set({ "n", "v", "i" }, "<M-q>", "<cmd>qa<cr>", { desc = "[P]Quit All" })
+-- Close the current window
 
 -- use gh to move to the beginning of the line in normal mode
 -- use gl to move to the end of the line in normal mode
