@@ -2,7 +2,6 @@ return {
   "stevearc/conform.nvim",
   opts = {
     formatters_by_ft = {
-      -- go = { "goimports", "golines", "gofumpt" },
       go = { "golangci-lint" },
       sql = { "sqlfluff" },
     },
@@ -12,7 +11,7 @@ return {
       },
       sqlfluff = {
         command = "sqlfluff",
-        args = { "format", "--dialect=postgres", "-" },
+        args = { "format", "--config", vim.fn.expand("$HOME/.config/nvim/.sqlfluff"), "-" },
         stdin = true,
         cwd = function()
           return vim.fn.getcwd()

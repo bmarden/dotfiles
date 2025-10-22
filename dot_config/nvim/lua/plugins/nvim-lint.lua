@@ -3,6 +3,7 @@ return {
   opts = {
     linters_by_ft = {
       go = { "golangcilint" },
+      sql = { "sqlfluff" },
     },
     linters = {
       ["markdownlint-cli2"] = {
