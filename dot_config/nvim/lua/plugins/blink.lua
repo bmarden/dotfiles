@@ -17,9 +17,9 @@ return {
         -- ghost_text = {
         --   enabled = true,
         -- },
-        menu = {
-          auto_show = false,
-        },
+        -- menu = {
+        --   auto_show = false,
+        -- },
       },
       enabled = function()
         return not vim.tbl_contains({ "tex", "markdown" }, vim.bo.filetype) and vim.bo.buftype ~= "prompt"
