@@ -14,9 +14,12 @@ for file in "${files[@]}"; do
   fi
 done
 
-# Install homebrew if it's not already installed
-type brew >/dev/null 2>&1 && exit
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # Install homebrew if it's not already installed
+  type brew >/dev/null 2>&1 && exit
 
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# Set up homebrew in the current shell
-eval "$(/opt/homebrew/bin/brew shellenv)"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # Set up homebrew in the current shell
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
