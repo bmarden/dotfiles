@@ -7,8 +7,10 @@ zmodule environment
 zmodule utility
 # Adds duration info after each command.
 zmodule duration-info
-# Defines homebrew aliases, functions and completions.
-zmodule homebrew
+# Defines homebrew aliases, functions and completions (macOS only).
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  zmodule homebrew
+fi
 # The fuzzy finder for your shell.
 zmodule fzf
 # Setup chezmoi completions
@@ -58,8 +60,13 @@ zmodule "$XDG_CONFIG_HOME/completions" --fpath .
 zmodule "$XDG_CACHE_HOME/zsh/completions" --fpath .
 # Load eas completions if command exists
 if [ "$(command -v eas)" ]; then
-  [[ ! -d "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh" ]] && eas autocomplete -r zsh
-  zmodule "$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh" --fpath .
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    EAS_COMPLETION_DIR="$HOME/Library/Caches/eas-cli/autocomplete/functions/zsh"
+  else
+    EAS_COMPLETION_DIR="$XDG_CACHE_HOME/eas-cli/autocomplete/functions/zsh"
+  fi
+  [[ ! -d "$EAS_COMPLETION_DIR" ]] && eas autocomplete -r zsh
+  zmodule "$EAS_COMPLETION_DIR" --fpath .
 fi
 
 # Enables and configures smart and extensive tab completion.

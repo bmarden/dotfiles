@@ -44,7 +44,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 
 # android studio
-export ANDROID_HOME="$HOME/Library/Android/sdk"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+else
+  export ANDROID_HOME="$XDG_DATA_HOME/android"
+fi
 export ANDROID_USER_HOME="$XDG_CONFIG_HOME/android"
 
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
@@ -69,12 +73,17 @@ path+=("$HOME/bin"
   "$ANDROID_HOME/tools/bin"
   "$ANDROID_HOME/platform-tools"
   "$ANDROID_HOME/cmdline-tools/latest/bin"
-  "/Applications/Android Studio.app/Contents/jre/Contents/Home/bin"
-  "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-  "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   "$PNPM_HOME"
   "$BUN_INSTALL_BIN"
-  "$HOME/.dotnet/tools"
-  "/opt/homebrew/opt/libpq@16/bin")
+  "$HOME/.dotnet/tools")
+
+# Add macOS-specific paths
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  path+=(
+    "/Applications/Android Studio.app/Contents/jre/Contents/Home/bin"
+    "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+    "/opt/homebrew/opt/libpq@16/bin"
+  )
+fi
 
 typeset -aU path
