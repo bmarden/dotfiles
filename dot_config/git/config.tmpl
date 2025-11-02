@@ -3,13 +3,21 @@
 [user]
   email = {{ .email }}
   name = Ben Marden
+{{- if .use_1password }}
   signingKey = {{- (onepasswordDetailsFields "GH SSH Key").public_key.value }}
+{{- end }}
+{{- if .use_1password }}
 [commit]
   gpgsign = true
 [gpg]
   format = ssh
 [gpg "ssh"]
+{{- if eq .chezmoi.os "darwin" }}
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{- else }}
+  program = "{{ .chezmoi.homeDir }}/.1password/op-ssh-sign"
+{{- end }}
+{{- end }}
 [core]
 	editor = nvim
   excludesFile = ~/.config/git/ignore
