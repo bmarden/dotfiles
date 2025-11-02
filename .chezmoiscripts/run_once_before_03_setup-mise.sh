@@ -17,8 +17,8 @@ declare -A plugins
 plugins[nodejs]="latest"
 # plugins[java]="zulu-17.46.19"
 # plugins[ruby]="3.2.2"
-plugins[python]="3.12.1"
-plugins[golang]="1.25.3"
+plugins[python]="3.14.0"
+plugins[golang]="latest"
 
 # On macOS, also install cocoapods
 if [[ "$OSTYPE" == "darwin"* ]]; then
