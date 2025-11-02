@@ -35,7 +35,8 @@ cp "$HOME/.local/share/chezmoi/com.googlecode.iterm2.plist" "$HOME/.config/iterm
 # Change default shell to zsh if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "Changing default shell to zsh..."
-  chsh -s "$(which zsh)"
+  # Use sudo chsh to avoid password prompt
+  sudo chsh -s "$(which zsh)" "$USER"
 fi
 
 {{- end }}

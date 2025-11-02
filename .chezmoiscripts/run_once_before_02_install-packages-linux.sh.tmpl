@@ -3,7 +3,18 @@
 
 set -e
 
+# Prevent interactive prompts during package installation
+export DEBIAN_FRONTEND=noninteractive
+
 echo "Installing packages for Linux..."
+
+# Set timezone non-interactively (configure before installing packages)
+{{- if .timezone }}
+sudo ln -fs /usr/share/zoneinfo/{{ .timezone }} /etc/localtime
+{{- else }}
+sudo ln -fs /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+{{- end }}
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
 
 # Update package lists
 sudo apt update
@@ -23,9 +34,9 @@ sudo apt-get install -y \
   gpg
 
 # Install neovim (using latest stable from PPA)
-sudo add-apt-repository -y ppa:neovim-ppa/stable
+sudo DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt-get update
-sudo apt-get install -y neovim
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim
 
 # Install fzf
 if [ ! -d "$HOME/.fzf" ]; then

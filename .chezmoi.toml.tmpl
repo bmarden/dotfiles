@@ -1,9 +1,14 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $code_home_dir := promptStringOnce . "code_home_dir" "Where do you want to store git repositories (relative to $HOME. For example to store repos in /Users/user/my-repos, enter 'my-repos')" "code" -}}
+{{- $timezone := "America/Los_Angeles" -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{-   $timezone = promptStringOnce . "timezone" "Timezone (e.g., America/New_York, Europe/London, Asia/Tokyo)" "America/Los_Angeles" -}}
+{{- end -}}
 
 [data]
   email = {{ $email | quote }}
   code_home = "{{ joinPath .chezmoi.homeDir $code_home_dir }}"
+  timezone = {{ $timezone | quote }}
 [git]
   autoCommit = false
 [edit]
