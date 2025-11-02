@@ -8,14 +8,6 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "Installing packages for Linux..."
 
-# Set timezone non-interactively (configure before installing packages)
-{{- if .timezone }}
-sudo ln -fs /usr/share/zoneinfo/{{ .timezone }} /etc/localtime
-{{- else }}
-sudo ln -fs /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
-{{- end }}
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
-
 # Update package lists
 sudo apt update
 
