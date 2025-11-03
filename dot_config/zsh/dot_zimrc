@@ -77,7 +77,10 @@ zmodule completion
 # Additional modules
 # --------------------------------
 zmodule jeffreytse/zsh-vi-mode
-zmodule thirteen37/fzf-brew -s fzf-brew.plugin.zsh
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  zmodule thirteen37/fzf-brew -s fzf-brew.plugin.zsh
+fi
 
 # -------------------------------------
 # Modules that must be initialized last

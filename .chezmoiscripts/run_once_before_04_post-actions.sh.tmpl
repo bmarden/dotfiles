@@ -50,7 +50,8 @@ fi
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "Changing default shell to zsh..."
   # Use sudo chsh to avoid password prompt
-  sudo chsh -s "$(which zsh)" "$USER"
+  # Use whoami to get the current username
+  sudo chsh -s "$(which zsh)" "$(whoami)"
 fi
 
 {{- end }}
