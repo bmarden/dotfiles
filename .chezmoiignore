@@ -1,2 +1,6 @@
 com.googlecode.iterm2.plist
 
+{{- if eq .chezmoi.os "linux" }}
+# On Linux, ~/.zshenv is created by the post-actions script to bootstrap ZDOTDIR
+.zshenv
+{{- end }}

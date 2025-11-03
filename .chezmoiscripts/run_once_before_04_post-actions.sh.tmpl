@@ -32,6 +32,20 @@ cp "$HOME/.local/share/chezmoi/com.googlecode.iterm2.plist" "$HOME/.config/iterm
 {{- else if eq .chezmoi.os "linux" }}
 # Linux-specific configurations
 
+# Set up ZDOTDIR in ~/.zshenv (the only zsh config file sourced from $HOME by default)
+if [ ! -f "$HOME/.zshenv" ]; then
+  echo "Creating ~/.zshenv to set ZDOTDIR..."
+  cat > "$HOME/.zshenv" << 'EOF'
+# Set ZDOTDIR to use XDG-compliant location
+export ZDOTDIR="$HOME/.config/zsh"
+
+# Source the actual zshenv from ZDOTDIR
+if [ -f "$ZDOTDIR/.zshenv" ]; then
+  source "$ZDOTDIR/.zshenv"
+fi
+EOF
+fi
+
 # Change default shell to zsh if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "Changing default shell to zsh..."
