@@ -46,6 +46,20 @@ return {
             },
           },
         },
+        vtsls = {
+          keys = {
+            { "<leader>co", enabled = false },
+          },
+          settings = {
+            typescript = {
+              tsserver = {
+                experimental = {
+                  enableProjectDiagnostics = true,
+                },
+              },
+            },
+          },
+        },
       },
     },
   },
