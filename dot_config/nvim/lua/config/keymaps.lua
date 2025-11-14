@@ -8,7 +8,7 @@ local map = vim.keymap.set
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 
 -- Rename word under cursor
-map("n", "<Leader>r", function()
+map("n", "<Leader>R", function()
   local word = vim.fn.expand("<cword>")
   vim.fn.feedkeys(
     ":%s/\\<" .. word .. "\\>//g" .. string.rep(vim.api.nvim_replace_termcodes("<Left>", true, false, true), 2)
@@ -64,13 +64,22 @@ vim.keymap.set("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
 
 -- Neovim specific keybindings
 if not vim.g.vscode then
-  -- Override the default window navigation keymaps so they work with tmux plugin
-  map("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", { silent = true })
-  map("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>", { silent = true })
-  map("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>", { silent = true })
-  map("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>", { silent = true })
-  map("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>", { silent = true })
-  map("n", "<C-Space>", "<Cmd>NvimTmuxNavigateNavigateNext<CR>", { silent = true })
+  --  Set smart-splits keybindings
+  vim.keymap.set("n", "<D-j>", require("smart-splits").resize_down)
+  vim.keymap.set("n", "<D-h>", require("smart-splits").resize_left)
+  vim.keymap.set("n", "<D-k>", require("smart-splits").resize_up)
+  vim.keymap.set("n", "<D-l>", require("smart-splits").resize_right)
+  -- moving between splits
+  vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
+  vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
+  vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
+  vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
+  vim.keymap.set("n", "<C-\\>", require("smart-splits").move_cursor_previous)
+  -- swapping buffers between windows
+  vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
+  vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
+  vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
+  vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 
   -- Override the default <Leader>/ mapping to comment line
   map("n", "<leader>/", function()
@@ -110,19 +119,3 @@ if vim.g.vscode then
     { desc = "Decrease view size" }
   )
 end
-
--- vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
--- vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
--- vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up)
--- vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right)
--- -- moving between splits
--- vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
--- vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
--- vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
--- vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
--- vim.keymap.set("n", "<C-\\>", require("smart-splits").move_cursor_previous)
--- -- swapping buffers between windows
--- vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
--- vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
--- vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
--- vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
