@@ -1,1 +1,3 @@
-{{- .email }} {{ (onepasswordDetailsFields "GH SSH Key").public_key.value }}
+{{- if .use_1password -}}
+{{ .email }} {{ (onepasswordDetailsFields "GH SSH Key").public_key.value }}
+{{- end -}}

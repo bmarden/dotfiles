@@ -1,9 +1,11 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $code_home_dir := promptStringOnce . "code_home_dir" "Where do you want to store git repositories (relative to $HOME. For example to store repos in /Users/user/my-repos, enter 'my-repos')" "code" -}}
+{{- $use_1password := promptBoolOnce . "use_1password" "Use 1Password for git commit signing" -}}
 
 [data]
   email = {{ $email | quote }}
   code_home = "{{ joinPath .chezmoi.homeDir $code_home_dir }}"
+  use_1password = {{ $use_1password }}
 [git]
   autoCommit = false
 [edit]
@@ -24,7 +26,9 @@
 [hooks.read-source-state.pre]
   command = {{ joinPath .chezmoi.sourceDir ".pre-read-source-state.sh" | quote }}
 [scriptEnv]
+{{- if $use_1password }}
   OP_ACCOUNT="my.1password.com"
+{{- end }}
   XDG_DATA_HOME = "{{ joinPath .chezmoi.homeDir ".local/share" }}"
   XDG_CACHE_HOME = "{{ joinPath .chezmoi.homeDir ".cache" }}"
   XDG_CONFIG_HOME = "{{ joinPath .chezmoi.homeDir ".config" }}"

@@ -1,0 +1,97 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+
+set -e
+
+# Prevent interactive prompts during package installation
+export DEBIAN_FRONTEND=noninteractive
+
+echo "Installing packages for Linux..."
+
+# Update package lists
+sudo apt update
+
+# Install essential packages
+sudo apt-get install -y \
+  software-properties-common \
+  git \
+  curl \
+  wget \
+  build-essential \
+  zsh \
+  fd-find \
+  ripgrep \
+  bat \
+  jq \
+  gpg \
+  libc6
+
+# Install neovim (download from GitHub releases)
+if ! command -v nvim &>/dev/null; then
+  echo "Installing Neovim..."
+  NVIM_VERSION="stable"
+  NVIM_URL="https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-x86_64.tar.gz"
+
+  # Download and extract to a temporary location
+  cd /tmp
+  wget -q "${NVIM_URL}" -O nvim-linux-x86_64.tar.gz
+
+  # Extract the tarball
+  tar -xzf nvim-linux-x86_64.tar.gz
+
+  # Install to /usr/local (system-wide, accessible to all users and sudo)
+  # The tarball extracts to nvim-linux-x86_64/ with bin/, lib/, share/ subdirs
+  sudo cp -r nvim-linux-x86_64/* /usr/local/
+
+  # Cleanup
+  rm -rf nvim-linux-x86_64 nvim-linux-x86_64.tar.gz
+
+  echo "Neovim installed to /usr/local/bin/nvim"
+else
+  echo "Neovim already installed"
+fi
+
+# Install fzf
+if [ ! -d "$HOME/.fzf" ]; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+  "$HOME/.fzf/install" --all --no-bash --no-fish --xdg
+fi
+
+# # Install gh (GitHub CLI)
+# if ! command -v gh &>/dev/null; then
+#   (type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) &&
+#     sudo mkdir -p -m 755 /etc/apt/keyrings &&
+#     wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null &&
+#     sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg &&
+#     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
+#     sudo apt update &&
+#     sudo apt install gh -y
+# fi
+
+# Install mise (formerly rtx)
+if ! command -v mise &>/dev/null; then
+  curl https://mise.run | sh
+fi
+
+# Install vivid (LS_COLORS generator) - build from source since it's not in apt
+if ! command -v vivid &>/dev/null; then
+  if ! command -v cargo &>/dev/null; then
+    echo "Skipping vivid installation (requires Rust/cargo)"
+  else
+    cargo install vivid
+  fi
+fi
+
+# Create symbolic links for fd-find and batcat (Ubuntu uses different names)
+if [ -f /usr/bin/fd-find ] && [ ! -f "$HOME/.local/bin/fd" ]; then
+  mkdir -p "$HOME/.local/bin"
+  ln -s /usr/bin/fd-find "$HOME/.local/bin/fd"
+fi
+
+if [ -f /usr/bin/batcat ] && [ ! -f "$HOME/.local/bin/bat" ]; then
+  mkdir -p "$HOME/.local/bin"
+  ln -s /usr/bin/batcat "$HOME/.local/bin/bat"
+fi
+
+echo "Linux package installation complete!"
+{{ end -}}
