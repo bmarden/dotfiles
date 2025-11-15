@@ -44,6 +44,10 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # # Use colors in LS_COLORS for displaying file lists in completion
 zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
+# # Pre-load bashcompinit before zimfw to avoid duplicate compinit warnings
+# # This ensures bash completion support is available when zimfw initializes
+autoload -Uz bashcompinit
+
 # # Initialize modules.
 . "${ZIM_HOME}"/init.zsh
 

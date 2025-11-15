@@ -1,9 +1,10 @@
 #!/bin/zsh
 # vim syntax=sh
 
-# Load bashcompinit if not already loaded
-if ! type bashcompinit >/dev/null 2>&1; then
-  autoload -U +X bashcompinit
+# Initialize bashcompinit if not already initialized
+# bashcompinit is pre-loaded in .zshrc before zimfw initialization
+# to avoid duplicate compinit calls
+if ! type complete >/dev/null 2>&1; then
   bashcompinit
 fi
 
