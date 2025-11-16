@@ -23,8 +23,6 @@
       {{ printf "%q" "{{ .Source }}" }},
       {{ printf "%q" "{{ .Target }}" }},
   ]
-[hooks.read-source-state.pre]
-  command = {{ joinPath .chezmoi.sourceDir ".pre-read-source-state.sh" | quote }}
 [scriptEnv]
 {{- if $use_1password }}
   OP_ACCOUNT="my.1password.com"
