@@ -62,6 +62,17 @@ vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" 
 -- In visual mode, after going to the end of the line, come back 1 character
 vim.keymap.set("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
 
+-- Setup some keybindings for obsidian.nvim
+vim.keymap.set("n", "<leader>od", "<cmd>Obsidian today<CR>", { desc = "Open Obsidian Daily Note" })
+vim.keymap.set("n", "<leader>of", "<cmd>Obsidian search<CR>", { desc = "Find Obsidian Note" })
+vim.keymap.set("n", "<leader>om", function()
+  vim.ui.input({ prompt = "Meeting Title: " }, function(title)
+    if title and title ~= "" then
+      vim.cmd("ObsidianNewFromTemplate " .. title .. " meeting")
+    end
+  end)
+end, { desc = "Create Obsidian Meeting Note" })
+
 -- Neovim specific keybindings
 if not vim.g.vscode then
   --  Set smart-splits keybindings
@@ -80,23 +91,14 @@ if not vim.g.vscode then
   vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
   vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
   vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
-
-  -- Override the default <Leader>/ mapping to comment line
-  map("n", "<leader>/", function()
-    require("Comment.api").toggle.linewise.current()
-  end, { desc = "Comment line" })
-
-  -- For visual mode (comment selection)
-  -- Use Comment.nvim's built-in visual mode mapping
-  map("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", { desc = "Comment selection" })
 end
 
 -- VSCode specific keybindings
 if vim.g.vscode then
   local vscode = require("vscode")
-  map({ "n", "v" }, "<leader>/", function()
-    vscode.action("editor.action.commentLine")
-  end)
+  -- map({ "n", "v" }, "<leader>/", function()
+  --   vscode.action("editor.action.commentLine")
+  -- end)
   -- VSCode specific keymaps
   -- Setup C-Left, C-Right, C-Up, C-Down to resize all panes (editor, terminal, explorer)
   map(

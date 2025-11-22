@@ -8,6 +8,7 @@
 vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 -- Prevent gopls from attaching to octo://, diffview://, and diff mode buffers
+-- Prevent markdown_oxide from attaching to non-markdown files
 -- Wrap buf_attach_client to filter these out before attachment happens
 local _original_buf_attach_client = vim.lsp.buf_attach_client
 vim.lsp.buf_attach_client = function(bufnr, client_id)
@@ -25,6 +26,14 @@ vim.lsp.buf_attach_client = function(bufnr, client_id)
     -- Check if buffer is in diff mode
     local winid = vim.fn.bufwinid(bufnr)
     if winid ~= -1 and vim.wo[winid].diff then
+      return false
+    end
+  end
+
+  -- Only allow markdown_oxide to attach to markdown files
+  if client and client.name == "markdown_oxide" then
+    local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+    if filetype ~= "markdown" then
       return false
     end
   end
