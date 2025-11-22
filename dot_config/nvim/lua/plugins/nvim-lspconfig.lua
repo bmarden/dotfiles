@@ -27,6 +27,8 @@ return {
               },
               staticcheck = false,
               semanticTokens = true,
+              buildFlags = { "-tags=integration" },
+              testTags = "integration",
             },
           },
         },
