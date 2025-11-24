@@ -9,6 +9,9 @@ return {
   ---@module 'obsidian'
   ---@type obsidian.config
   opts = {
+    ui = {
+      enable = false,
+    },
     workspaces = {
       {
         name = "notes",
