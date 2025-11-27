@@ -82,15 +82,19 @@ alias history="fc -li"
 alias glo="git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
 
 # IF CHEZMOI IS INSTALLED
-alias cm="chezmoi"                    \
-alias cma="chezmoi add"               \
-alias cmi="chezmoi init"              \
-alias cmd="chezmoi diff"              \
-alias cme="chezmoi edit"              \
-alias cmcd="chezmoi cd"               \
-alias cmat="chezmoi add --template"   \
-alias cmap="chezmoi apply"            \
-alias cmet="chezmoi execute-template"
+alias cm="chezmoi" \
+  alias cma="chezmoi add" \
+  alias cmi="chezmoi init" \
+  alias cmd="chezmoi diff" \
+  alias cme="chezmoi edit" \
+  alias cmcd="chezmoi cd" \
+  alias cmat="chezmoi add --template" \
+  alias cmap="chezmoi apply" \
+  alias cmet="chezmoi execute-template"
 
 # automatically setup kitten for ssh
 alias kssh="kitten ssh"
+
+if [ -x "$(command -v restish)" ]; then
+  alias restish="noglob restish"
+fi
