@@ -64,23 +64,24 @@ vim.keymap.set("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
 
 -- Setup some keybindings for obsidian.nvim
 -- Change to vault directory before running commands to ensure templates are found
+local vault_path = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ben-brain")
 vim.keymap.set("n", "<leader>od", function()
   local cwd = vim.fn.getcwd()
-  vim.cmd("cd " .. vim.fn.expand("~/vaults/notes"))
+  vim.cmd("cd " .. vault_path)
   vim.cmd("Obsidian today")
   vim.cmd("cd " .. cwd)
 end, { desc = "Open Obsidian Daily Note" })
 
 vim.keymap.set("n", "<leader>of", function()
   local cwd = vim.fn.getcwd()
-  vim.cmd("cd " .. vim.fn.expand("~/vaults/notes"))
+  vim.cmd("cd " .. vault_path)
   vim.cmd("Obsidian search")
   vim.cmd("cd " .. cwd)
 end, { desc = "Find Obsidian Note" })
 
 vim.keymap.set("n", "<leader>om", function()
   local cwd = vim.fn.getcwd()
-  vim.cmd("cd " .. vim.fn.expand("~/vaults/notes"))
+  vim.cmd("cd " .. vault_path)
   vim.ui.input({ prompt = "Meeting Title: " }, function(title)
     if title and title ~= "" then
       vim.cmd("Obsidian new_from_template " .. title .. " meeting")
@@ -88,6 +89,23 @@ vim.keymap.set("n", "<leader>om", function()
     vim.cmd("cd " .. cwd)
   end)
 end, { desc = "Create Obsidian Meeting Note" })
+
+vim.keymap.set("n", "<leader>on", function()
+  local cwd = vim.fn.getcwd()
+  vim.cmd("cd " .. vault_path)
+  vim.ui.input({ prompt = "Note Title: " }, function(title)
+    if title and title ~= "" then
+      vim.cmd("Obsidian new_from_template " .. title .. " new")
+    end
+    vim.cmd("cd " .. cwd)
+  end)
+end, { desc = "Create New Obsidian Note" })
+vim.keymap.set("n", "<leader>ot", function()
+  local cwd = vim.fn.getcwd()
+  vim.cmd("cd " .. vault_path)
+  vim.cmd("Obsidian tags")
+  vim.cmd("cd " .. cwd)
+end, { desc = "Open Obsidian Tags" })
 
 -- Neovim specific keybindings
 if not vim.g.vscode then
