@@ -1,7 +1,6 @@
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ---@type render-markdown.config
     opts = {
       code = {
         sign = true,
