@@ -41,7 +41,7 @@ return {
           explorer = {
             hidden = true,
             ignored = true,
-            exclude = { ".git", "node_modules" },
+            exclude = { ".git", "node_modules", ".DS_Store" },
             win = {
               list = {
                 keys = {
