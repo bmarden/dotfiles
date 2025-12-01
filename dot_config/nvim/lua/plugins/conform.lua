@@ -5,6 +5,10 @@ return {
     formatters_by_ft = {
       go = { "golangci-lint" },
       sql = { "sqlfluff" },
+      javascript = { "biome", "biome-organize-imports" },
+      javascriptreact = { "biome", "biome-organize-imports" },
+      typescript = { "biome", "biome-organize-imports" },
+      typescriptreact = { "biome", "biome-organize-imports" },
     },
     formatters = {
       ["markdownlint-cli2"] = {
