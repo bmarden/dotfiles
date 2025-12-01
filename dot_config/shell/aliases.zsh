@@ -98,3 +98,6 @@ alias kssh="kitten ssh"
 if [ -x "$(command -v restish)" ]; then
   alias restish="noglob restish"
 fi
+
+# Setup obsidian helper aliases
+alias oo="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/ben-brain"
