@@ -33,10 +33,15 @@ return {
           },
         },
         gh_actions_ls = {
-          settings = {
-            init_options = {
-              sessionToken = vim.env.GITHUB_TOKEN,
-            },
+          init_options = {
+            sessionToken = vim.env.GH_ACTIONS_PAT,
+            repos = (function()
+              local repo = require("config.utils").get_github_repo_config()
+              if repo then
+                return { repo }
+              end
+              return {}
+            end)(),
           },
         },
         bashls = {
