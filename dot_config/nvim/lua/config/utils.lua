@@ -32,6 +32,10 @@ local function fetch_github_repo_id(repo_name, token, org)
 end
 
 function M.get_github_repo_config()
+  if vim.env.GH_ACTIONS_PAT == nil then
+    return nil
+  end
+
   -- Get the current git directory
   local git_dir = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
   if vim.v.shell_error ~= 0 then

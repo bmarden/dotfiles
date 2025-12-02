@@ -2,6 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      enabled = vim.env.KITTY_SCROLLBACK_NVIM == nil,
       servers = {
         ["*"] = {
           keys = {
