@@ -17,7 +17,7 @@ return {
         },
       })
       require("neogit").setup({
-        kind = "floating", -- opens neogit in a split
+        kind = "split", -- opens neogit in a split
         signs = {
           -- { CLOSED, OPENED }
           section = { "", "" },
