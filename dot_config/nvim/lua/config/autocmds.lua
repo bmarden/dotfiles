@@ -40,3 +40,10 @@ vim.lsp.buf_attach_client = function(bufnr, client_id)
 
   return _original_buf_attach_client(bufnr, client_id)
 end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.textwidth = 100
+  end,
+})
