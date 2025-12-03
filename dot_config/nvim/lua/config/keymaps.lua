@@ -35,96 +35,106 @@ map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- Easier mapping for saving files
-vim.keymap.set({ "x", "n", "s" }, "<leader>w", "<cmd>w<cr><esc>", { desc = "Save File" })
+map({ "x", "n", "s" }, "<leader>w", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 -- By default, CTRL-U and CTRL-D scroll by half a screen (50% of the window height)
 -- Scroll by 35% of the window height and keep the cursor centered
 local scroll_percentage = 0.35
 -- Scroll by a percentage of the window height and keep the cursor centered
-vim.keymap.set("n", "<C-d>", function()
+map("n", "<C-d>", function()
   local lines = math.floor(vim.api.nvim_win_get_height(0) * scroll_percentage)
   vim.cmd("normal! " .. lines .. "jzz")
 end, { noremap = true, silent = true })
-vim.keymap.set("n", "<C-u>", function()
+map("n", "<C-u>", function()
   local lines = math.floor(vim.api.nvim_win_get_height(0) * scroll_percentage)
   vim.cmd("normal! " .. lines .. "kzz")
 end, { noremap = true, silent = true })
 
 -- Quit or exit neovim, easier than to do <leader>qq
-vim.keymap.set({ "n", "v", "i" }, "<M-q>", "<cmd>qa<cr>", { desc = "[P]Quit All" })
+map({ "n", "v", "i" }, "<M-q>", "<cmd>qa<cr>", { desc = "[P]Quit All" })
 -- Close the current window
 
 -- use gh to move to the beginning of the line in normal mode
 -- use gl to move to the end of the line in normal mode
-vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
-vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
+map({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
+map({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
 
 -- In visual mode, after going to the end of the line, come back 1 character
-vim.keymap.set("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
+map("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
+
+---@param command "today" |"dailies" | "search" | "tags" | "new_from_template" | "quick_switch"
+---@param template_name? "new" | "meeting"
+local run_obsidian_command = function(command, template_name)
+  local cwd = vim.fn.getcwd()
+  -- Change to vault directory before running commands to ensure templates are found
+  local vault_path = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ben-brain")
+
+  local execute_command = function(cmd)
+    vim.cmd("cd " .. vault_path)
+    vim.cmd("Obsidian " .. cmd)
+    vim.cmd("cd " .. cwd)
+  end
+
+  if template_name then
+    vim.ui.input({ prompt = "Note Title: " }, function(title)
+      if title and title ~= "" then
+        execute_command(string.format("%s %s %s", command, title, template_name))
+      else
+        vim.notify("Aborted: No title provided", vim.log.levels.WARN)
+      end
+    end)
+  else
+    execute_command(command)
+  end
+end
 
 -- Setup some keybindings for obsidian.nvim
--- Change to vault directory before running commands to ensure templates are found
-local vault_path = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ben-brain")
-vim.keymap.set("n", "<leader>od", function()
-  local cwd = vim.fn.getcwd()
-  vim.cmd("cd " .. vault_path)
-  vim.cmd("Obsidian today")
-  vim.cmd("cd " .. cwd)
+map("n", "<leader>ot", function()
+  run_obsidian_command("today")
 end, { desc = "Open Obsidian Daily Note" })
 
-vim.keymap.set("n", "<leader>of", function()
-  local cwd = vim.fn.getcwd()
-  vim.cmd("cd " .. vault_path)
-  vim.cmd("Obsidian search")
-  vim.cmd("cd " .. cwd)
-end, { desc = "Find Obsidian Note" })
+map("n", "<leader>os", function()
+  run_obsidian_command("search")
+end, { desc = "Search in notes" })
 
-vim.keymap.set("n", "<leader>om", function()
-  local cwd = vim.fn.getcwd()
-  vim.cmd("cd " .. vault_path)
-  vim.ui.input({ prompt = "Meeting Title: " }, function(title)
-    if title and title ~= "" then
-      vim.cmd("Obsidian new_from_template " .. title .. " meeting")
-    end
-    vim.cmd("cd " .. cwd)
-  end)
+map("n", "<leader>od", function()
+  run_obsidian_command("dailies")
+end, { desc = "Open dailies" })
+
+map("n", "<leader>oq", function()
+  run_obsidian_command("quick_switch")
+end, { desc = "Quick switch notes" })
+
+map("n", "<leader>om", function()
+  run_obsidian_command("new_from_template", "meeting")
 end, { desc = "Create Obsidian Meeting Note" })
 
-vim.keymap.set("n", "<leader>on", function()
-  local cwd = vim.fn.getcwd()
-  vim.cmd("cd " .. vault_path)
-  vim.ui.input({ prompt = "Note Title: " }, function(title)
-    if title and title ~= "" then
-      vim.cmd("Obsidian new_from_template " .. title .. " new")
-    end
-    vim.cmd("cd " .. cwd)
-  end)
+map("n", "<leader>on", function()
+  run_obsidian_command("new_from_template", "new")
 end, { desc = "Create New Obsidian Note" })
-vim.keymap.set("n", "<leader>ot", function()
-  local cwd = vim.fn.getcwd()
-  vim.cmd("cd " .. vault_path)
-  vim.cmd("Obsidian tags")
-  vim.cmd("cd " .. cwd)
+
+map("n", "<leader>oT", function()
+  run_obsidian_command("tags")
 end, { desc = "Open Obsidian Tags" })
 
 -- Neovim specific keybindings
 if not vim.g.vscode then
   --  Set smart-splits keybindings
-  vim.keymap.set("n", "<D-j>", require("smart-splits").resize_down)
-  vim.keymap.set("n", "<D-h>", require("smart-splits").resize_left)
-  vim.keymap.set("n", "<D-k>", require("smart-splits").resize_up)
-  vim.keymap.set("n", "<D-l>", require("smart-splits").resize_right)
+  map("n", "<D-j>", require("smart-splits").resize_down)
+  map("n", "<D-h>", require("smart-splits").resize_left)
+  map("n", "<D-k>", require("smart-splits").resize_up)
+  map("n", "<D-l>", require("smart-splits").resize_right)
   -- moving between splits
-  vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
-  vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
-  vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
-  vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
-  vim.keymap.set("n", "<C-\\>", require("smart-splits").move_cursor_previous)
+  map("n", "<C-h>", require("smart-splits").move_cursor_left)
+  map("n", "<C-j>", require("smart-splits").move_cursor_down)
+  map("n", "<C-k>", require("smart-splits").move_cursor_up)
+  map("n", "<C-l>", require("smart-splits").move_cursor_right)
+  map("n", "<C-\\>", require("smart-splits").move_cursor_previous)
   -- swapping buffers between windows
-  vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
-  vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
-  vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
-  vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
+  map("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
+  map("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
+  map("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
+  map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 end
 
 -- VSCode specific keybindings

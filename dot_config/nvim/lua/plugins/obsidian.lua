@@ -1,3 +1,12 @@
+local get_note_id = function(title)
+  if title == nil then
+    return ""
+  end
+  local date_prefix = os.date("%Y-%m-%d")
+  local name = title:lower()
+  return date_prefix .. "_" .. name
+end
+
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
@@ -36,32 +45,19 @@ return {
       },
       customizations = {
         meeting = {
-          note_id_func = function(title)
-            if title == nil then
-              return ""
-            end
-
-            local name = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-            return name -- "Hulk Hogan" → "hulk-hogan"
-          end,
+          note_id_func = get_note_id,
           notes_subdir = "meetings",
         },
         new = {
-          note_id_func = function(title)
-            if title == nil then
-              return ""
-            end
-            local date_prefix = os.date("%Y-%m-%d")
-            local name = title:lower()
-            return date_prefix .. "_" .. name
-          end,
+          note_id_func = get_note_id,
+          notes_subdir = "inbox",
         },
       },
     },
     daily_notes = {
       folder = "daily-notes",
       template = "templates/daily.md",
-      date_format = "%Y/%b/%Y-%m-%d-%a.md",
+      date_format = "%Y/%b/%Y-%m-%d-%a",
     },
     picker = {
       name = "snacks.pick",
