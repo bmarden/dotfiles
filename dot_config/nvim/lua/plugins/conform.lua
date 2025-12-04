@@ -5,12 +5,22 @@ return {
     formatters_by_ft = {
       go = { "golangci-lint" },
       sql = { "sqlfluff" },
-      javascript = { "biome", "biome-organize-imports" },
-      javascriptreact = { "biome", "biome-organize-imports" },
-      typescript = { "biome", "biome-organize-imports" },
-      typescriptreact = { "biome", "biome-organize-imports" },
+      javascript = { "biome-check", "prettier", stop_after_first = true },
+      javascriptreact = { "biome-check", "prettier", stop_after_first = true },
+      typescript = { "biome-check", "prettier", stop_after_first = true },
+      typescriptreact = { "biome-check", "prettier", stop_after_first = true },
+      json = { "biome-check", "prettier" },
     },
     formatters = {
+      biome = {
+        require_cwd = true,
+      },
+      ["biome-check"] = {
+        require_cwd = true,
+      },
+      prettier = {
+        require_cwd = true,
+      },
       ["markdownlint-cli2"] = {
         args = { "--config", vim.fn.expand("$HOME/.markdownlint-cli2.yaml"), "--fix", "$FILENAME" },
       },
