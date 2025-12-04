@@ -1,36 +1,69 @@
 return {
   "folke/sidekick.nvim",
   keys = {
-    -- nes is also useful in normal mode
-    { "<leader>a", false },
     {
-      "<c-.>",
-      false,
+      "<leader>ac",
+      function()
+        require("sidekick.cli").toggle({ name = "claude", focus = true })
+      end,
+      desc = "Sidekick Toggle Claude",
     },
     {
-      "<leader>aa",
-      false,
+      "<leader>aC",
+      function()
+        require("sidekick.cli").toggle({ name = "claude_continue", focus = true })
+      end,
+      desc = "Continue Claude conversation",
     },
-    {
-      "<leader>as",
-      false,
+  },
+  opts = {
+    nes = {
+      enabled = false,
     },
-    {
-      "<leader>ad",
-      false,
+    cli = {
+      mux = {
+        backend = "tmux",
+        enabled = true,
+      },
+      tools = {
+        claude_continue = {
+          cmd = { "claude", "--continue" },
+        },
+      },
+      keys = {
+        nav_left = {
+          "<c-h>",
+          function()
+            require("smart-splits").move_cursor_left()
+          end,
+          mode = "nt",
+          desc = "navigate left",
+        },
+        nav_down = {
+          "<c-j>",
+          function()
+            require("smart-splits").move_cursor_down()
+          end,
+          mode = "nt",
+          desc = "navigate down",
+        },
+        nav_up = {
+          "<c-k>",
+          function()
+            require("smart-splits").move_cursor_up()
+          end,
+          mode = "nt",
+          desc = "navigate up",
+        },
+        nav_right = {
+          "<c-l>",
+          function()
+            require("smart-splits").move_cursor_right()
+          end,
+          mode = "nt",
+          desc = "navigate right",
+        },
+      },
     },
-    {
-      "<leader>at",
-      false,
-    },
-    {
-      "<leader>af",
-      false,
-    },
-    {
-      "<leader>av",
-      false,
-    },
-    { "<leader>ap", false },
   },
 }
