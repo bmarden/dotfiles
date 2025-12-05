@@ -7,6 +7,9 @@ local map = vim.keymap.set
 -- Map jk to exit
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 
+-- Paste from zero register to avoid pasting what was just deleted or removed
+map({ "n", "v" }, "<leader>p", '"0p', { desc = "Paste from zero register" })
+
 -- Rename word under cursor
 map("n", "<Leader>R", function()
   local word = vim.fn.expand("<cword>")
