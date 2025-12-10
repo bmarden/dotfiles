@@ -60,6 +60,10 @@ return {
           },
           settings = {
             typescript = {
+              preferences = {
+                importModuleSpecifier = "non-relative",
+                preferTypeOnlyAutoImports = true,
+              },
               tsserver = {
                 experimental = {
                   enableProjectDiagnostics = true,
