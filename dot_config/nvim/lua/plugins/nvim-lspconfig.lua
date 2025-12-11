@@ -54,6 +54,15 @@ return {
             },
           },
         },
+        cssls = {
+          settings = {
+            css = {
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+          },
+        },
         vtsls = {
           keys = {
             { "<leader>co", enabled = false },
