@@ -35,7 +35,6 @@ end, { desc = "Rename selected text" })
 
 -- Shortcut to launch neogit
 map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
-map("n", "<leader>gn", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- Easier mapping for saving files
 map({ "x", "n", "s" }, "<leader>w", "<cmd>w<cr><esc>", { desc = "Save File" })
@@ -138,6 +137,17 @@ if not vim.g.vscode then
   map("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
   map("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
   map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
+
+  -- Bufferline tab goto
+  map("n", "<leader>1", "<CMD>BufferLineGoToBuffer 1<CR>", { silent = true })
+  map("n", "<leader>2", "<CMD>BufferLineGoToBuffer 2<CR>", { silent = true })
+  map("n", "<leader>3", "<CMD>BufferLineGoToBuffer 3<CR>", { silent = true })
+  map("n", "<leader>4", "<CMD>BufferLineGoToBuffer 4<CR>", { silent = true })
+  map("n", "<leader>5", "<CMD>BufferLineGoToBuffer 5<CR>", { silent = true })
+  map("n", "<leader>6", "<CMD>BufferLineGoToBuffer 6<CR>", { silent = true })
+  map("n", "<leader>7", "<CMD>BufferLineGoToBuffer 7<CR>", { silent = true })
+  map("n", "<leader>8", "<CMD>BufferLineGoToBuffer 8<CR>", { silent = true })
+  map("n", "<leader>9", "<CMD>BufferLineGoToBuffer 9<CR>", { silent = true })
 end
 
 -- VSCode specific keybindings
