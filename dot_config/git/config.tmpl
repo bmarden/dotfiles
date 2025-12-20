@@ -23,10 +23,10 @@
   excludesFile = ~/.config/git/ignore
 [diff]
 	tool = nvim
-[mergetool "nvim"]
-  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [merge]
-  tool = nvim
+  tool = vscode-diff
+[mergetool "vscode-diff"]
+  cmd = 'nvim "$MERGED" -c "CodeDiff merge \"$MERGED\""'
 [pager]
   branch = false
   stash = false
