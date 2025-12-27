@@ -1,5 +1,6 @@
 return {
   "folke/sidekick.nvim",
+  enabled = false,
   keys = {
     {
       "<leader>ac",
@@ -7,13 +8,6 @@ return {
         require("sidekick.cli").toggle({ name = "claude", focus = true })
       end,
       desc = "Sidekick Toggle Claude",
-    },
-    {
-      "<leader>aC",
-      function()
-        require("sidekick.cli").toggle({ name = "claude_continue", focus = true })
-      end,
-      desc = "Continue Claude conversation",
     },
   },
   opts = {
@@ -24,11 +18,6 @@ return {
       mux = {
         backend = "tmux",
         enabled = true,
-      },
-      tools = {
-        claude_continue = {
-          cmd = { "claude", "--continue" },
-        },
       },
       keys = {
         nav_left = {
