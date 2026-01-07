@@ -5,15 +5,18 @@ return {
     ---@type blink.cmp.Config
     opts = {
       keymap = {
-        ["<Tab>"] = {
-          "snippet_forward",
-          function() -- sidekick next edit suggestion
-            return require("sidekick").nes_jump_or_apply()
-          end,
-          "fallback",
-        },
+        preset = "enter",
+        ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
+        ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
       },
       completion = {
+
+        list = {
+          selection = {
+            preselect = false,
+            auto_insert = true,
+          },
+        },
         -- ghost_text = {
         --   enabled = true,
         -- },
