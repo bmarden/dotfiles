@@ -1,6 +1,6 @@
 local get_note_id = function(title)
   if title == nil then
-    return ""
+    return nil
   end
   local date_prefix = os.date("%Y-%m-%d")
   local name = title:lower()
@@ -35,9 +35,10 @@ return {
       substitutions = {
         formatted_title = function(ctx)
           ---@diagnostic disable-next-line:param-type-mismatch
-          -- The title should be in kebab-case already. To format it for the {{formatted_title}} substitution,
-          -- we want to take the kebab-case title and convert it to Title Case.
-          local formatted_title = ctx.partial_note.title:gsub("%-", " "):gsub("(%a)([%w]*)", function(first, rest)
+          -- The id has a date prefix, so we extract everything after the underscore.
+          -- Then convert the kebab-case title to Title Case.
+          local title_without_date = ctx.partial_note.id:match("_(.+)") or ctx.partial_note.id
+          local formatted_title = title_without_date:gsub("%-", " "):gsub("(%a)([%w]*)", function(first, rest)
             return first:upper() .. rest:lower()
           end)
           return formatted_title
