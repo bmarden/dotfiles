@@ -63,7 +63,9 @@ return {
             },
           },
         },
+        tsgo = {},
         vtsls = {
+          enabled = false,
           keys = {
             { "<leader>co", enabled = false },
           },
