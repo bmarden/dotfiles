@@ -12,6 +12,8 @@ return {
       "gowork",
       "html",
       "html_tags",
+      "markdown",
+      "markdown_inline",
       "tsx",
       "typescript",
     })
