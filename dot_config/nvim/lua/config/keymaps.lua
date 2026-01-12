@@ -36,9 +36,6 @@ end, { desc = "Rename selected text" })
 -- Shortcut to launch neogit
 map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
--- Easier mapping for saving files
-map({ "x", "n", "s" }, "<leader>w", "<cmd>w<cr><esc>", { desc = "Save File" })
-
 -- By default, CTRL-U and CTRL-D scroll by half a screen (50% of the window height)
 -- Scroll by 35% of the window height and keep the cursor centered
 local scroll_percentage = 0.35
