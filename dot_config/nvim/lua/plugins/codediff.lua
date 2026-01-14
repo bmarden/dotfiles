@@ -14,5 +14,8 @@ return {
         prev_file = "[f", -- Previous file in explorer mode
       },
     },
+    highlights = {
+      char_brightness = 1.6,
+    },
   },
 }

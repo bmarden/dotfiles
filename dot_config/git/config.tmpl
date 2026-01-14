@@ -22,11 +22,13 @@
 	editor = nvim
   excludesFile = ~/.config/git/ignore
 [diff]
-	tool = nvim
+	tool = codediff
 [merge]
-  tool = vscode-diff
-[mergetool "vscode-diff"]
+  tool = codediff
+[mergetool "codediff"]
   cmd = 'nvim "$MERGED" -c "CodeDiff merge \"$MERGED\""'
+[difftool "codediff"]
+  cmd = 'nvim "$LOCAL" "$REMOTE" +"CodeDiff file $LOCAL $REMOTE"'
 [pager]
   branch = false
   stash = false
