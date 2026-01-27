@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      enabled = vim.env.KITTY_SCROLLBACK_NVIM == nil,
+      enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
       servers = {
         ["*"] = {
           keys = {
@@ -28,7 +28,7 @@ return {
               },
               staticcheck = false,
               semanticTokens = true,
-              buildFlags = { "-tags=integration" },
+              buildFlags = { "-tags=integration,tools" },
               testTags = "integration",
             },
           },

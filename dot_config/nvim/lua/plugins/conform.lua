@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  enabled = vim.env.KITTY_SCROLLBACK_NVIM == nil,
+  enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
   opts = {
     formatters_by_ft = {
       go = { "golangci-lint" },

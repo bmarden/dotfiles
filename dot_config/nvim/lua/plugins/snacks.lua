@@ -5,7 +5,7 @@ return {
     ---@type snacks.Config
     opts = {
       dashboard = {
-        enabled = vim.env.KITTY_SCROLLBACK_NVIM == nil,
+        enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
         preset = {
           keys = {
             { icon = "", key = "p", desc = "Projects", action = ":lua Snacks.picker.projects()" },
