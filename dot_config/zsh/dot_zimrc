@@ -53,6 +53,9 @@ fi
 if [ "$(command -v op)" ]; then
   op completion zsh>"$XDG_CACHE_HOME/zsh/completions/_op"
 fi
+if [ "$(command -v golangci-lint)" ]; then
+  golangci-lint completion zsh>"$XDG_CACHE_HOME/zsh/completions/_golangci-lint"
+fi
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
 zmodule "$XDG_CONFIG_HOME/completions" --fpath .
