@@ -12,6 +12,4 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 # export PATH="$HOME/.local/share/mise/shims:$PATH"
 
-export MISE_ENV_FILE=.env
-
 export GOPRIVATE="github.com/amenity-health"

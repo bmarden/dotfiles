@@ -18,14 +18,12 @@ export LANG="en_US.UTF-8"
 # setup editor
 export EDITOR=nvim
 
-# asdf package manager
+# mise settings
+export MISE_ENV_FILE=.env
 export MISE_NODE_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/mise/default-node-packages"
 
 # Default 1password account
 export OP_ACCOUNT="my.1password.com"
-
-# pnpm setup
-export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 
 # bun setup
 export BUN_INSTALL_CACHE_DIR="$XDG_CACHE_HOME/bun"
@@ -74,7 +72,6 @@ path+=("$HOME/bin"
   "$ANDROID_HOME/tools/bin"
   "$ANDROID_HOME/platform-tools"
   "$ANDROID_HOME/cmdline-tools/latest/bin"
-  "$PNPM_HOME"
   "$BUN_INSTALL_BIN")
 
 # Add macOS-specific paths

@@ -1,6 +1,5 @@
 brew "chezmoi"      # dotfile manager
 brew "git"          
-brew "neovim"       # vim
 brew "vivid"        # LS_COLORS generator
 brew "gnu-sed"      # sed (GNU)
 brew "coreutils"    # GNU core utilities
@@ -19,16 +18,13 @@ brew "gh"           # github cli
 brew "bash"         # use non ancient version of bash
 
 # Add fonts casks
-cask "font-fira-code-nerd-font"
+cask "font-fira-code"
 cask "font-hack-nerd-font"
+cask "font-monaspace"
 
 # Add casks
 cask "1password-cli"
-cask "visual-studio-code"
-cask "iterm2"
-cask "google-chrome"
+cask "kitty"
 cask "brave-browser"
 cask "slack"
 cask "spotify"
-cask "docker"
-cask "reactotron"
