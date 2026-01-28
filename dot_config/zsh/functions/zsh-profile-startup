@@ -1,0 +1,15 @@
+#!/bin/zsh
+# Profile zsh startup time using zprof
+# Usage: zsh-profile-startup
+
+local tmpfile=$(mktemp)
+cat > "$tmpfile" << 'EOF'
+zmodload zsh/zprof
+source ~/.config/zsh/.zshrc
+zprof
+EOF
+
+echo "Profiling zsh startup..."
+echo "========================================"
+zsh "$tmpfile"
+rm -f "$tmpfile"

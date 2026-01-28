@@ -1,0 +1,36 @@
+#!/bin/zsh
+# Benchmark zsh startup time
+# Usage: zsh-bench [iterations]
+# Example: zsh-bench 10  (run 10 times and show average)
+
+local iterations=${1:-10}
+local total=0
+local results=()
+
+echo "Benchmarking zsh startup ($iterations iterations)..."
+echo "========================================"
+
+for i in {1..$iterations}; do
+  local start=$(date +%s.%N)
+  zsh -i -c exit &>/dev/null
+  local end=$(date +%s.%N)
+  local elapsed=$(echo "$end - $start" | bc)
+  results+=($elapsed)
+  total=$(echo "$total + $elapsed" | bc)
+  printf "Run %2d: %.3f seconds\n" $i $elapsed
+done
+
+echo "========================================"
+local avg=$(echo "scale=3; $total / $iterations" | bc)
+printf "Average: %.3f seconds\n" $avg
+
+# Calculate min and max
+local min=${results[1]}
+local max=${results[1]}
+for time in $results; do
+  (( $(echo "$time < $min" | bc -l) )) && min=$time
+  (( $(echo "$time > $max" | bc -l) )) && max=$time
+done
+
+printf "Minimum: %.3f seconds\n" $min
+printf "Maximum: %.3f seconds\n" $max

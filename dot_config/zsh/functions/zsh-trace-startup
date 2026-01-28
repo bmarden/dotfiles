@@ -1,0 +1,57 @@
+#!/bin/zsh
+# Trace zsh startup to find slow commands
+# Usage: zsh-trace-startup [threshold_in_ms]
+# Example: zsh-trace-startup 10  (show commands taking more than 10ms)
+
+local threshold=${1:-10}  # Default to 10ms
+local tracefile="/tmp/zsh_startup_trace_$$.log"
+local tmpfile=$(mktemp)
+
+# Ensure clean slate
+rm -f "$tmpfile"
+
+cat > "$tmpfile" << 'EOF'
+setopt PROMPT_SUBST
+PS4=$'%D{%M%S%.} %N:%i> '
+exec 3>&2 2>/tmp/trace.log
+setopt XTRACE
+source ~/.config/zsh/.zshrc
+unsetopt XTRACE
+exec 2>&3 3>&-
+EOF
+
+# Replace /tmp/trace.log with actual tracefile in the temp script
+sed -i '' "s|/tmp/trace.log|$tracefile|g" "$tmpfile" 2>/dev/null || sed -i "s|/tmp/trace.log|$tracefile|g" "$tmpfile"
+
+echo "Tracing zsh startup (this may take a moment)..."
+zsh "$tmpfile" >/dev/null 2>&1
+
+echo "========================================"
+echo "Commands taking more than ${threshold}ms:"
+echo "========================================"
+
+awk -v threshold="$threshold" '
+BEGIN { prev_time = 0; threshold_sec = threshold / 1000 }
+{
+    time_str = substr($1, 1, 6)
+    time = substr(time_str, 1, 2) * 60 + substr(time_str, 3, 2) + substr(time_str, 5, 2) / 100
+
+    if (prev_time > 0) {
+        diff = time - prev_time
+        if (diff > threshold_sec) {
+            # Extract command from the line (everything after "> ")
+            # Use sub instead of match for BSD awk compatibility
+            cmd = $0
+            sub(/^[0-9]+ [^>]+> /, "", cmd)
+            printf "%.0fms: %s\n", diff * 1000, cmd
+        }
+    }
+
+    prev_time = time
+}
+' "$tracefile" | sort -rn | head -20
+
+echo ""
+echo "Full trace saved to: $tracefile"
+echo "View with: cat $tracefile"
+rm -f "$tmpfile"

@@ -1,0 +1,32 @@
+#!/bin/zsh
+# Time a specific command or eval statement
+# Usage: zsh-time-command <command>
+# Example: zsh-time-command 'gh copilot alias -- zsh'
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage: zsh-time-command <command>"
+  echo "Example: zsh-time-command 'mise hook-env -s zsh'"
+  return 1
+fi
+
+local iterations=5
+local total=0
+local results=()
+
+echo "Timing: $@"
+echo "Running $iterations iterations..."
+echo "========================================"
+
+for i in {1..$iterations}; do
+  local start=$(date +%s.%N)
+  eval "$@" &>/dev/null
+  local end=$(date +%s.%N)
+  local elapsed=$(echo "$end - $start" | bc)
+  results+=($elapsed)
+  total=$(echo "$total + $elapsed" | bc)
+  printf "Run %d: %.3f seconds\n" $i $elapsed
+done
+
+echo "========================================"
+local avg=$(echo "scale=3; $total / $iterations" | bc)
+printf "Average: %.3f seconds\n" $avg

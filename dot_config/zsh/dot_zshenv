@@ -59,7 +59,7 @@ export npm_config_cache="$XDG_CACHE_HOME/npm"
 export npm_config_prefix="$XDG_DATA_HOME/npm"
 
 # set expo config
-export EAS_LOCAL_BUILD_ARTIFACTS_DIR=${CODE_HOME:-${HOME/code}}/MobileApplication/builds
+export EAS_LOCAL_BUILD_ARTIFACTS_DIR=${CODE_HOME:-${HOME/code/}}/MobileApplication/builds
 
 # set direnv to not output logs
 # export DIRENV_LOG_FORMAT=""
@@ -67,6 +67,7 @@ export EAS_LOCAL_BUILD_ARTIFACTS_DIR=${CODE_HOME:-${HOME/code}}/MobileApplicatio
 # Add vars to path
 path+=("$HOME/bin"
   "$HOME/.local/bin"
+  "$HOME/.local/share/bob/nvim-bin"
   "$XDG_DATA_HOME/npm/bin"
   "$ANDROID_HOME/emulator"
   "$ANDROID_HOME/tools"
@@ -74,8 +75,7 @@ path+=("$HOME/bin"
   "$ANDROID_HOME/platform-tools"
   "$ANDROID_HOME/cmdline-tools/latest/bin"
   "$PNPM_HOME"
-  "$BUN_INSTALL_BIN"
-  "$HOME/.dotnet/tools")
+  "$BUN_INSTALL_BIN")
 
 # Add macOS-specific paths
 if [[ "$OSTYPE" == "darwin"* ]]; then
