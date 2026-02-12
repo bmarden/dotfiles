@@ -46,6 +46,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
+      style = "multiplex",
       colors = {
         bg0 = "#111317", -- Custom background color
         -- bg0 = "#252623",
@@ -55,12 +56,6 @@ return {
         ["@comment"] = { fg = "$grey" },
       },
     },
-    -- config = function()
-    --   require("bamboo").setup({
-    --     -- optional configuration here
-    --   })
-    --   require("bamboo").load()
-    -- end,
   },
   -- {
   --   "navarasu/onedark.nvim",
