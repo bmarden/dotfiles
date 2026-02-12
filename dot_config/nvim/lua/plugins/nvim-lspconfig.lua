@@ -63,7 +63,9 @@ return {
             },
           },
         },
-        -- tsgo = {},
+        tsgo = {
+          enabled = false,
+        },
         vtsls = {
           enabled = true,
           keys = {
