@@ -123,6 +123,11 @@ if not vim.g.vscode then
   map("n", "<D-h>", require("smart-splits").resize_left)
   map("n", "<D-k>", require("smart-splits").resize_up)
   map("n", "<D-l>", require("smart-splits").resize_right)
+
+  map("n", "<A-S-j>", require("smart-splits").resize_down)
+  map("n", "<A-S-h>", require("smart-splits").resize_left)
+  map("n", "<A-S-k>", require("smart-splits").resize_up)
+  map("n", "<A-S-l>", require("smart-splits").resize_right)
   -- moving between splits
   map("n", "<C-h>", require("smart-splits").move_cursor_left)
   map("n", "<C-j>", require("smart-splits").move_cursor_down)
@@ -149,7 +154,6 @@ end
 
 -- VSCode specific keybindings
 if vim.g.vscode then
-  local vscode = require("vscode")
   -- map({ "n", "v" }, "<leader>/", function()
   --   vscode.action("editor.action.commentLine")
   -- end)
