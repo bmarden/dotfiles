@@ -119,10 +119,6 @@ end, { desc = "Open Obsidian Tags" })
 -- Neovim specific keybindings
 if not vim.g.vscode then
   --  Set smart-splits keybindings
-  map("n", "<D-j>", require("smart-splits").resize_down)
-  map("n", "<D-h>", require("smart-splits").resize_left)
-  map("n", "<D-k>", require("smart-splits").resize_up)
-  map("n", "<D-l>", require("smart-splits").resize_right)
 
   map("n", "<A-S-j>", require("smart-splits").resize_down)
   map("n", "<A-S-h>", require("smart-splits").resize_left)
