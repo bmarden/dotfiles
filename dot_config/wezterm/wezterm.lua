@@ -1,7 +1,8 @@
-local wezterm = require('wezterm')
+---@diagnostic disable: assign-type-mismatch
+local wezterm = require('wezterm') ---@type Wezterm
 
 local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
-local config = wezterm.config_builder()
+local config = wezterm.config_builder() ---@type Config
 
 config.term = 'wezterm'
 
@@ -13,6 +14,8 @@ config.enable_kitty_keyboard = true
 config.enable_csi_u_key_encoding = false
 
 config.font = wezterm.font('Monaspace Argon')
+
+--- ==  :=  || >= !=  =>  <=  &&  |>
 config.harfbuzz_features = {
   'calt=1',
   'ss01=1',
@@ -26,10 +29,9 @@ config.harfbuzz_features = {
   'ss09=1',
   'ss10=1',
   'liga=1',
-  'dlig=1',
 }
 
-local scheme = wezterm.get_builtin_color_schemes()['Bamboo']
+local scheme = wezterm.color.get_builtin_schemes()['Bamboo']
 scheme.background = '#111317'
 scheme.cursor_bg = '#c0c0c0'
 config.color_schemes = {
@@ -81,6 +83,7 @@ wezterm.on('format-tab-title', function(tab, _, _, _, hover, _)
   if mux_tab then
     local mux_window = mux_tab:window()
     if mux_window then
+      ---@diagnostic disable-next-line: cast-local-type
       workspace = mux_window:get_workspace()
       title = workspace .. ':' .. dir_name
     end
