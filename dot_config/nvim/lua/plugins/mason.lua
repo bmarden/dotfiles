@@ -1,13 +1,26 @@
 return {
   {
     "mason-org/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "sqlfluff",
+    opts = {
+      ensure_installed = {
+        "biome",
+        "cmakelang",
+        "cmakelint",
         "css-lsp",
         "css-variables-language-server",
-        "html-lsp",
-      })
-    end,
+        "delve",
+        "gofumpt",
+        "goimports",
+        "hadolint",
+        "js-debug-adapter",
+        "markdown-toc",
+        "markdownlint-cli2",
+        "prettier",
+        "shfmt",
+        "sqlfluff",
+        "stylua",
+        "tflint",
+      },
+    },
   },
 }
