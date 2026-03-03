@@ -1,8 +1,8 @@
 return {
   {
     "mason-org/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      opts.ensure_installed = {
         "biome",
         "cmakelang",
         "cmakelint",
@@ -20,7 +20,7 @@ return {
         "sqlfluff",
         "stylua",
         "tflint",
-      },
-    },
+      }
+    end,
   },
 }
