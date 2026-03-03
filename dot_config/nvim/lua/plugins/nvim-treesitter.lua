@@ -29,6 +29,7 @@ return {
       "markdown_inline",
       "tsx",
       "typescript",
+      "zsh",
     })
 
     vim.filetype.add({

@@ -1,3 +1,4 @@
+# vim: set filetype=zsh:
 # --------------------------------
 # Modules
 # --------------------------------
@@ -38,26 +39,29 @@ fi
 if [ "$(command -v docker)" ]; then
   docker completion zsh >"$XDG_CACHE_HOME/zsh/completions/_docker"
 fi
-if [ "$(command -v argocd)" ]; then 
+if [ "$(command -v argocd)" ]; then
   argocd completion zsh >"$XDG_CACHE_HOME/zsh/completions/_argocd"
 fi
 if [ "$(command -v helm)" ]; then
   helm completion zsh >"$XDG_CACHE_HOME/zsh/completions/_helm"
 fi
 if [ "$(command -v tailscale)" ]; then
-  tailscale completion zsh>"$XDG_CACHE_HOME/zsh/completions/_tailscale"
+  tailscale completion zsh >"$XDG_CACHE_HOME/zsh/completions/_tailscale"
 fi
 if [ "$(command -v gh)" ]; then
-  gh completion -s zsh>"$XDG_CACHE_HOME/zsh/completions/_gh"
+  gh completion -s zsh >"$XDG_CACHE_HOME/zsh/completions/_gh"
 fi
 if [ "$(command -v op)" ]; then
-  op completion zsh>"$XDG_CACHE_HOME/zsh/completions/_op"
+  op completion zsh >"$XDG_CACHE_HOME/zsh/completions/_op"
 fi
 if [ "$(command -v golangci-lint)" ]; then
-  golangci-lint completion zsh>"$XDG_CACHE_HOME/zsh/completions/_golangci-lint"
+  golangci-lint completion zsh >"$XDG_CACHE_HOME/zsh/completions/_golangci-lint"
 fi
 if [ "$(command -v bob)" ]; then
-  bob complete zsh>"$XDG_CACHE_HOME/zsh/completions/_bob"
+  bob complete zsh >"$XDG_CACHE_HOME/zsh/completions/_bob"
+fi
+if [ "$(command -v ngrok)" ]; then
+  ngrok completion >"$XDG_CACHE_HOME/zsh/completions/_ngrok"
 fi
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
