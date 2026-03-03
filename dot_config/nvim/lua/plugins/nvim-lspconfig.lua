@@ -36,14 +36,17 @@ return {
         gh_actions_ls = {
           init_options = {
             sessionToken = vim.env.GH_ACTIONS_PAT,
-            repos = (function()
-              local repo = require("config.utils").get_github_repo_config()
-              if repo then
-                return { repo }
-              end
-              return {}
-            end)(),
+            repos = {},
           },
+          on_init = function(client)
+            require("config.utils").get_github_repo_config(function(repo)
+              if repo then
+                client.config.init_options = client.config.init_options or {}
+                client.config.init_options.repos = { repo }
+                client.notify("workspace/didChangeConfiguration", { settings = client.config.settings or {} })
+              end
+            end)
+          end,
         },
         bashls = {
           filetypes = { "sh", "bash", "zsh" },
