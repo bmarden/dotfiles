@@ -7,6 +7,9 @@ local map = vim.keymap.set
 -- Map jk to exit
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 
+-- Add CMD+s to save
+map({ "i", "x", "n" }, "<D-s>", "<cmd>w<CR>", { desc = "Save file" })
+
 -- Paste from zero register to avoid pasting what was just deleted or removed
 map({ "n", "v" }, "<leader>p", '"0p', { desc = "Paste from zero register" })
 
@@ -116,62 +119,30 @@ map("n", "<leader>oT", function()
   run_obsidian_command("tags")
 end, { desc = "Open Obsidian Tags" })
 
--- Neovim specific keybindings
-if not vim.g.vscode then
-  --  Set smart-splits keybindings
+--  Set smart-splits keybindings
+map("n", "<A-S-j>", require("smart-splits").resize_down)
+map("n", "<A-S-h>", require("smart-splits").resize_left)
+map("n", "<A-S-k>", require("smart-splits").resize_up)
+map("n", "<A-S-l>", require("smart-splits").resize_right)
+-- moving between splits
+map("n", "<C-h>", require("smart-splits").move_cursor_left)
+map("n", "<C-j>", require("smart-splits").move_cursor_down)
+map("n", "<C-k>", require("smart-splits").move_cursor_up)
+map("n", "<C-l>", require("smart-splits").move_cursor_right)
+map("n", "<C-\\>", require("smart-splits").move_cursor_previous)
+-- swapping buffers between windows
+map("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
+map("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
+map("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
+map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 
-  map("n", "<A-S-j>", require("smart-splits").resize_down)
-  map("n", "<A-S-h>", require("smart-splits").resize_left)
-  map("n", "<A-S-k>", require("smart-splits").resize_up)
-  map("n", "<A-S-l>", require("smart-splits").resize_right)
-  -- moving between splits
-  map("n", "<C-h>", require("smart-splits").move_cursor_left)
-  map("n", "<C-j>", require("smart-splits").move_cursor_down)
-  map("n", "<C-k>", require("smart-splits").move_cursor_up)
-  map("n", "<C-l>", require("smart-splits").move_cursor_right)
-  map("n", "<C-\\>", require("smart-splits").move_cursor_previous)
-  -- swapping buffers between windows
-  map("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
-  map("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
-  map("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
-  map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
-
-  -- Bufferline tab goto
-  map("n", "<leader>1", "<CMD>BufferLineGoToBuffer 1<CR>", { silent = true })
-  map("n", "<leader>2", "<CMD>BufferLineGoToBuffer 2<CR>", { silent = true })
-  map("n", "<leader>3", "<CMD>BufferLineGoToBuffer 3<CR>", { silent = true })
-  map("n", "<leader>4", "<CMD>BufferLineGoToBuffer 4<CR>", { silent = true })
-  map("n", "<leader>5", "<CMD>BufferLineGoToBuffer 5<CR>", { silent = true })
-  map("n", "<leader>6", "<CMD>BufferLineGoToBuffer 6<CR>", { silent = true })
-  map("n", "<leader>7", "<CMD>BufferLineGoToBuffer 7<CR>", { silent = true })
-  map("n", "<leader>8", "<CMD>BufferLineGoToBuffer 8<CR>", { silent = true })
-  map("n", "<leader>9", "<CMD>BufferLineGoToBuffer 9<CR>", { silent = true })
-end
-
--- VSCode specific keybindings
-if vim.g.vscode then
-  -- map({ "n", "v" }, "<leader>/", function()
-  --   vscode.action("editor.action.commentLine")
-  -- end)
-  -- VSCode specific keymaps
-  -- Setup C-Left, C-Right, C-Up, C-Down to resize all panes (editor, terminal, explorer)
-  map(
-    "n",
-    "<C-Left>",
-    "<Cmd>call VSCodeNotify('workbench.action.decreaseViewSize')<CR>",
-    { desc = "Decrease view size" }
-  )
-  map(
-    "n",
-    "<C-Right>",
-    "<Cmd>call VSCodeNotify('workbench.action.increaseViewSize')<CR>",
-    { desc = "Increase view size" }
-  )
-  map("n", "<C-Up>", "<Cmd>call VSCodeNotify('workbench.action.increaseViewSize')<CR>", { desc = "Increase view size" })
-  map(
-    "n",
-    "<C-Down>",
-    "<Cmd>call VSCodeNotify('workbench.action.decreaseViewSize')<CR>",
-    { desc = "Decrease view size" }
-  )
-end
+-- Bufferline tab goto
+map("n", "<leader>1", "<CMD>BufferLineGoToBuffer 1<CR>", { silent = true })
+map("n", "<leader>2", "<CMD>BufferLineGoToBuffer 2<CR>", { silent = true })
+map("n", "<leader>3", "<CMD>BufferLineGoToBuffer 3<CR>", { silent = true })
+map("n", "<leader>4", "<CMD>BufferLineGoToBuffer 4<CR>", { silent = true })
+map("n", "<leader>5", "<CMD>BufferLineGoToBuffer 5<CR>", { silent = true })
+map("n", "<leader>6", "<CMD>BufferLineGoToBuffer 6<CR>", { silent = true })
+map("n", "<leader>7", "<CMD>BufferLineGoToBuffer 7<CR>", { silent = true })
+map("n", "<leader>8", "<CMD>BufferLineGoToBuffer 8<CR>", { silent = true })
+map("n", "<leader>9", "<CMD>BufferLineGoToBuffer 9<CR>", { silent = true })
