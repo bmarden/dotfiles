@@ -55,6 +55,11 @@ return {
         -- make comments blend nicely with background, similar to other color schemes
         ["@comment"] = { fg = "$grey" },
       },
+      code_style = {
+        conditionals = { italic = false },
+        namespaces = { italic = false },
+        parameters = { italic = false },
+      },
     },
   },
   -- {
