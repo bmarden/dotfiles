@@ -10,7 +10,7 @@ return {
       typescript = { "biome-check", "prettier", stop_after_first = true },
       typescriptreact = { "biome-check", "prettier", stop_after_first = true },
       json = { "biome-check", "prettier" },
-      markdown = { "markdownlint-cli2" },
+      markdown = { "markdownlint-cli2", "markdown-toc" },
     },
     formatters = {
       biome = {

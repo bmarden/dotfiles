@@ -1,11 +1,12 @@
 return {
 
-  dir = "~/code-personal/markdown-plus.nvim",
+  -- dir = "~/code-personal/markdown-plus.nvim",
+  "yousefhadder/markdown-plus.nvim",
   ft = "markdown",
-  enabled = true,
+  enabled = false,
   opts = {
-    list = {
-      auto_renumber = false,
-    },
+    -- list = {
+    --   auto_renumber = false,
+    -- },
   },
 }
