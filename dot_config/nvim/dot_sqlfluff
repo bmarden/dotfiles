@@ -8,6 +8,9 @@ dialect = postgres
 # Set to zero or negative to disable checks.
 max_line_length = 120
 
+# Templating rules so DBUI doesn't break
+templater = placeholder
+
 # Allow PostgreSQL-specific syntax
 [sqlfluff:rules:structure.column_order]
 # Disable this rule as it can be problematic with ENUM types
@@ -18,3 +21,5 @@ ignore = E034
 indent_unit = space
 tab_space_size = 2
 
+[sqlfluff:templater:placeholder]
+param_regex = :[a-zA-Z_][a-zA-Z0-9_]*
