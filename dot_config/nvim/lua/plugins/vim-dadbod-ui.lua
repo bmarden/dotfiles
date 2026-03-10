@@ -4,7 +4,7 @@ return {
   lazy = true,
   dependencies = "vim-dadbod",
   keys = {
-    { "<leader>D", "<cmd>DBUIToggle<CR>", desc = "Toggle DBUI" },
+    -- { "<leader>D", "<cmd>DBUIToggle<CR>", desc = "Toggle DBUI" },
   },
   init = function()
     local config_path = vim.fn.stdpath("config")
