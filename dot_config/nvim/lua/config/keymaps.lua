@@ -4,6 +4,9 @@
 
 local map = vim.keymap.set
 
+-- Remove default search keymap <leader><leader>
+vim.keymap.del("n", "<leader><leader>")
+
 -- Map jk to exit
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 
@@ -146,3 +149,6 @@ map("n", "<leader>6", "<CMD>BufferLineGoToBuffer 6<CR>", { silent = true })
 map("n", "<leader>7", "<CMD>BufferLineGoToBuffer 7<CR>", { silent = true })
 map("n", "<leader>8", "<CMD>BufferLineGoToBuffer 8<CR>", { silent = true })
 map("n", "<leader>9", "<CMD>BufferLineGoToBuffer 9<CR>", { silent = true })
+
+-- Add keymap for sourcing the current file
+map("n", "<leader><leader>s", "<cmd>source %<CR>", { desc = "Source current file" })
