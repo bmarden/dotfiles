@@ -5,12 +5,13 @@
 -- with `vim.api.nvim_create_autocmd`
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
-vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+-- vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 -- Prevent gopls from attaching to octo://, diffview://, and diff mode buffers
 -- Prevent markdown_oxide from attaching to non-markdown files
 -- Wrap buf_attach_client to filter these out before attachment happens
 local _original_buf_attach_client = vim.lsp.buf_attach_client
+---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.buf_attach_client = function(bufnr, client_id)
   local client = vim.lsp.get_client_by_id(client_id)
 

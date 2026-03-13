@@ -7,6 +7,10 @@ local map = vim.keymap.set
 -- Remove default search keymap <leader><leader>
 vim.keymap.del("n", "<leader><leader>")
 
+-- Don't copy deleted text into register, use black hole register instead
+-- map({ "n", "v" }, "x", '"_x')
+map({ "n", "v" }, "d", '"_d')
+
 -- Map jk to exit
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 
