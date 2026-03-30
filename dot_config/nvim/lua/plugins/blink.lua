@@ -5,8 +5,12 @@ return {
     ---@type blink.cmp.Config
     opts = {
       keymap = {},
+      sources = {
+        providers = {
+          dadbod_grip = { name = "Grip SQL", module = "dadbod-grip.completion.blink" },
+        },
+      },
       completion = {
-
         list = {
           selection = {
             preselect = false,

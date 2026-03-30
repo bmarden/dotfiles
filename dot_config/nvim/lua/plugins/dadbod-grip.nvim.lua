@@ -1,8 +1,13 @@
 return {
   "joryeugene/dadbod-grip.nvim",
-  version = "*",
+  tag = "v1.8.0",
+  enabled = true,
   keys = {
-    { "<leader>D", "<cmd>GripConnect<cr>", desc = "DB connect" },
+    { "<leader>D", "<cmd>GripToggle<cr>", desc = "DB Grip toggle" },
   },
-  opts = {},
+  opts = {
+    picker = "snacks",
+    ai = false,
+    completion = false,
+  },
 }
