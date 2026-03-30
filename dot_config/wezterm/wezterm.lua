@@ -14,25 +14,26 @@ config.enable_kitty_keyboard = true
 config.enable_csi_u_key_encoding = false
 
 -- config.font = wezterm.font('Monaspace Argon')
-config.font = wezterm.font('Dank Mono')
-config.font_size = 13
+config.font = wezterm.font('Fira Code')
+-- config.font = wezterm.font('Dank Mono')
+config.font_size = 11
 
 --- ==  :=  || >= !=  =>  <=  &&  |>
-config.harfbuzz_features = {
-  'calt=1',
-  'ss01=1',
-  'ss02=1',
-  'ss03=1',
-  'ss04=1',
-  'ss05=1',
-  'ss06=1',
-  'ss07=1',
-  'ss08=1',
-  'ss09=1',
-  'ss10=1',
-  'liga=1',
-}
-
+-- config.harfbuzz_features = {
+--   'calt=1',
+--   'ss01=1',
+--   'ss02=1',
+--   'ss03=1',
+--   'ss04=1',
+--   'ss05=1',
+--   'ss06=1',
+--   'ss07=1',
+--   'ss08=1',
+--   'ss09=1',
+--   'ss10=1',
+--   'liga=1',
+-- }
+--
 local scheme = wezterm.color.get_builtin_schemes()['Bamboo']
 scheme.background = '#111317'
 scheme.cursor_bg = '#c0c0c0'
