@@ -9,7 +9,7 @@ vim.keymap.del("n", "<leader><leader>")
 
 -- Don't copy deleted text into register, use black hole register instead
 -- map({ "n", "v" }, "x", '"_x')
-map({ "n", "v" }, "d", '"_d')
+-- map({ "n", "v" }, "d", '"_d')
 
 -- Map jk to exit
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
