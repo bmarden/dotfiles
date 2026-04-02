@@ -114,6 +114,8 @@ local function parseGitStatus(content)
   -- lua match is faster than vim.split (in my experience )
   for line in content:gmatch("[^\r\n]+") do
     local status, filePath = string.match(line, "^(..)%s+(.*)")
+    -- Skip .DS_Store ignored files so they don't mark parent dirs
+    local isDSStoreIgnored = status == "!!" and filePath:match("%.DS_Store$")
     -- Split the file path into parts
     local parts = {}
     for part in filePath:gmatch("[^/]+") do
@@ -130,10 +132,11 @@ local function parseGitStatus(content)
       end
       -- If it's the last part, it's a file, so add it with its status
       if i == #parts then
+        -- Still mark the .DS_Store file itself, just don't propagate to parents
         gitStatusMap[currentKey] = status
       else
         -- If it's not the last part, it's a directory. Check if it exists, if not, add it.
-        if not gitStatusMap[currentKey] then
+        if not isDSStoreIgnored and not gitStatusMap[currentKey] then
           gitStatusMap[currentKey] = status
         end
       end
