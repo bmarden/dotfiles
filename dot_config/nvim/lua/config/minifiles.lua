@@ -152,6 +152,9 @@ local function updateGitStatus(buf_id)
     return
   end
   local cwd = vim.fs.root(buf_id, ".git")
+  if not cwd then
+    return
+  end
   -- local cwd = vim.fn.expand("%:p:h")
   local currentTime = os.time()
 
