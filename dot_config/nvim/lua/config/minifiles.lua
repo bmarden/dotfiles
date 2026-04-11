@@ -1,3 +1,5 @@
+-- Taken from: https://gist.github.com/bassamsdata/eec0a3065152226581f8d4244cce9051
+
 local nsMiniFiles = vim.api.nvim_create_namespace("mini_files_git")
 local autocmd = vim.api.nvim_create_autocmd
 local _, MiniFiles = pcall(require, "mini.files")
@@ -32,6 +34,21 @@ local function mapSymbols(status, is_symlink) --
     ["UA"] = { symbol = "⊕", hlGroup  = "GitSignsAdd"   }, -- file is unmerged and added in working tree
     ["??"] = { symbol = "?", hlGroup  = "GitSignsDelete"}, -- Untracked files
     ["!!"] = { symbol = "!", hlGroup  = "GitSignsChange"}, -- Ignored files
+
+    -- [" M"] = { symbol = "•", hlGroup  = "MiniDiffSignChange"}, -- Modified in the working directory
+    -- ["M "] = { symbol = "✹", hlGroup  = "MiniDiffSignChange"}, -- modified in index
+    -- ["MM"] = { symbol = "≠", hlGroup  = "MiniDiffSignChange"}, -- modified in both working tree and index
+    -- ["A "] = { symbol = "+", hlGroup  = "MiniDiffSignAdd"   }, -- Added to the staging area, new file
+    -- ["AA"] = { symbol = "≈", hlGroup  = "MiniDiffSignAdd"   }, -- file is added in both working tree and index
+    -- ["D "] = { symbol = "-", hlGroup  = "MiniDiffSignDelete"}, -- Deleted from the staging area
+    -- ["AM"] = { symbol = "⊕", hlGroup  = "MiniDiffSignChange"}, -- added in working tree, modified in index
+    -- ["AD"] = { symbol = "-•", hlGroup = "MiniDiffSignChange"}, -- Added in the index and deleted in the working directory
+    -- ["R "] = { symbol = "→", hlGroup  = "MiniDiffSignChange"}, -- Renamed in the index
+    -- ["U "] = { symbol = "‖", hlGroup  = "MiniDiffSignChange"}, -- Unmerged path
+    -- ["UU"] = { symbol = "⇄", hlGroup  = "MiniDiffSignAdd"   }, -- file is unmerged
+    -- ["UA"] = { symbol = "⊕", hlGroup  = "MiniDiffSignAdd"   }, -- file is unmerged and added in working tree
+    -- ["??"] = { symbol = "?", hlGroup  = "MiniDiffSignDelete"}, -- Untracked files
+    -- ["!!"] = { symbol = "!", hlGroup  = "MiniDiffSignChange"}, -- Ignored files
     -- stylua: ignore end
   }
 

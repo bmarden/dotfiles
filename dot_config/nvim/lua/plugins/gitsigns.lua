@@ -2,6 +2,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = "LazyFile",
+
     opts = {
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
