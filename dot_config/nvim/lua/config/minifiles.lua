@@ -212,7 +212,7 @@ autocmd("User", {
 
     -- Set some persistent bookmarks
     set_mark("t", "~/code/turnkey-frontend/", "Turnkey Frontend")
-    set_mark("m", "~/code/member-frontend-vite/", "Member Frontend Vite")
+    set_mark("m", "~/code/member-frontend/", "Member Frontend")
   end,
 })
 
