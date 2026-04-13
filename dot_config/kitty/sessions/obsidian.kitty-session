@@ -1,0 +1,12 @@
+
+new_tab
+layout splits:split_axis=vertical;bias=70
+enabled_layouts splits:split_axis=vertical;bias=70
+set_layout_state {"pairs": {"horizontal": false, "bias": 0.7299503193754437, "one": 10, "two": 11}, "opts": {"default_axis_is_horizontal": false}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [10, 11], "window_groups": [{"id": 10, "window_ids": [12]}, {"id": 11, "window_ids": [13]}]}}
+cd /Users/bmarden/Library/Mobile Documents/iCloud~md~obsidian/Documents/ben-brain
+
+launch 'kitty-unserialize-data={"id": 12}'
+focus
+launch 'kitty-unserialize-data={"id": 13}'
+
+focus_tab 0

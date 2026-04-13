@@ -1,0 +1,42 @@
+
+new_tab
+layout splits:split_axis=vertical;bias=70
+enabled_layouts splits:split_axis=vertical;bias=70
+set_layout_state {"pairs": {"horizontal": false, "bias": 0.6916252661462031, "one": 2, "two": {"one": 3, "two": 8}}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [2, 8, 3], "window_groups": [{"id": 2, "window_ids": [2]}, {"id": 3, "window_ids": [3]}, {"id": 8, "window_ids": [8]}]}}
+cd /Users/bmarden/code/member-backend
+
+launch 'kitty-unserialize-data={"id": 2}'
+focus
+launch 'kitty-unserialize-data={"id": 3}'
+launch 'kitty-unserialize-data={"id": 8}'
+
+new_tab
+layout splits:split_axis=vertical;bias=70
+enabled_layouts splits:split_axis=vertical;bias=70
+set_layout_state {"pairs": {"horizontal": false, "bias": 0.6940352137980594, "one": 4, "two": 5}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [4, 5], "window_groups": [{"id": 4, "window_ids": [4]}, {"id": 5, "window_ids": [5]}]}}
+cd /Users/bmarden/code/turnkey-frontend
+
+launch 'kitty-unserialize-data={"id": 4}'
+focus
+launch 'kitty-unserialize-data={"id": 5}'
+
+new_tab
+layout splits:split_axis=vertical;bias=70
+enabled_layouts splits:split_axis=vertical;bias=70
+set_layout_state {"pairs": {"horizontal": false, "bias": 0.75, "one": 6, "two": 7}, "opts": {"default_axis_is_horizontal": false}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [6, 7], "window_groups": [{"id": 6, "window_ids": [6]}, {"id": 7, "window_ids": [7]}]}}
+cd /Users/bmarden/code/member-frontend
+
+launch 'kitty-unserialize-data={"id": 6}'
+focus
+
+new_tab
+layout splits:split_axis=vertical;bias=70
+enabled_layouts splits:split_axis=vertical;bias=70
+set_layout_state {"pairs": {"horizontal": false, "bias": 0.75, "one": 12, "two": 13}, "opts": {"default_axis_is_horizontal": false}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [12, 13], "window_groups": [{"id": 12, "window_ids": [12]}, {"id": 13, "window_ids": [13]}]}}
+cd /Users/bmarden/code/member-infra
+
+launch 'kitty-unserialize-data={"id": 12}'
+focus
+launch 'kitty-unserialize-data={"id": 13}'
+
+focus_tab 4
