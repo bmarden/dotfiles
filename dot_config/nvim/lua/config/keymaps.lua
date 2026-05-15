@@ -71,6 +71,14 @@ map({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
 -- In visual mode, after going to the end of the line, come back 1 character
 map("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
 
+vim.keymap.set({ "x" }, "[n", function()
+  require("vim.treesitter._select").select_prev(vim.v.count1)
+end, { desc = "Select previous treesitter node" })
+
+vim.keymap.set({ "x" }, "]n", function()
+  require("vim.treesitter._select").select_next(vim.v.count1)
+end, { desc = "Select next treesitter node" })
+
 ---@param command "today" |"dailies" | "search" | "tags" | "new_from_template" | "quick_switch"
 ---@param template_name? "new" | "meeting"
 local run_obsidian_command = function(command, template_name)
