@@ -26,20 +26,6 @@ return {
       },
     },
   },
-  {
-    "rebelot/kanagawa.nvim",
-    opts = {
-      colors = {
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = "none", -- Transparent gutter
-            },
-          },
-        },
-      },
-    },
-  },
   -- Using lazy.nvim
   {
     "ribru17/bamboo.nvim",
@@ -69,18 +55,11 @@ return {
   --     style = "deep",
   --   },
   -- },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-
-  { "folke/tokyonight.nvim", opts = {
-    style = "night",
-  } },
-  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "onedark",
       colorscheme = "onedark_vivid",
-      -- colorscheme = "tokyonight",
       -- colorscheme = "bamboo",
     },
   },
