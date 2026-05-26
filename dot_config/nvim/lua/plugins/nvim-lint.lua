@@ -5,6 +5,7 @@ return {
       go = { "golangcilint" },
       sql = { "sqlfluff" },
       markdown = { "markdownlint-cli2" },
+      python = { "mypy" },
     },
     linters = {
       ["markdownlint-cli2"] = {

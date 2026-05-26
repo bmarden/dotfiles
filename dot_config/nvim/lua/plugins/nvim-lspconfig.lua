@@ -69,6 +69,11 @@ return {
         tsgo = {
           enabled = false,
         },
+        pyright = {
+          on_attach = function(client)
+            client.handlers["textDocument/publishDiagnostics"] = function() end
+          end,
+        },
         vtsls = {
           enabled = true,
           keys = {

@@ -15,6 +15,7 @@ return {
         "js-debug-adapter",
         "markdown-toc",
         "markdownlint-cli2",
+        "mypy",
         "prettier",
         "shfmt",
         "sqlfluff",
