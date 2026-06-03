@@ -63,6 +63,9 @@ fi
 if [ "$(command -v ngrok)" ]; then
   ngrok completion >"$XDG_CACHE_HOME/zsh/completions/_ngrok"
 fi
+if [ "$(command -v clerk)" ]; then
+  clerk completion zsh >"$XDG_CACHE_HOME/zsh/completions/_clerk"
+fi
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
 zmodule "$XDG_CONFIG_HOME/completions" --fpath .
