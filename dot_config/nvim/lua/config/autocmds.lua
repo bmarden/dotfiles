@@ -49,3 +49,26 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     end
   end,
 })
+
+local relnum = vim.api.nvim_create_augroup("relnum_toggle", { clear = true })
+
+-- Disable relative numbers when entering insert mode
+vim.api.nvim_create_autocmd("InsertEnter", {
+  group = relnum,
+  callback = function()
+    -- Make sure we're in a buffer that has numbers enabled before disabling relative numbers
+    if vim.opt_local.number:get() then
+      vim.opt_local.relativenumber = false
+    end
+  end,
+})
+-- Re-enable relative numbers when leaving insert mode
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = relnum,
+  callback = function()
+    -- Make sure we're in a buffer that has numbers enabled before enabling relative numbers
+    if vim.opt_local.number:get() then
+      vim.opt_local.relativenumber = true
+    end
+  end,
+})
