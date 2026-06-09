@@ -14,6 +14,12 @@ return {
       yaml = { "prettier_yaml" },
     },
     formatters = {
+      -- Override LazyVim sql extra's hardcoded `--dialect=ansi`, which can't
+      -- parse postgres-only syntax (CREATE TYPE ... AS ENUM). Let sqlfluff read
+      -- the dialect from each repo's .sqlfluff instead.
+      sqlfluff = {
+        args = { "format", "-" },
+      },
       biome = {
         require_cwd = true,
       },
@@ -32,9 +38,6 @@ return {
       },
       ["markdownlint-cli2"] = {
         args = { "--config", vim.fn.expand("$HOME/.markdownlint-cli2.yaml"), "--fix", "$FILENAME" },
-      },
-      sqlfluff = {
-        prepend_args = { "--config", vim.fn.expand("$HOME/.config/nvim/.sqlfluff") },
       },
     },
   },
