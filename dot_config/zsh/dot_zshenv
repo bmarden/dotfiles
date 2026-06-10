@@ -23,7 +23,7 @@ export EDITOR=nvim
 export MISE_ENV_FILE=.env
 export MISE_NODE_DEFAULT_PACKAGES_FILE="$XDG_CONFIG_HOME/mise/default-node-packages"
 
-# Default 1password account
+# 1password settings
 export OP_ACCOUNT="my.1password.com"
 
 # bun setup

@@ -12,5 +12,3 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 fi
 # export PATH="$HOME/.local/share/mise/shims:$PATH"
-
-export GOPRIVATE="github.com/amenity-health"

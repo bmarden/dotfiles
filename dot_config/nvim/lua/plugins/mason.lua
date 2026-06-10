@@ -18,7 +18,6 @@ return {
         "mypy",
         "prettier",
         "shfmt",
-        "sqlfluff",
         "stylua",
         "tflint",
       }
