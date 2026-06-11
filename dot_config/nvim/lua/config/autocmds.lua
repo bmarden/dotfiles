@@ -32,24 +32,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Set window-local cwd to the nearest go.mod directory so golangci-lint,
--- gopls, and other tools resolve module-aware behavior correctly even when
--- the Go code lives in a subdirectory of a larger repo.
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.go",
-  group = vim.api.nvim_create_augroup("go_module_lcd", { clear = true }),
-  callback = function(args)
-    local bufname = vim.api.nvim_buf_get_name(args.buf)
-    if bufname == "" then
-      return
-    end
-    local found = vim.fs.find("go.mod", { upward = true, path = vim.fs.dirname(bufname) })
-    if #found > 0 then
-      vim.cmd.lcd(vim.fs.dirname(found[1]))
-    end
-  end,
-})
-
 local relnum = vim.api.nvim_create_augroup("relnum_toggle", { clear = true })
 
 -- Disable relative numbers when entering insert mode
