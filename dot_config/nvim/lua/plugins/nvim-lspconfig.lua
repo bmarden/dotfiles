@@ -93,6 +93,39 @@ return {
             },
           },
         },
+        terraformls = {
+          init_options = {
+            -- skip eager validation that triggers full provider schema decode
+            experimentalFeatures = {
+              validateOnSave = false,
+              prefillRequiredFields = false,
+            },
+          },
+          flags = {
+            debounce_text_changes = 300,
+          },
+          -- Semantic tokens resolve every token against the provider schema. With
+          -- a large provider (e.g. datadog, ~60MB schema) each pass takes seconds
+          -- and re-fires on redraw, spinning the editor. Drop the capability for
+          -- roots that use such a provider so highlighting falls back to treesitter;
+          -- completion/hover/diagnostics stay. Other terraform roots keep full tokens.
+          on_attach = function(client)
+            local root = client.config.root_dir
+            if not root then
+              return
+            end
+            local lock = root .. "/.terraform.lock.hcl"
+            local ok, lines = pcall(vim.fn.readfile, lock)
+            if
+              ok
+              and vim.iter(lines):any(function(l)
+                return l:match("registry%.terraform%.io/datadog/datadog")
+              end)
+            then
+              client.server_capabilities.semanticTokensProvider = nil
+            end
+          end,
+        },
       },
     },
   },
