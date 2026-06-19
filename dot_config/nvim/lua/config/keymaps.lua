@@ -21,7 +21,7 @@ map({ "i", "x", "n" }, "<D-s>", "<cmd>w<CR>", { desc = "Save file" })
 map({ "n", "v" }, "<leader>p", '"0p', { desc = "Paste from zero register" })
 
 -- Rename word under cursor
-map("n", "<Leader>R", function()
+map("n", "<Leader>r", function()
   local word = vim.fn.expand("<cword>")
   vim.fn.feedkeys(
     ":%s/\\<" .. word .. "\\>//g" .. string.rep(vim.api.nvim_replace_termcodes("<Left>", true, false, true), 2)
@@ -29,7 +29,7 @@ map("n", "<Leader>R", function()
 end, { desc = "Rename word under cursor" })
 
 -- Visual mode - rename selected text
-map("v", "<Leader>R", function()
+map("v", "<Leader>r", function()
   -- Exit visual mode and get the selected text
   vim.cmd('normal! "vy')
   local selected_text = vim.fn.getreg("v")
