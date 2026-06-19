@@ -19,9 +19,9 @@ return {
   ---@type obsidian.config
   opts = {
     legacy_commands = false,
-    ui = {
-      enable = false,
-    },
+    -- ui = {
+    --   enable = false,
+    -- },
     workspaces = {
       {
         name = "ben-brain",
@@ -33,6 +33,7 @@ return {
     templates = {
       folder = "templates",
       date_format = "%Y-%m-%d-%a",
+      time_format = "HH:mm",
       substitutions = {
         formatted_title = function(ctx)
           ---@diagnostic disable-next-line:param-type-mismatch
@@ -62,10 +63,7 @@ return {
       date_format = "%Y/%b/%Y-%m-%d-%a",
     },
     picker = {
-      name = "snacks.pick",
-    },
-    completion = {
-      blink = true,
+      name = "snacks.picker",
     },
     checkbox = {
       enabled = true,
