@@ -34,12 +34,12 @@ return {
     opts = {
       style = "multiplex",
       colors = {
-        bg0 = "#111317", -- Custom background color
+        -- bg0 = "#111317", -- Custom background color
         -- bg0 = "#252623",
       },
       highlights = {
         -- make comments blend nicely with background, similar to other color schemes
-        ["@comment"] = { fg = "$grey" },
+        -- ["@comment"] = { fg = "$grey" },
       },
       code_style = {
         conditionals = { italic = false },
