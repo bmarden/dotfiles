@@ -1,0 +1,4 @@
+"dynamic.path" = { underline = true, foreground = "#BB9AF7" }
+
+[metadata]
+extends = "tokyonight"

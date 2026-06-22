@@ -106,7 +106,7 @@ fi
 zmodule ohmyzsh/ohmyzsh --root plugins/git
 zmodule ohmyzsh/ohmyzsh --root lib --source git.zsh
 # Syntax highlighting for Zsh. Must be sourced after completions
-zmodule zdharma-continuum/fast-syntax-highlighting
+# zmodule zdharma-continuum/fast-syntax-highlighting
 # Fish-like history search (up arrow) for Zsh.
 # zsh-users/zsh-history-substring-search must be sourced after fast-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
