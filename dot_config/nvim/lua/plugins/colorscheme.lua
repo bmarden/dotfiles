@@ -32,9 +32,9 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      style = "multiplex",
+      -- style = "multiplex",
       colors = {
-        -- bg0 = "#111317", -- Custom background color
+        bg0 = "#111317", -- Custom background color
         -- bg0 = "#252623",
       },
       highlights = {

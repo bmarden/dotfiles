@@ -5,6 +5,11 @@ return {
     cmd = { "ToggleTerm" },
     keys = {
       {
+        "<esc>",
+        [[<C-\><C-n>]],
+        mode = "t",
+      },
+      {
         "<leader>Tf",
         function()
           local count = vim.v.count1
