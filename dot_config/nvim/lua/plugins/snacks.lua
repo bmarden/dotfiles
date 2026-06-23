@@ -10,6 +10,10 @@ return {
     },
     ---@type snacks.Config
     opts = {
+      bigfile = {
+        enabled = true,
+        line_length = 100000,
+      },
       dashboard = {
         enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
         preset = {
