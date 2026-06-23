@@ -73,7 +73,8 @@ path+=("$HOME/bin"
   "$ANDROID_HOME/tools/bin"
   "$ANDROID_HOME/platform-tools"
   "$ANDROID_HOME/cmdline-tools/latest/bin"
-  "$BUN_INSTALL_BIN")
+  "$BUN_INSTALL_BIN"
+  "$HOME/.local/share/nvim/mason/bin")
 
 # Add macOS-specific paths
 if [[ "$OSTYPE" == "darwin"* ]]; then
