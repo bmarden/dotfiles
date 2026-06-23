@@ -12,6 +12,7 @@ return {
       json = { "biome-check", "prettier" },
       markdown = { "markdownlint-cli2", "markdown-toc" },
       yaml = { "prettier_yaml" },
+      http = { "kulala-fmt" },
     },
     formatters = {
       -- Override LazyVim sql extra's hardcoded `--dialect=ansi`, which can't
