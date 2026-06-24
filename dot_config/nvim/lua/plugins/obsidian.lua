@@ -19,9 +19,10 @@ return {
   ---@type obsidian.config
   opts = {
     legacy_commands = false,
-    -- ui = {
-    --   enable = false,
-    -- },
+    ---@diagnostic disable-next-line: missing-fields
+    ui = {
+      enable = false,
+    },
     workspaces = {
       {
         name = "ben-brain",
