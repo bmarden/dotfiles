@@ -59,9 +59,10 @@ map("n", "<C-u>", function()
   vim.cmd("normal! " .. lines .. "kzz")
 end, { noremap = true, silent = true })
 
--- Quit or exit neovim, easier than to do <leader>qq
-map({ "n", "v", "i" }, "<M-q>", "<cmd>qa<cr>", { desc = "[P]Quit All" })
--- Close the current window
+-- Yank current filename and line number to the clipboard
+vim.keymap.set("n", "<leader>y", function()
+  vim.fn.setreg(vim.v.register, vim.fn.expand("%:p") .. ":" .. vim.fn.line("."))
+end, { desc = "Copy filename+line to clipboard" })
 
 -- use gh to move to the beginning of the line in normal mode
 -- use gl to move to the end of the line in normal mode
@@ -150,17 +151,6 @@ map("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
 map("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
 map("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
 map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
-
--- Bufferline tab goto
-map("n", "<leader>1", "<CMD>BufferLineGoToBuffer 1<CR>", { silent = true })
-map("n", "<leader>2", "<CMD>BufferLineGoToBuffer 2<CR>", { silent = true })
-map("n", "<leader>3", "<CMD>BufferLineGoToBuffer 3<CR>", { silent = true })
-map("n", "<leader>4", "<CMD>BufferLineGoToBuffer 4<CR>", { silent = true })
-map("n", "<leader>5", "<CMD>BufferLineGoToBuffer 5<CR>", { silent = true })
-map("n", "<leader>6", "<CMD>BufferLineGoToBuffer 6<CR>", { silent = true })
-map("n", "<leader>7", "<CMD>BufferLineGoToBuffer 7<CR>", { silent = true })
-map("n", "<leader>8", "<CMD>BufferLineGoToBuffer 8<CR>", { silent = true })
-map("n", "<leader>9", "<CMD>BufferLineGoToBuffer 9<CR>", { silent = true })
 
 -- Add keymap for sourcing the current file
 map("n", "<leader><leader>s", "<cmd>source %<CR>", { desc = "Source current file" })
