@@ -48,19 +48,19 @@ return {
       },
     },
   },
-  -- {
-  --   "navarasu/onedark.nvim",
-  --   priority = 1000,
-  --   opts = {
-  --     style = "deep",
-  --   },
-  -- },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "onedark",
-      -- colorscheme = "onedark_vivid",
-      colorscheme = "bamboo",
+      colorscheme = "onedark_vivid",
+      -- colorscheme = "bamboo",
+      -- colorscheme = "tokyonight-night",
     },
   },
 }
