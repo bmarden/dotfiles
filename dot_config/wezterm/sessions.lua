@@ -5,6 +5,16 @@ local mux = wezterm.mux
 
 local module = {}
 
+---@class SessionDefinition
+---@field key string The key to bind for this session
+---@field name string The name of the workspace/session
+---@field tabs TabDefinition[] The list of tabs to create in this session
+
+---@class TabDefinition
+---@field cwd string The working directory for the tab
+---@field split? { direction: 'Left' | 'Right' | 'Top' | 'Bottom', size: number } Optional split configuration for the tab
+
+---@type SessionDefinition[]
 local session_defs = {
   {
     key = 'a',
@@ -16,6 +26,10 @@ local session_defs = {
       },
       {
         cwd = wezterm.home_dir .. '/code/turnkey-frontend',
+        split = { direction = 'Bottom', size = 0.25 },
+      },
+      {
+        cwd = wezterm.home_dir .. '/code/member-frontend',
         split = { direction = 'Bottom', size = 0.25 },
       },
     },
@@ -45,6 +59,8 @@ local function workspace_exists(name)
   return false
 end
 
+---@param tab_obj MuxTab The tab object to set up splits for
+---@param tab_def TabDefinition The tab definition containing split info
 local function setup_tab_splits(tab_obj, tab_def)
   if not tab_def.split then
     return
@@ -59,6 +75,9 @@ local function setup_tab_splits(tab_obj, tab_def)
   pane:activate()
 end
 
+-- Create a new workspace and spawn tabs with splits based on the session definition
+--- @param session SessionDefinition The session definition containing name, tabs, and split info
+--- @param window Window The current WezTerm window object
 local function create_workspace(session, window)
   -- Spawn first tab in the new workspace
   local tab, _, mux_window = mux.spawn_window({
@@ -80,6 +99,7 @@ local function create_workspace(session, window)
   window:perform_action(act.SwitchToWorkspace({ name = session.name }), window:active_pane())
 end
 
+---@param session SessionDefinition The session definition containing name, tabs, and split info
 local function build_session_action(session)
   return wezterm.action_callback(function(window, pane)
     if workspace_exists(session.name) then
