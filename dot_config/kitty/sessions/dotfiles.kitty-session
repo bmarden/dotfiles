@@ -1,12 +1,22 @@
+
 new_tab
 layout splits:split_axis=vertical;bias=70
 enabled_layouts splits:split_axis=vertical;bias=70
-set_layout_state {"pairs": {"horizontal": false, "bias": 0.6916252661462031, "one": 1, "two": {"one": 2, "two": 3}}, "opts": {"default_axis_is_horizontal": false}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [1, 2, 3], "window_groups": [{"id": 1, "window_ids": [1]}, {"id": 2, "window_ids": [2]}, {"id": 3, "window_ids": [3]}]}}
+set_layout_state {"pairs": {"horizontal": false, "bias": 0.75, "one": 1, "two": {"one": 2, "two": 3}}, "opts": {"default_axis_is_horizontal": false, "equalize_on_close": false}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [1, 2, 3], "window_groups": [{"id": 1, "window_ids": [1]}, {"id": 2, "window_ids": [2]}, {"id": 3, "window_ids": [3]}]}}
 cd /Users/bmarden/.local/share/chezmoi
 
 launch 'kitty-unserialize-data={"id": 1}'
 focus
 launch 'kitty-unserialize-data={"id": 2}'
 launch 'kitty-unserialize-data={"id": 3}' --cwd=/Users/bmarden/.config
+
+new_tab
+layout splits:split_axis=vertical;bias=70
+enabled_layouts splits:split_axis=vertical;bias=70
+set_layout_state {"pairs": {"horizontal": false, "one": 4}, "opts": {"default_axis_is_horizontal": false, "equalize_on_close": false}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [4], "window_groups": [{"id": 4, "window_ids": [4]}]}}
+cd /Users/bmarden/code-personal/nvim-plugins
+
+launch 'kitty-unserialize-data={"id": 4}'
+focus
 
 focus_tab 0
