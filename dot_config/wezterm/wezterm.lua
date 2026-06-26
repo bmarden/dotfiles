@@ -19,21 +19,23 @@ config.font = wezterm.font('Monaspace Neon')
 config.font_size = 11
 
 --- ==  :=  || >= !=  =>  <=  &&  |>
--- config.harfbuzz_features = {
---   'calt=1',
---   'ss01=1',
---   'ss02=1',
---   'ss03=1',
---   'ss04=1',
---   'ss05=1',
---   'ss06=1',
---   'ss07=1',
---   'ss08=1',
---   'ss09=1',
---   'ss10=1',
---   'liga=1',
--- }
---
+config.harfbuzz_features = {
+  'calt=1',
+  'ss01=1',
+  'ss02=1',
+  'ss03=1',
+  'ss04=1',
+  'ss05=1',
+  'ss06=1',
+  'ss07=1',
+  'ss08=1',
+  'ss09=1',
+  'ss10=1',
+  'liga=1',
+}
+
+config.window_close_confirmation = 'NeverPrompt'
+
 local scheme = wezterm.color.get_builtin_schemes()['Bamboo']
 scheme.background = '#111317'
 scheme.cursor_bg = '#c0c0c0'
@@ -42,6 +44,12 @@ config.color_schemes = {
 }
 
 config.color_scheme = 'Bamboo'
+
+-- Don't dim inactive panes; keep all panes at the same brightness.
+config.inactive_pane_hsb = {
+  saturation = 1.0,
+  brightness = 1.0,
+}
 
 config.max_fps = 144
 
