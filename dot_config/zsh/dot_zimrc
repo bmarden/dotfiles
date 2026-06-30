@@ -69,6 +69,9 @@ fi
 if [ "$(command -v aube)" ]; then
   aube completion zsh >"$XDG_CACHE_HOME/zsh/completions/_aube"
 fi
+if [ "$(command -v stripe)" ]; then
+  stripe completion --shell zsh --write-to-stdout >"$XDG_CACHE_HOME/zsh/completions/_stripe"
+fi
 
 zmodule zsh-users/zsh-completions --fpath src
 # Load completions from custom directory
