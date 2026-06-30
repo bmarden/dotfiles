@@ -35,6 +35,7 @@ config.harfbuzz_features = {
 }
 
 config.window_close_confirmation = 'NeverPrompt'
+config.audible_bell = 'Disabled'
 
 local scheme = wezterm.color.get_builtin_schemes()['Bamboo']
 scheme.background = '#111317'
@@ -145,6 +146,12 @@ config.keys = {
       size = { Percent = 25 },
     }),
   },
+  -- Change default keybinding for copy mode
+  {
+    key = 'i',
+    mods = 'CMD|OPT',
+    action = act.ActivateCopyMode,
+  },
 }
 
 wezterm.on('update-right-status', function(window, _)
@@ -156,8 +163,8 @@ wezterm.on('update-right-status', function(window, _)
 end)
 
 config.scrollback_lines = 10000
-local scrollback = require('scrollback')
-scrollback.apply_to_config(config)
+-- local scrollback = require('scrollback')
+-- scrollback.apply_to_config(config)
 
 local sessions = require('sessions')
 sessions.apply_to_config(config)

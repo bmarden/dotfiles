@@ -1,45 +1,34 @@
 ---@diagnostic disable: assign-type-mismatch
 local wezterm = require('wezterm') ---@type Wezterm
-local io = require('io')
-local os = require('os')
 local act = wezterm.action
 
 local module = {}
 
+local nvim = '/Users/bmarden/.local/share/bob/nvim-bin/nvim'
+local wezterm_bin = '/opt/homebrew/bin/wezterm'
+
+-- nvim sources this on launch to fetch + render + position the scrollback.
+local nvim_script = wezterm.config_dir .. '/scrollback_nvim.lua'
+
 local function setup_scrollback_event()
   wezterm.on('trigger-vim-with-scrollback', function(window, pane)
-    -- Retrieve the text from the pane
-    local text = pane:get_lines_as_text(pane:get_dimensions().scrollback_rows)
-    wezterm.log_error('Retrieved scrollback text: ' .. text)
+    local dims = pane:get_dimensions()
+    local cursor = pane:get_cursor_position()
 
-    -- Create a temporary file to pass to vim
-    local name = os.tmpname()
-    local f = io.open(name, 'w+')
-    if not f then
-      wezterm.log_error('Failed to create temporary file: ' .. name)
-      return
-    end
-
-    f:write(text)
-    f:flush()
-    f:close()
-
-    -- Open a new window running vim and tell it to open the file
     window:perform_action(
       act.SpawnCommandInNewTab({
-        args = { '/Users/bmarden/.local/share/bob/nvim-bin/nvim', name },
+        args = { nvim, '-S', nvim_script },
+        set_environment_variables = {
+          WEZTERM_SCROLLBACK_BIN = wezterm_bin,
+          WEZTERM_SCROLLBACK_PANE = tostring(pane:pane_id()),
+          WEZTERM_SCROLLBACK_ROWS = tostring(dims.scrollback_rows),
+          WEZTERM_SCROLLBACK_VIEWPORT = tostring(dims.viewport_rows),
+          WEZTERM_SCROLLBACK_PHYS_TOP = tostring(dims.physical_top),
+          WEZTERM_SCROLLBACK_CURSOR_Y = tostring(cursor.y),
+        },
       }),
       pane
     )
-
-    -- Wait "enough" time for vim to read the file before we remove it.
-    -- The window creation and process spawn are asynchronous wrt. running
-    -- this script and are not awaitable, so we just pick a number.
-    --
-    -- Note: We don't strictly need to remove this file, but it is nice
-    -- to avoid cluttering up the temporary directory.
-    wezterm.sleep_ms(1000)
-    os.remove(name)
   end)
 end
 
@@ -52,7 +41,6 @@ function module.apply_to_config(config)
     mods = 'CMD|OPT',
     action = act.EmitEvent('trigger-vim-with-scrollback'),
   })
-  wezterm.log_error('scrollback: keybinding registered, total keys: ' .. #config.keys)
 end
 
 return module
