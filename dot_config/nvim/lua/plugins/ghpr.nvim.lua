@@ -22,7 +22,7 @@ return {
     { "<leader>gp", "<cmd>GhPrList<cr>", desc = "Pick GitHub PR" },
     { "<leader>gv", "<cmd>GhPrView<cr>", desc = "View PR description" },
     { "<leader>ge", "<cmd>GhPrEdit<cr>", desc = "Edit PR description" },
-    { "<leader>gr", "<cmd>GhPrAddReviewer<cr>", desc = "Add PR reviewer" },
+    { "<leader>gr", "<cmd>GhPrReview<cr>", desc = "Open review" },
   },
   opts = {},
 }
