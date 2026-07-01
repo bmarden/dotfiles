@@ -1,6 +1,6 @@
--- AI commit messages + PR titles via the `claude` CLI (headless `-p` mode).
--- Diff is piped over stdin so claude never runs git itself (no tool-permission
--- prompt, deterministic). Calls are async via vim.system.
+-- AI commit messages, PR titles, and PR summaries via the `claude` CLI
+-- (headless `-p` mode). The diff is piped over stdin so claude never runs git
+-- itself (no tool-permission prompt, deterministic). Calls are async.
 
 local M = {}
 
@@ -18,6 +18,32 @@ local PR_TITLE_PROMPT = table.concat({
   "Output ONLY a single-line Conventional Commits PR title for this branch diff:",
   "<type>(<scope>): <subject>, imperative, <=70 chars.",
   "No body, no prose, no quotes, no backticks.",
+}, " ")
+
+local PR_SUMMARY_TEMPLATE = [[
+# What does this PR do?
+
+## Related Tickets
+
+-
+
+## Related PRs
+
+- #
+
+## Test Instructions
+
+1.
+
+## Screenshots or GIFs (if applicable)
+]]
+
+local PR_SUMMARY_PROMPT = table.concat({
+  "Summarize the key changes in this branch diff as a PR description.",
+  "Fill in this markdown template, keeping its headings exactly. Leave the",
+  "Related Tickets, Related PRs, and Screenshots sections as-is if you can't",
+  "infer them. Be concise, not verbose. Output markdown only — no preamble, no",
+  "code fences wrapping the whole thing.\n\nTEMPLATE:\n" .. PR_SUMMARY_TEMPLATE,
 }, " ")
 
 ---Run `<diff_cmd> | claude -p <prompt>` async, return trimmed stdout via callback.
@@ -54,21 +80,45 @@ local function generate(diff_cmd, prompt, on_done)
   end)
 end
 
+---Insert multi-line text at the cursor and copy it to the + register.
+---@param text string
+local function put(text)
+  local lines = vim.split(text, "\n")
+  vim.fn.setreg("+", text)
+  vim.api.nvim_put(lines, "c", true, true)
+end
+
 ---Generate a commit message from the staged diff and prepend it into `buf`.
 ---@param buf integer buffer to write into (the gitcommit buffer)
-function M.commit_message(buf)
+local function commit_message(buf)
   generate({ "git", "diff", "--cached" }, COMMIT_PROMPT, function(msg)
     vim.api.nvim_buf_set_lines(buf, 0, 0, false, vim.split(msg, "\n"))
   end)
 end
 
----Generate a PR title from the branch diff vs the base branch.
----Yanks to the + register and inserts at cursor.
-function M.pr_title()
+---Generate a PR title from the branch diff vs the base branch, insert at cursor.
+local function pr_title()
   generate({ "git", "diff", M.base_branch .. "...HEAD" }, PR_TITLE_PROMPT, function(title)
-    vim.fn.setreg("+", title)
-    vim.api.nvim_put({ title }, "c", true, true)
+    put(title)
     vim.notify("PR title yanked to clipboard: " .. title, vim.log.levels.INFO)
+  end)
+end
+
+---Context-aware generator bound to one key:
+--- in a gitcommit buffer -> commit message; otherwise -> PR title.
+function M.smart_msg()
+  if vim.bo.filetype == "gitcommit" then
+    commit_message(0)
+  else
+    pr_title()
+  end
+end
+
+---Generate a PR summary from the branch diff vs base, insert at cursor.
+function M.pr_summary()
+  generate({ "git", "diff", M.base_branch .. "...HEAD" }, PR_SUMMARY_PROMPT, function(summary)
+    put(summary)
+    vim.notify("PR summary inserted", vim.log.levels.INFO)
   end)
 end
 

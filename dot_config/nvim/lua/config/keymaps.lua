@@ -49,20 +49,15 @@ map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 -- AI git helpers (claude CLI). See lua/config/claude_git.lua
 local claude_git = require("config.claude_git")
 
--- Generate a conventional-commit PR title from the branch diff vs base
+-- Context-aware: gitcommit buffer -> commit message; otherwise -> PR title
 map("n", "<leader>gt", function()
-  claude_git.pr_title()
-end, { desc = "AI PR title" })
+  claude_git.smart_msg()
+end, { desc = "AI commit msg / PR title" })
 
--- In the neogit/git commit buffer, <leader>gm prefills an AI commit message
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "gitcommit",
-  callback = function(ev)
-    map("n", "<leader>gm", function()
-      claude_git.commit_message(ev.buf)
-    end, { buffer = ev.buf, desc = "AI commit message" })
-  end,
-})
+-- Generate a PR summary from the branch diff vs base, insert at cursor
+map("n", "<leader>gs", function()
+  claude_git.pr_summary()
+end, { desc = "AI PR summary" })
 
 -- By default, CTRL-U and CTRL-D scroll by half a screen (50% of the window height)
 -- Scroll by 35% of the window height and keep the cursor centered
