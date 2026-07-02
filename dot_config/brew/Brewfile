@@ -16,6 +16,9 @@ brew "wget"
 brew "fzf"          # fuzzy finder  
 brew "gh"           # github cli
 brew "bash"         # use non ancient version of bash
+brew "zsh"          # use non ancient version of zsh
+brew "starship"     # cross-shell prompt
+
 
 # Add fonts casks
 cask "font-fira-code"
