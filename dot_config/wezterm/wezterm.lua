@@ -152,6 +152,19 @@ config.keys = {
     mods = 'CMD|OPT',
     action = act.ActivateCopyMode,
   },
+
+  { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
+  { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
+}
+
+local search_mode = nil
+if wezterm.gui then
+  search_mode = wezterm.gui.default_key_tables().search_mode
+  table.insert(search_mode, { key = 'e', mods = 'CTRL', action = act.CopyMode('EditPattern') })
+end
+
+config.key_tables = {
+  search_mode = search_mode,
 }
 
 wezterm.on('update-right-status', function(window, _)
