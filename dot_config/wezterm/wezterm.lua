@@ -13,7 +13,11 @@ config.initial_rows = 80
 config.enable_kitty_keyboard = true
 config.enable_csi_u_key_encoding = false
 
-config.font = wezterm.font('Monaspace Neon')
+-- Fallback to FiraCode for eda6, ef3e, and ee0d glyphs, which are missing from Monaspace Neon NF
+config.font = wezterm.font_with_fallback({
+  'Monaspace Neon NF',
+  'FiraCode Nerd Font',
+})
 -- config.font = wezterm.font('Fira Code')
 -- config.font = wezterm.font('Dank Mono')
 config.font_size = 11
