@@ -120,9 +120,15 @@ local run_obsidian_command = function(command, template_name)
 end
 
 -- Setup some keybindings for obsidian.nvim
+local obsidian_daily = require("config.obsidian_daily")
+
 map("n", "<leader>ot", function()
-  run_obsidian_command("today")
-end, { desc = "Open Obsidian Daily Note" })
+  local cwd = vim.fn.getcwd()
+  local vault_path = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ben-brain")
+  vim.cmd("cd " .. vault_path)
+  obsidian_daily.open_today_with_carryover()
+  vim.cmd("cd " .. cwd)
+end, { desc = "Open Obsidian Daily Note (carry over unfinished tasks)" })
 
 map("n", "<leader>os", function()
   run_obsidian_command("search")
