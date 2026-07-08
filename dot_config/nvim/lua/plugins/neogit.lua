@@ -4,6 +4,7 @@ return {
     "nvim-lua/plenary.nvim", -- required
     "esmuellert/codediff.nvim",
     "folke/snacks.nvim",
+    "m00qek/baleia.nvim", -- For pretty git graphs
   },
   cmd = "Neogit",
 
@@ -19,6 +20,7 @@ return {
       },
       integrations = { codediff = true, snacks = true },
       commit_editor = { kind = "floating" },
+      graph_style = "kitty",
     })
   end,
 }
