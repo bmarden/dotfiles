@@ -41,6 +41,10 @@ local session_defs = {
         split = { direction = 'Bottom', size = 0.3, into = { cwd = home .. '/code/turnkey-frontend' } },
       },
       {
+        cwd = home .. '/code/member-infra',
+        split = { direction = 'Bottom', size = 0.3, into = { cwd = home .. '/code/member-infra' } },
+      },
+      {
         cwd = home .. '/code/member-frontend',
         split = { direction = 'Bottom', size = 0.3, into = { cwd = home .. '/code/member-frontend' } },
       },
