@@ -39,7 +39,7 @@ local PR_SUMMARY_TEMPLATE = [[
 ]]
 
 local PR_SUMMARY_PROMPT = table.concat({
-  "Summarize the key changes in this branch diff as a PR description.",
+  "Summarize the key changes in this branch diff as a PR description. Use bullet points when it will help readability.",
   "Fill in this markdown template, keeping its headings exactly. Leave the",
   "Related Tickets, Related PRs, and Screenshots sections as-is if you can't",
   "infer them. Be concise, not verbose. Output markdown only — no preamble, no",
@@ -80,12 +80,18 @@ local function generate(diff_cmd, prompt, on_done)
   end)
 end
 
----Insert multi-line text at the cursor and copy it to the + register.
+---Paste text like vim's `p`: over the selection in visual mode, at the cursor
+---otherwise. Also copies it to the + register.
 ---@param text string
 local function put(text)
-  local lines = vim.split(text, "\n")
   vim.fn.setreg("+", text)
-  vim.api.nvim_put(lines, "c", true, true)
+  local mode = vim.api.nvim_get_mode().mode
+  if mode:match("^[vV\22]") then
+    -- Replace the active selection: yank it into a scratch register with `p`.
+    vim.cmd('normal! "+p')
+  else
+    vim.api.nvim_put(vim.split(text, "\n"), "c", true, true)
+  end
 end
 
 ---Generate a commit message from the staged diff and prepend it into `buf`.
