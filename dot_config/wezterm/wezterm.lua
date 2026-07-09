@@ -12,31 +12,53 @@ config.initial_rows = 80
 
 config.enable_kitty_keyboard = true
 config.enable_csi_u_key_encoding = false
-
 -- Fallback to FiraCode for eda6, ef3e, and ee0d glyphs, which are missing from Monaspace Neon NF
 config.font = wezterm.font_with_fallback({
-  'Monaspace Neon NF',
+  {
+    -- https://www.monolisa.dev/tester/code
+    family = 'MonoLisaCode',
+    weight = 'Regular',
+    stretch = 'Normal',
+    style = 'Normal',
+    -- dlig: coding ligatures,
+    -- cv01: ## Markdown headings,
+    -- cv02: </> Less, slash, greater
+    -- cv03: <|> Less, bar, greater
+    -- cv04: <-> Less, hyphen, greater
+    -- cv05: <=> Less, equal, greater
+    -- cv06: >= <= Alt liga 1
+    -- cv07: >= <= Alt liga 2
+    -- cv08: -> Arrows
+    -- cv09: == === != |= Equal combinations
+    -- cv10: .= ..= Alt dot combinations
+    -- cv11: <~> Alt tilde combinations
+    -- ss13: 0xF Hexadecimal multiply
+    -- ss14: Alt 7
+    harfbuzz_features = { 'dlig', 'cv01', 'cv02', 'cv03', 'cv04', 'cv08', 'cv09', 'cv10', 'cv11', 'ss13', 'ss14' },
+  },
   'FiraCode Nerd Font',
 })
+
+-- ##
 -- config.font = wezterm.font('Fira Code')
 -- config.font = wezterm.font('Dank Mono')
 config.font_size = 11
 
---- ==  :=  || >= !=  =>  <=  &&  |>
-config.harfbuzz_features = {
-  'calt=1',
-  'ss01=1',
-  'ss02=1',
-  'ss03=1',
-  'ss04=1',
-  'ss05=1',
-  'ss06=1',
-  'ss07=1',
-  'ss08=1',
-  'ss09=1',
-  'ss10=1',
-  'liga=1',
-}
+--- ==  :=  || >= !=  =>  <=  &&  |> -> .= </> ~= <~> <->
+-- config.harfbuzz_features = {
+--   'calt=1',
+--   'ss01=1',
+--   'ss02=1',
+--   'ss03=1',
+--   'ss04=1',
+--   'ss05=1',
+--   'ss06=1',
+--   'ss07=1',
+--   'ss08=1',
+--   'ss09=1',
+--   'ss10=1',
+--   'liga=1',
+-- }
 
 config.window_close_confirmation = 'NeverPrompt'
 config.audible_bell = 'Disabled'
