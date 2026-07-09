@@ -5,6 +5,7 @@ fi
 
 alias vim="nvim"
 alias vi="nvim"
+alias mvi="NVIM_APPNAME=nvim-minimax nvim ~/.config/nvim-minimax"
 
 alias ls="${P}ls -F --color"
 alias ll="${P}ls -lF --color"
