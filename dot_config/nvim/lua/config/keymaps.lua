@@ -50,12 +50,12 @@ map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 local claude_git = require("config.claude_git")
 
 -- Context-aware: gitcommit buffer -> commit message; otherwise -> PR title
-map("n", "<leader>gt", function()
+map({ "n", "v" }, "<leader>gt", function()
   claude_git.smart_msg()
 end, { desc = "AI commit msg / PR title" })
 
 -- Generate a PR summary from the branch diff vs base, insert at cursor
-map("n", "<leader>gs", function()
+map({ "n", "v" }, "<leader>gs", function()
   claude_git.pr_summary()
 end, { desc = "AI PR summary" })
 
