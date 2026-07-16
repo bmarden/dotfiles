@@ -7,6 +7,12 @@ local map = vim.keymap.set
 -- Remove default search keymap <leader><leader>
 vim.keymap.del("n", "<leader><leader>")
 
+-- Remove LazyVim's gco/gcO (add comment below/above). Their gc prefix makes
+-- gcc wait on timeoutlen to disambiguate, so a quick gcc fires the gc operator
+-- instead of commenting the line. Unused, so drop them to make gcc instant.
+vim.keymap.del("n", "gco")
+vim.keymap.del("n", "gcO")
+
 -- Don't copy deleted text into register, use black hole register instead
 -- map({ "n", "v" }, "x", '"_x')
 -- map({ "n", "v" }, "d", '"_d')
@@ -173,3 +179,6 @@ map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 
 -- Add keymap for sourcing the current file
 map("n", "<leader><leader>s", "<cmd>source %<CR>", { desc = "Source current file" })
+
+-- :NotifyTrace + <leader>uN to find where a vim.notify message originates
+-- require("config.notify-source").setup()
