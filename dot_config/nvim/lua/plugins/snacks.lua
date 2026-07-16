@@ -50,24 +50,6 @@ return {
         sources = {
           files = { hidden = true },
           grep = { hidden = true },
-          -- explorer = {
-          --   hidden = true,
-          --   ignored = true,
-          --   exclude = { ".git", "node_modules", ".DS_Store" },
-          --   win = {
-          --     list = {
-          --       keys = {
-          --         ["]h"] = "explorer_git_next",
-          --         ["[h"] = "explorer_git_prev",
-          --         -- Set to false so our default mappings handle navigation
-          --         ["<c-h>"] = false, --
-          --         ["<c-j>"] = false,
-          --         ["<c-k>"] = false,
-          --         ["<c-l>"] = false,
-          --       },
-          --     },
-          --   },
-          -- },
         },
       },
       scroll = {
