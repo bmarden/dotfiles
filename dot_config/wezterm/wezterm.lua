@@ -16,10 +16,11 @@ config.enable_csi_u_key_encoding = false
 config.font = wezterm.font_with_fallback({
   {
     -- https://www.monolisa.dev/tester/code
+    -- # -- != := === >= >- >=> |-> -> <$> </> #[ |||> |= ~@ ~- ~=
     family = 'MonoLisaCode',
-    weight = 'Regular',
+    -- weight = 1,
     stretch = 'Normal',
-    style = 'Normal',
+    -- style = 'Normal',
     -- dlig: coding ligatures,
     -- cv01: ## Markdown headings,
     -- cv02: </> Less, slash, greater
@@ -34,7 +35,20 @@ config.font = wezterm.font_with_fallback({
     -- cv11: <~> Alt tilde combinations
     -- ss13: 0xF Hexadecimal multiply
     -- ss14: Alt 7
-    harfbuzz_features = { 'dlig', 'cv01', 'cv02', 'cv03', 'cv04', 'cv08', 'cv09', 'cv10', 'cv11', 'ss13', 'ss14' },
+    harfbuzz_features = {
+      -- 'dlig',
+      'cv01',
+      'cv02',
+      'cv03',
+      'cv04',
+      'cv08',
+      'cv09',
+      'cv10',
+      'cv11',
+      'ss13',
+      'liga=1',
+      'dlig',
+    },
   },
   'FiraCode Nerd Font',
 })
