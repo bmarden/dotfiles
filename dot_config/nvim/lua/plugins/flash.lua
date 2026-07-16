@@ -5,7 +5,7 @@ return {
     -- Disable default keybindings
     { "s", false, mode = { "n", "x", "o" } },
     { "S", false, mode = { "n", "o", "x" } },
-    { "r", false, mode = { "o" } },
+    -- { "r", false, mode = { "o" } },
     { "R", false, mode = { "o", "x" } },
     { "<c-s>", false, mode = { "c" } },
     -- Remap with localleader prefix
@@ -24,14 +24,6 @@ return {
         require("flash").treesitter()
       end,
       desc = "Flash Treesitter",
-    },
-    {
-      "<localleader>r",
-      mode = { "o" },
-      function()
-        require("flash").remote()
-      end,
-      desc = "Remote Flash",
     },
     {
       "<localleader>R",
