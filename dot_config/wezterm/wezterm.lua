@@ -77,14 +77,22 @@ config.font_size = 11
 config.window_close_confirmation = 'NeverPrompt'
 config.audible_bell = 'Disabled'
 
-local scheme = wezterm.color.get_builtin_schemes()['Bamboo']
-scheme.background = '#111317'
-scheme.cursor_bg = '#c0c0c0'
+local scheme = wezterm.color.get_builtin_schemes()['Eldritch']
+-- scheme.background = '#212337'
+scheme.background = '#0f101a'
+-- scheme.background = '#0d0f16'
 config.color_schemes = {
-  ['Bamboo'] = scheme,
+  ['Eldritch'] = scheme,
 }
-
-config.color_scheme = 'Bamboo'
+config.color_scheme = 'Eldritch'
+-- local scheme = wezterm.color.get_builtin_schemes()['Bamboo']
+-- scheme.background = '#111317'
+-- scheme.cursor_bg = '#c0c0c0'
+-- config.color_schemes = {
+--   ['Bamboo'] = scheme,
+-- }
+--
+-- config.color_scheme = 'Bamboo'
 
 -- Don't dim inactive panes; keep all panes at the same brightness.
 config.inactive_pane_hsb = {

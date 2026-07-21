@@ -14,6 +14,27 @@ renamed = '[»${count}](yellow)'
 modified = '[!${count}](yellow)'
 untracked = '[?${count}](purple)'
 
+[character]
+success_symbol = '[❯](green bold)'
+error_symbol = '[X](#c96d00 bold)'
+vimcmd_symbol = '[❮](#ff9d00 bold)'
+
+[username]
+style_user = '#a48cf2 bold'
+style_root = 'white bold'
+format = '[$user]($style)'
+show_always = false
+
+[hostname]
+ssh_symbol = " "
+ssh_only = true
+format = '[.@.](white bold)[$hostname](#37f499 bold)'
+
+[directory]
+read_only = " 󰌾"
+style = '#04d1f9 bold'
+truncation_length = 0
+
 [aws]
 symbol = " "
 
@@ -62,9 +83,6 @@ symbol = " "
 
 [direnv]
 symbol = " "
-
-[directory]
-read_only = " 󰌾"
 
 [docker_context]
 symbol = " "
@@ -122,9 +140,6 @@ symbol = " "
 
 [hg_branch]
 symbol = " "
-
-[hostname]
-ssh_symbol = " "
 
 [java]
 symbol = " "

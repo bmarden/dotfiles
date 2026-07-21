@@ -7,10 +7,19 @@ alias vim="nvim"
 alias vi="nvim"
 alias mvi="NVIM_APPNAME=nvim-minimax nvim ~/.config/nvim-minimax"
 
-alias ls="${P}ls -F --color"
-alias ll="${P}ls -lF --color"
-alias la="${P}ls -alF --color"
-alias laa="${P}ls -ld .?* --color"
+if [ -x "$(command -v eza)" ]; then
+  alias ls="eza --group-directories-first --icons=auto"
+  alias ll="eza -lF --group-directories-first --icons=auto --git --header"
+  alias la="eza -laF --group-directories-first --icons=auto --git --header"
+  alias lsa="eza -laF --group-directories-first --icons=auto --git --header"
+  alias laa="eza -laF --group-directories-first --icons=auto --git --header --only-dirs"
+  alias lt="eza --tree --level=2 --group-directories-first --icons=auto"
+else
+  alias ls="${P}ls -F --color"
+  alias ll="${P}ls -lF --color"
+  alias la="${P}ls -alF --color"
+  alias laa="${P}ls -ld .?* --color"
+fi
 
 alias -g H='| head'
 alias -g T='| tail'

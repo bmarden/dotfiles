@@ -10,6 +10,7 @@ return {
         -- Semantic token overrides
         ["@lsp.typemod.function.declaration.typescript"] = { link = "@function" },
         ["@lsp.typemod.function.local.typescript"] = { link = "@function" },
+        ["@lsp.typemod.variable.signature.go"] = { link = "@function" },
 
         -- Background overrides
         -- Normal = { bg = "${bg}" }, -- Apparently this breaks snacks.gh popup menu
@@ -55,12 +56,28 @@ return {
     opts = {},
   },
   {
+    -- "bmarden/horizon.nvim",
+    dir = "/Users/bmarden/code-personal/nvim-plugins/horizon.nvim",
+    lazy = false,
+    priority = 1000,
+    enabled = false,
+    opts = {},
+  },
+  {
+    "eldritch-theme/eldritch.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "onedark",
-      colorscheme = "onedark_vivid",
+      -- colorscheme = "onedark_vivid",
       -- colorscheme = "bamboo",
       -- colorscheme = "tokyonight-night",
+      -- colorscheme = "horizon",
+      colorscheme = "eldritch-dark",
     },
   },
 }

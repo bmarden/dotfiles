@@ -23,9 +23,6 @@ map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 -- Add CMD+s to save
 map({ "i", "x", "n" }, "<D-s>", "<cmd>w<CR>", { desc = "Save file" })
 
--- Paste from zero register to avoid pasting what was just deleted or removed
-map({ "n", "v" }, "<leader>p", '"0p', { desc = "Paste from zero register" })
-
 -- Rename word under cursor
 map("n", "<Leader>r", function()
   local word = vim.fn.expand("<cword>")

@@ -108,7 +108,7 @@ eval "$("$(brew --prefix)"/bin/zsh-patina activate)"
 
 # Set some configuration if commands are available
 # Use vivid to generate a themed LS_COLORS
-[[ -n "$(command -v vivid)" ]] && export LS_COLORS="$(vivid generate tokyonight-storm)"
+# [[ -n "$(command -v vivid)" ]] && export LS_COLORS="$(vivid generate tokyonight-storm)"
 
 # Load shell settings
 if [ -d "$XDG_CONFIG_HOME/shell" ]; then
