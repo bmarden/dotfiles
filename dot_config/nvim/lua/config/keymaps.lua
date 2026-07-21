@@ -180,5 +180,10 @@ map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 -- Add keymap for sourcing the current file
 map("n", "<leader><leader>s", "<cmd>source %<CR>", { desc = "Source current file" })
 
+-- Keymap to quickly parse a linear URL and paste as markdown link
+map("n", "<leader>pl", function()
+  require("config.utils").parse_linear_ticket_as_markdown()
+end, { desc = "Parse Linear ticket URL as markdown link" })
+
 -- :NotifyTrace + <leader>uN to find where a vim.notify message originates
 -- require("config.notify-source").setup()

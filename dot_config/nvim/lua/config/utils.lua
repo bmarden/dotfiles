@@ -73,4 +73,20 @@ function M.get_github_repo_config(callback)
   end)
 end
 
+function M.parse_linear_ticket_as_markdown()
+  -- Get the current system clipboard content
+  local clipboard_content = vim.fn.getreg("+")
+  -- A Linear ticket's url looks like https://linear.app/amenities/issue/MEMB-1265/confirm-memberships-offered-and-pricing
+  -- We want to extract the ticket ID (MEMB-1265) and the ticket title (confirm-memberships-offered-and-pricing)
+  -- and build a markdown linke like this: [MEMB-1265 confirm-memberships-offered-and-pricing](https://linear.app/amenities/issue/MEMB-1265/confirm-memberships-offered-and-pricing)
+  local ticket_id, ticket_title = clipboard_content:match("https://linear%.app/[^/]+/issue/([^/]+)/([^/]+)")
+  if ticket_id and ticket_title then
+    local markdown_link = string.format("[%s %s](%s)", ticket_id, ticket_title, clipboard_content)
+    -- Paste the markdown link
+    vim.api.nvim_put({ markdown_link }, "c", true, true)
+  else
+    vim.notify("No Linear ticket URL found in clipboard.", vim.log.levels.WARN)
+  end
+end
+
 return M
