@@ -23,6 +23,8 @@ if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
     https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
 fi
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#3b4048,underline'
+
 # # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
   . "${ZIM_HOME}"/zimfw.zsh init -q
@@ -104,7 +106,7 @@ eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 
 # Load syntax highlighting
-eval "$("$(brew --prefix)"/bin/zsh-patina activate)"
+# eval "$("$(brew --prefix)"/bin/zsh-patina activate)"
 
 # Set some configuration if commands are available
 # Use vivid to generate a themed LS_COLORS
