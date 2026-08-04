@@ -57,7 +57,7 @@ return {
           },
         },
         tsgo = {
-          enabled = false,
+          enabled = true,
         },
         pyright = {
           on_attach = function(client)
@@ -65,7 +65,7 @@ return {
           end,
         },
         vtsls = {
-          enabled = true,
+          enabled = false,
           keys = {
             { "<leader>co", enabled = false },
           },

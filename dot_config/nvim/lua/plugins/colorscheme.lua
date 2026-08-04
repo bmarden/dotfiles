@@ -73,11 +73,11 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "onedark",
-      -- colorscheme = "onedark_vivid",
+      colorscheme = "onedark_vivid",
       -- colorscheme = "bamboo",
       -- colorscheme = "tokyonight-night",
       -- colorscheme = "horizon",
-      colorscheme = "eldritch-dark",
+      -- colorscheme = "eldritch-dark",
     },
   },
 }
