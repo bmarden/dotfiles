@@ -9,9 +9,7 @@ M.base_branch = "main"
 
 local COMMIT_PROMPT = table.concat({
   "Output ONLY a Conventional Commits message for this staged git diff.",
-  "Format: <type>(<scope>): <subject>, subject imperative and <=50 chars.",
-  "Add a body only if the why isn't obvious (72-char wrapped lines).",
-  "No prose, no backticks, no code fences.",
+  "Format: <type>(<scope>): <subject>, subject imperative and <=50 chars including the <type>(<scope>).",
 }, " ")
 
 local PR_TITLE_PROMPT = table.concat({
@@ -39,7 +37,7 @@ local PR_SUMMARY_TEMPLATE = [[
 ]]
 
 local PR_SUMMARY_PROMPT = table.concat({
-  "Summarize the key changes in this branch diff as a PR description. Use bullet points when it will help readability.",
+  "Summarize the key changes in this branch diff as a PR description. Use bullet points when it will help readability. Use 2-4 one line bullet points.",
   "Fill in this markdown template, keeping its headings exactly. Leave the",
   "Related Tickets, Related PRs, and Screenshots sections as-is if you can't",
   "infer them. Be concise, not verbose. Output markdown only — no preamble, no",
