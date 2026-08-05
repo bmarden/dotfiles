@@ -55,10 +55,17 @@ autoload -Uz bashcompinit
 
 # # In the completion menu's incremental search, Space accepts the current
 # # highlight, exits the menu, and inserts a space (no more "failed isearch")
+# Helpful when completing a path and you want to add a space after the path without having to press Tab again.
 zmodload -i zsh/complist
 accept-and-space() { zle accept-search; zle .self-insert; }
 zle -N accept-and-space
 bindkey -M menuselect ' ' accept-and-space
+
+# Enter accepts the highlighted match and runs the line in one press. Without
+# the leading `.`, accept-line is "special" inside menuselect and only exits
+# the incremental search, which is why it otherwise takes three presses.
+bindkey -M menuselect '^M' .accept-line
+# bindkey -M menuselect '^J' .accept-line
 
 # Set history here since MacOS sets them in /etc/zshrc
 HISTSIZE='1000000000'
@@ -106,7 +113,7 @@ eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 
 # Load syntax highlighting
-# eval "$("$(brew --prefix)"/bin/zsh-patina activate)"
+eval "$("$(brew --prefix)"/bin/zsh-patina activate)"
 
 # Set some configuration if commands are available
 # Use vivid to generate a themed LS_COLORS
