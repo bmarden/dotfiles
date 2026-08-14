@@ -3,6 +3,10 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
+      diagnostics = {
+        -- Disabled in favor of tiny-inline-diagnostic
+        virtual_text = false,
+      },
       servers = {
         ["*"] = {
           keys = {
