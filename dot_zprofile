@@ -1,14 +1,32 @@
 # vim: set filetype=zsh:
 #
-# .zprofile
+# .zprofile — login shells, sourced after /etc/zprofile. PATH lives here rather
+# than in .zshenv because /etc/zprofile runs path_helper, which rebuilds PATH
+# from scratch and would push these entries behind the system directories.
 #
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export HOMEBREW_PREFIX="/opt/homebrew"
   export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
   export HOMEBREW_REPOSITORY="/opt/homebrew"
-  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
+  path=("/opt/homebrew/bin" "/opt/homebrew/sbin" $path)
   [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}"
   export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 fi
-# export PATH="$HOME/.local/share/mise/shims:$PATH"
+
+path=(
+  "$HOME/bin"
+  "$HOME/.local/bin"
+  "$HOME/.local/share/bob/nvim-bin"
+  "$XDG_DATA_HOME/npm/bin"
+  "$BUN_INSTALL_BIN"
+  "$XDG_DATA_HOME/nvim/mason/bin"
+  $path
+)
+
+# Add macOS-specific paths
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  path+=("/opt/homebrew/opt/libpq@16/bin")
+fi
+
+typeset -aU path

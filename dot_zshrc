@@ -4,18 +4,27 @@
 
 # shellcheck disable=SC1090,SC1091,SC2296
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
+# Activate mise before zimfw, because a zim rebuild runs the completion
+# generators in zimrc and several of those CLIs (clerk, eas) are npm shims with
+# a `#!/usr/bin/env node` shebang. Without node on PATH they fail and truncate
+# their completion file to zero bytes.
+eval "$(mise activate zsh)"
+
 # # Use zim's degit tool to install modules
 zstyle ':zim:zmodule' use 'degit'
 
 # # Set ZIM home directory
 ZIM_HOME="${XDG_CACHE_HOME}/zim"
+
+# # Keep the zim config out of $HOME; zimfw defaults to ${ZDOTDIR:-$HOME}/.zimrc
+ZIM_CONFIG_FILE="${ZSH_CONFIG_HOME}/zimrc"
 
 # # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
@@ -26,7 +35,7 @@ fi
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#3b4048,underline'
 
 # # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE} ]]; then
   . "${ZIM_HOME}"/zimfw.zsh init -q
 fi
 
@@ -67,7 +76,7 @@ bindkey -M menuselect ' ' accept-and-space
 bindkey -M menuselect '^M' .accept-line
 # bindkey -M menuselect '^J' .accept-line
 
-# Set history here since MacOS sets them in /etc/zshrc
+# /etc/zshrc sets HISTFILE/HISTSIZE/SAVEHIST, so these must come after it
 HISTSIZE='1000000000'
 SAVEHIST='1000000000'
 HISTFILE="$XDG_STATE_HOME/zsh/history"
@@ -102,13 +111,11 @@ zle_highlight=('paste:none')
 
 autoload -Uz zcalc colors
 
-eval "$(mise activate zsh)"
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-# [[ ! -f "$XDG_CONFIG_HOME/zsh/.p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/.p10k.zsh"
+# To customize prompt, run `p10k configure` or edit $ZSH_CONFIG_HOME/.p10k.zsh.
+# [[ ! -f "$ZSH_CONFIG_HOME/.p10k.zsh" ]] || source "$ZSH_CONFIG_HOME/.p10k.zsh"
 #
 # # Temporary solution for loading mise plugin versions in p10k right prompt
-# [[ ! -f "$XDG_CONFIG_HOME/zsh/.p10k.mise.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/.p10k.mise.zsh"
+# [[ ! -f "$ZSH_CONFIG_HOME/.p10k.mise.zsh" ]] || source "$ZSH_CONFIG_HOME/.p10k.mise.zsh"
 
 eval "$(starship init zsh)"
 

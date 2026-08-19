@@ -23,7 +23,7 @@ zmodule djui/alias-tips
 # Custom zsh functions
 # --------------------------------
 # Load all the custom functions defined in the functions directory
-zmodule "$XDG_CONFIG_HOME/zsh"
+zmodule "$ZSH_CONFIG_HOME"
 
 # --------------------------------
 # Completions

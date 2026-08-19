@@ -15,7 +15,7 @@ setopt PROMPT_SUBST
 PS4=$'%D{%M%S%.} %N:%i> '
 exec 3>&2 2>/tmp/trace.log
 setopt XTRACE
-source ~/.config/zsh/.zshrc
+source ~/.zshrc
 unsetopt XTRACE
 exec 2>&3 3>&-
 EOF

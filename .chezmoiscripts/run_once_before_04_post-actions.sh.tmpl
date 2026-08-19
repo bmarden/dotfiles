@@ -1,19 +1,13 @@
 #!/usr/bin/env bash
 
-{{- if eq .chezmoi.os "darwin" }}
 # macOS-specific configurations
-
-# Sets up zshenv to source the .zshenv file in $HOME/.config/zsh
-if [ ! -f /etc/zshenv ]; then
-  echo "No /etc/zshenv found, creating one"
-  printf "%s\n%s\n" 'ZDOTDIR="$HOME/.config/zsh"' 'source $ZDOTDIR/.zshenv' | sudo tee /etc/zshenv > /dev/null
-fi
+{{- if eq .chezmoi.os "darwin" }}
 
 # Set key repeating defaults for vim in vscode
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
-defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider
-defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false         # For VS Codium
-defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false   # For VS Codium Exploration users
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false            # For VS Code
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false    # For VS Code Insider
+defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false       # For VS Codium
+defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false # For VS Codium Exploration users
 
 # Set key delay and repeat settings
 defaults write -g InitialKeyRepeat -int 15
@@ -31,20 +25,6 @@ cp "$HOME/.local/share/chezmoi/com.googlecode.iterm2.plist" "$HOME/.config/iterm
 
 {{- else if eq .chezmoi.os "linux" }}
 # Linux-specific configurations
-
-# Set up ZDOTDIR in ~/.zshenv (the only zsh config file sourced from $HOME by default)
-if [ ! -f "$HOME/.zshenv" ]; then
-  echo "Creating ~/.zshenv to set ZDOTDIR..."
-  cat > "$HOME/.zshenv" << 'EOF'
-# Set ZDOTDIR to use XDG-compliant location
-export ZDOTDIR="$HOME/.config/zsh"
-
-# Source the actual zshenv from ZDOTDIR
-if [ -f "$ZDOTDIR/.zshenv" ]; then
-  source "$ZDOTDIR/.zshenv"
-fi
-EOF
-fi
 
 # Change default shell to zsh if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then

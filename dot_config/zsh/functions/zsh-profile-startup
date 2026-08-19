@@ -5,7 +5,7 @@
 local tmpfile=$(mktemp)
 cat > "$tmpfile" << 'EOF'
 zmodload zsh/zprof
-source ~/.config/zsh/.zshrc
+source ~/.zshrc
 zprof
 EOF
 

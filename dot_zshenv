@@ -1,6 +1,9 @@
 # vim: set filetype=zsh:
 #
-# .zshenv
+# .zshenv — sourced by every zsh, including non-interactive and non-login ones
+# (ssh host 'cmd', zsh -c, neovim's :!, launchd jobs). Env vars only; PATH
+# additions live in .zprofile because /etc/zprofile's path_helper rebuilds PATH
+# after this file runs.
 #
 
 # SETUP XDG BASE DIRECTORIES
@@ -10,8 +13,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-# Set the default dotfile location
-export ZDOTDIR="$HOME/.config/zsh"
+# Support files (zimrc, functions, completions) stay XDG-compliant even though
+# the startup files themselves live in $HOME.
+export ZSH_CONFIG_HOME="$XDG_CONFIG_HOME/zsh"
 
 # setup language settings
 export LANG="en_US.UTF-8"
@@ -54,20 +58,3 @@ export EAS_LOCAL_BUILD_ARTIFACTS_DIR=${CODE_HOME:-${HOME/code/}}/MobileApplicati
 
 # set direnv to not output logs
 # export DIRENV_LOG_FORMAT=""
-
-# Add vars to path
-path+=("$HOME/bin"
-  "$HOME/.local/bin"
-  "$HOME/.local/share/bob/nvim-bin"
-  "$XDG_DATA_HOME/npm/bin"
-  "$BUN_INSTALL_BIN"
-  "$HOME/.local/share/nvim/mason/bin")
-
-# Add macOS-specific paths
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  path+=(
-    "/opt/homebrew/opt/libpq@16/bin"
-  )
-fi
-
-typeset -aU path
