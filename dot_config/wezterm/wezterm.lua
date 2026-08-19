@@ -254,4 +254,6 @@ smart_splits.apply_to_config(config, {
   log_level = 'info',
 })
 
+require('panes').apply_to_config(config)
+
 return config
