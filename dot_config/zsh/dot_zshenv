@@ -42,14 +42,6 @@ export FZF_DEFAULT_OPS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 
-# android studio
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export ANDROID_HOME="$HOME/Library/Android/sdk"
-else
-  export ANDROID_HOME="$XDG_DATA_HOME/android"
-fi
-export ANDROID_USER_HOME="$XDG_CONFIG_HOME/android"
-
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 
 # set npm paths
@@ -68,19 +60,12 @@ path+=("$HOME/bin"
   "$HOME/.local/bin"
   "$HOME/.local/share/bob/nvim-bin"
   "$XDG_DATA_HOME/npm/bin"
-  "$ANDROID_HOME/emulator"
-  "$ANDROID_HOME/tools"
-  "$ANDROID_HOME/tools/bin"
-  "$ANDROID_HOME/platform-tools"
-  "$ANDROID_HOME/cmdline-tools/latest/bin"
   "$BUN_INSTALL_BIN"
   "$HOME/.local/share/nvim/mason/bin")
 
 # Add macOS-specific paths
 if [[ "$OSTYPE" == "darwin"* ]]; then
   path+=(
-    "/Applications/Android Studio.app/Contents/jre/Contents/Home/bin"
-    "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
     "/opt/homebrew/opt/libpq@16/bin"
   )
 fi
