@@ -53,7 +53,7 @@ return {
         },
       },
       scroll = {
-        enabled = true,
+        enabled = false,
         animate = {
           duration = { step = 10, total = 100 },
           easing = "linear",
