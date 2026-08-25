@@ -4,6 +4,11 @@ return {
     event = "LazyFile",
 
     opts = {
+      current_line_blame = true,
+      trouble = true,
+      preview_config = {
+        border = "rounded",
+      },
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
 
