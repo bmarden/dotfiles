@@ -61,7 +61,7 @@ return {
     daily_notes = {
       folder = "daily-notes",
       template = "templates/daily.md",
-      date_format = "%Y/%b/%Y-%m-%d-%a",
+      date_format = "%Y/%m-%b/%d-%a",
     },
     picker = {
       name = "snacks.picker",
