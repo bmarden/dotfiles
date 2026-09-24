@@ -8,7 +8,7 @@ M.model = "claude-haiku-4-5-20251001"
 M.base_branch = "main"
 
 local COMMIT_PROMPT = table.concat({
-  "Output ONLY a Conventional Commits message for this staged git diff.",
+  "Output ONLY a Conventional Commits message for this staged git diff. No Co-Authored by.",
   "Format: <type>(<scope>): <subject>, subject imperative and <=50 chars including the <type>(<scope>).",
 }, " ")
 
