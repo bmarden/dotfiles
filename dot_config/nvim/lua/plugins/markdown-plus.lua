@@ -23,4 +23,15 @@ return {
   keys = {
     { "<leader>uM", toggle, desc = "Toggle markdown-plus" },
   },
+  init = function()
+    -- markdown-plus skips its default keymap when a buffer-local one already
+    -- exists, so claim [b/]b for buffer navigation before its setup runs.
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "markdown",
+      callback = function(ev)
+        vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { buffer = ev.buf, desc = "Prev Buffer" })
+        vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { buffer = ev.buf, desc = "Next Buffer" })
+      end,
+    })
+  end,
 }
