@@ -32,7 +32,7 @@ format = '[.@.](white bold)[$hostname](#37f499 bold)'
 
 [directory]
 read_only = " 󰌾"
-style = '#04d1f9 bold'
+# style = '#04d1f9 bold'
 truncation_length = 0
 
 [aws]
@@ -116,6 +116,7 @@ symbol = " "
 
 [git_branch]
 symbol = " "
+# style = '#f868bd bold'
 
 [git_commit]
 tag_symbol = '  '
