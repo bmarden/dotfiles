@@ -182,5 +182,10 @@ map("n", "<leader>pl", function()
   require("config.utils").parse_linear_ticket_as_markdown()
 end, { desc = "Parse Linear ticket URL as markdown link" })
 
+vim.keymap.set({ "n", "x" }, "<leader>xr", function()
+  local Snacks = require("snacks")
+  Snacks.debug.run()
+end, { desc = "Run Lua buffer/selection" })
+
 -- :NotifyTrace + <leader>uN to find where a vim.notify message originates
 -- require("config.notify-source").setup()
