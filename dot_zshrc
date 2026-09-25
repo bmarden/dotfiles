@@ -76,6 +76,14 @@ bindkey -M menuselect ' ' accept-and-space
 bindkey -M menuselect '^M' .accept-line
 # bindkey -M menuselect '^J' .accept-line
 
+# `/` accepts the highlighted dir and opens the menu for its contents, so you
+# can keep drilling down a path without leaving the menu. menuselect exits on
+# any widget it doesn't know (user widgets included), so chain two builtins via
+# a macro; the second restarts isearch, which the reused menu otherwise skips.
+bindkey -M menuselect '^X/' accept-and-infer-next-history
+bindkey -M menuselect '^X^S' history-incremental-search-forward
+bindkey -M menuselect -s '/' '^X/^X^S'
+
 # /etc/zshrc sets HISTFILE/HISTSIZE/SAVEHIST, so these must come after it
 HISTSIZE='1000000000'
 SAVEHIST='1000000000'
