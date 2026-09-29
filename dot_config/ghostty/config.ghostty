@@ -3,7 +3,6 @@
 theme = TokyoNight Night
 
 font-family = MonoLisaCode
-font-style = ExtraLight
 font-size = 11
 
 # kitty's `features=` on font_family carry over one per line
