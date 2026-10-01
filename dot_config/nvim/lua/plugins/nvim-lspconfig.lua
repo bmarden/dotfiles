@@ -14,6 +14,19 @@ return {
         ["*"] = {
           keys = {
             { "<leader>r", false },
+            {
+              "gD",
+              vim.lsp.buf.declaration,
+              desc = "Goto Declaration",
+              -- Atlas diff buffers get LSP attached after Atlas maps gD to its PR detail panel
+              enabled = function(buf)
+                local name = vim.api.nvim_buf_get_name(buf)
+                return not (
+                  vim.startswith(name, "atlas-diff://")
+                  or vim.startswith(name, vim.fn.stdpath("cache") .. "/atlas/worktrees/")
+                )
+              end,
+            },
           },
         },
         gopls = {

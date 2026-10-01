@@ -10,6 +10,11 @@ return {
         border = "rounded",
       },
       on_attach = function(buffer)
+        -- Atlas swaps PR diff head buffers to files in its worktree checkout; let its ]h/[h win
+        local atlas_worktrees = vim.fn.stdpath("cache") .. "/atlas/worktrees/"
+        if vim.startswith(vim.api.nvim_buf_get_name(buffer), atlas_worktrees) then
+          return false
+        end
         local gs = package.loaded.gitsigns
 
         local function map(mode, l, r, desc)
