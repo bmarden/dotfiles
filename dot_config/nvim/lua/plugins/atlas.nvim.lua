@@ -87,30 +87,41 @@ return {
             name = "Repo",
             key = "1",
             layout = "grouped",
-            -- search = "repo:your-org/your-repo",
             current_repo = true,
           },
           {
-            name = "Team",
+            name = "Review requested",
             key = "2",
+            layout = "compact",
+            search = "is:pr team-review-requested-user:@me state:open archived:false sort:updated-desc",
+          },
+          {
+            name = "Team",
+            key = "3",
             layout = "compact",
             search = "org:amenity-health sort:updated-desc",
           },
           {
             name = "My PRs",
-            key = "3",
-            layout = "plain", -- "compact", "grouped", or "plain"
+            key = "4",
+            layout = "compact", -- "compact", "grouped", or "plain"
             search = "author:@me sort:updated-desc",
+          },
+          {
+            name = "Recently merged",
+            key = "5",
+            layout = "compact",
+            search = "is:pr is:merged sort:updated-desc",
+            current_repo = true,
           },
         },
         bookmarks = {
           key = "S", -- default
           label = "Search", -- default
           items = {
-            ["Drafts"] = "is:pr is:draft author:@me",
+            ["Drafts"] = "is:pr is:draft",
             ["Review requested"] = "is:pr team-review-requested-user:@me state:open archived:false sort:updated-desc",
-            ["Recently merged"] = "is:pr is:merged author:@me sort:updated-desc",
-            -- ["Review requested"] = "is:pr is:open review-requested:@me",
+            ["Recently merged"] = "is:pr is:merged sort:updated-desc",
           },
         },
       },
