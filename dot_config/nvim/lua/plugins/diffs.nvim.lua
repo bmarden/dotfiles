@@ -1,3 +1,3 @@
 return {
-  "barrettruth/diffs.nvim",
+  "https://forge.barrettruth.com/barrettruth/diffs.nvim",
 }
