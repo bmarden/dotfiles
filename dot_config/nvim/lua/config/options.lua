@@ -26,5 +26,8 @@ vim.g.diffs = {
   },
 }
 
+-- Keep registers separate from the system clipboard; use gy/gp for it
+vim.opt.clipboard = ""
+
 -- Enable live preview of substitutions in a split window (e.g., :%s/foo/bar/)
 -- vim.opt.inccommand = "split"

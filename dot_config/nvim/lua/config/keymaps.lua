@@ -13,9 +13,11 @@ vim.keymap.del("n", "<leader><leader>")
 vim.keymap.del("n", "gco")
 vim.keymap.del("n", "gcO")
 
--- Don't copy deleted text into register, use black hole register instead
--- map({ "n", "v" }, "x", '"_x')
--- map({ "n", "v" }, "d", '"_d')
+-- Copy/paste with system clipboard
+map({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
+map("n", "gp", '"+p', { desc = "Paste from system clipboard" })
+-- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
+map("x", "gp", '"+P', { desc = "Paste from system clipboard" })
 
 -- Map jk to exit
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
