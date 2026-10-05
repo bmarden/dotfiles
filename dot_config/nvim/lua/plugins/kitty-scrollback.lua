@@ -9,6 +9,7 @@ return {
   config = function()
     require("kitty-scrollback").setup({
       myconfig = {
+        close_after_yank = false,
         status_window = {
           autoclose = true,
         },

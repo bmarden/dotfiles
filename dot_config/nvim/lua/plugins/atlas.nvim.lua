@@ -131,6 +131,7 @@ return {
         review = {
           diff = {
             add_note = "<localleader>n",
+            toggle_detail_panel = "gS",
           },
         },
       },
