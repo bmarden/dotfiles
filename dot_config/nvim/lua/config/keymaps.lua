@@ -5,118 +5,119 @@
 local map = vim.keymap.set
 
 -- Remove default search keymap <leader><leader>
-vim.keymap.del("n", "<leader><leader>")
+vim.keymap.del('n', '<leader><leader>')
 
 -- Remove LazyVim's gco/gcO (add comment below/above). Their gc prefix makes
 -- gcc wait on timeoutlen to disambiguate, so a quick gcc fires the gc operator
 -- instead of commenting the line. Unused, so drop them to make gcc instant.
-vim.keymap.del("n", "gco")
-vim.keymap.del("n", "gcO")
+vim.keymap.del('n', 'gco')
+vim.keymap.del('n', 'gcO')
 
 -- Copy/paste with system clipboard
-map({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
-map("n", "gp", '"+p', { desc = "Paste from system clipboard" })
+map({ 'n', 'x' }, 'gy', '"+y', { desc = 'Copy to system clipboard' })
+
+map('n', 'gp', '"+p', { desc = 'Paste from system clipboard' })
 -- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
-map("x", "gp", '"+P', { desc = "Paste from system clipboard" })
+map('x', 'gp', '"+P', { desc = 'Paste from system clipboard' })
 
 -- Map jk to exit
-map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
+map('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 
 -- Add CMD+s to save
-map({ "i", "x", "n" }, "<D-s>", "<cmd>w<CR>", { desc = "Save file" })
+map({ 'i', 'x', 'n' }, '<D-s>', '<cmd>w<CR>', { desc = 'Save file' })
 
 -- Rename word under cursor
-map("n", "<Leader>r", function()
-  local word = vim.fn.expand("<cword>")
+map('n', '<Leader>r', function()
+  local word = vim.fn.expand('<cword>')
   vim.fn.feedkeys(
-    ":%s/\\<" .. word .. "\\>//g" .. string.rep(vim.api.nvim_replace_termcodes("<Left>", true, false, true), 2)
+    ':%s/\\<' .. word .. '\\>//g' .. string.rep(vim.api.nvim_replace_termcodes('<Left>', true, false, true), 2)
   )
-end, { desc = "Rename word under cursor" })
+end, { desc = 'Rename word under cursor' })
 
 -- Visual mode - rename selected text
-map("v", "<Leader>r", function()
+map('v', '<Leader>r', function()
   -- Exit visual mode and get the selected text
   vim.cmd('normal! "vy')
-  local selected_text = vim.fn.getreg("v")
+  local selected_text = vim.fn.getreg('v')
 
   -- Escape special regex characters
-  selected_text = vim.fn.escape(selected_text, "/\\[]^$.*~")
+  selected_text = vim.fn.escape(selected_text, '/\\[]^$.*~')
 
   -- Feed the substitute command
   vim.fn.feedkeys(
-    ":%s/" .. selected_text .. "//g" .. string.rep(vim.api.nvim_replace_termcodes("<Left>", true, false, true), 2)
+    ':%s/' .. selected_text .. '//g' .. string.rep(vim.api.nvim_replace_termcodes('<Left>', true, false, true), 2)
   )
-end, { desc = "Rename selected text" })
+end, { desc = 'Rename selected text' })
 
 -- Shortcut to launch neogit
-map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
+map('n', '<leader>gg', '<cmd>Neogit<CR>', { desc = 'Neogit' })
 
 -- AI git helpers (claude CLI). See lua/config/claude_git.lua
-local claude_git = require("config.claude_git")
+local claude_git = require('config.claude_git')
 
 -- Context-aware: gitcommit buffer -> commit message; otherwise -> PR title
-map({ "n", "v" }, "<leader>gt", function()
+map({ 'n', 'v' }, '<leader>gt', function()
   claude_git.smart_msg()
-end, { desc = "AI commit msg / PR title" })
+end, { desc = 'AI commit msg / PR title' })
 
 -- Generate a PR summary from the branch diff vs base, insert at cursor
-map({ "n", "v" }, "<leader>gs", function()
+map({ 'n', 'v' }, '<leader>gs', function()
   claude_git.pr_summary()
-end, { desc = "AI PR summary" })
+end, { desc = 'AI PR summary' })
 
 -- By default, CTRL-U and CTRL-D scroll by half a screen (50% of the window height)
 -- Scroll by 35% of the window height and keep the cursor centered
 local scroll_percentage = 0.35
 -- Scroll by a percentage of the window height and keep the cursor centered
-map("n", "<C-d>", function()
+map('n', '<C-d>', function()
   local lines = math.floor(vim.api.nvim_win_get_height(0) * scroll_percentage)
-  vim.cmd("normal! " .. lines .. "jzz")
+  vim.cmd('normal! ' .. lines .. 'jzz')
 end, { noremap = true, silent = true })
-map("n", "<C-u>", function()
+map('n', '<C-u>', function()
   local lines = math.floor(vim.api.nvim_win_get_height(0) * scroll_percentage)
-  vim.cmd("normal! " .. lines .. "kzz")
+  vim.cmd('normal! ' .. lines .. 'kzz')
 end, { noremap = true, silent = true })
 
 -- Yank current filename and line number to the clipboard
-vim.keymap.set("n", "<leader>y", function()
-  vim.fn.setreg(vim.v.register, vim.fn.expand("%:p") .. ":" .. vim.fn.line("."))
-end, { desc = "Copy filename+line to clipboard" })
+vim.keymap.set('n', '<leader>y', function()
+  vim.fn.setreg(vim.v.register, vim.fn.expand('%:p') .. ':' .. vim.fn.line('.'))
+end, { desc = 'Copy filename+line to clipboard' })
 
 -- use gh to move to the beginning of the line in normal mode
 -- use gl to move to the end of the line in normal mode
-map({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
-map({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
+map({ 'n', 'v' }, 'gh', '^', { desc = '[P]Go to the beginning line' })
+map({ 'n', 'v' }, 'gl', '$', { desc = '[P]go to the end of the line' })
 
 -- In visual mode, after going to the end of the line, come back 1 character
-map("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
+map('v', 'gl', '$h', { desc = '[P]Go to the end of the line' })
 
-vim.keymap.set({ "x" }, "[n", function()
-  require("vim.treesitter._select").select_prev(vim.v.count1)
-end, { desc = "Select previous treesitter node" })
+vim.keymap.set({ 'x' }, '[n', function()
+  require('vim.treesitter._select').select_prev(vim.v.count1)
+end, { desc = 'Select previous treesitter node' })
 
-vim.keymap.set({ "x" }, "]n", function()
-  require("vim.treesitter._select").select_next(vim.v.count1)
-end, { desc = "Select next treesitter node" })
+vim.keymap.set({ 'x' }, ']n', function()
+  require('vim.treesitter._select').select_next(vim.v.count1)
+end, { desc = 'Select next treesitter node' })
 
 ---@param command "today" |"dailies" | "search" | "tags" | "new_from_template" | "quick_switch"
 ---@param template_name? "new" | "meeting"
 local run_obsidian_command = function(command, template_name)
   local cwd = vim.fn.getcwd()
   -- Change to vault directory before running commands to ensure templates are found
-  local vault_path = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ben-brain")
+  local vault_path = vim.fn.expand('~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ben-brain')
 
   local execute_command = function(cmd)
-    vim.cmd("cd " .. vault_path)
-    vim.cmd("Obsidian " .. cmd)
-    vim.cmd("cd " .. cwd)
+    vim.cmd('cd ' .. vault_path)
+    vim.cmd('Obsidian ' .. cmd)
+    vim.cmd('cd ' .. cwd)
   end
 
   if template_name then
-    vim.ui.input({ prompt = "Note Title: " }, function(title)
-      if title and title ~= "" then
-        execute_command(string.format("%s %s %s", command, title, template_name))
+    vim.ui.input({ prompt = 'Note Title: ' }, function(title)
+      if title and title ~= '' then
+        execute_command(string.format('%s %s %s', command, title, template_name))
       else
-        vim.notify("Aborted: No title provided", vim.log.levels.WARN)
+        vim.notify('Aborted: No title provided', vim.log.levels.WARN)
       end
     end)
   else
@@ -125,69 +126,69 @@ local run_obsidian_command = function(command, template_name)
 end
 
 -- Setup some keybindings for obsidian.nvim
-local obsidian_daily = require("config.obsidian_daily")
+local obsidian_daily = require('config.obsidian_daily')
 
-map("n", "<leader>ot", function()
+map('n', '<leader>ot', function()
   local cwd = vim.fn.getcwd()
-  local vault_path = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ben-brain")
-  vim.cmd("cd " .. vault_path)
+  local vault_path = vim.fn.expand('~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ben-brain')
+  vim.cmd('cd ' .. vault_path)
   obsidian_daily.open_today_with_carryover()
-  vim.cmd("cd " .. cwd)
-end, { desc = "Open Obsidian Daily Note (carry over unfinished tasks)" })
+  vim.cmd('cd ' .. cwd)
+end, { desc = 'Open Obsidian Daily Note (carry over unfinished tasks)' })
 
-map("n", "<leader>os", function()
-  run_obsidian_command("search")
-end, { desc = "Search in notes" })
+map('n', '<leader>os', function()
+  run_obsidian_command('search')
+end, { desc = 'Search in notes' })
 
-map("n", "<leader>od", function()
-  run_obsidian_command("dailies")
-end, { desc = "Open dailies" })
+map('n', '<leader>od', function()
+  run_obsidian_command('dailies')
+end, { desc = 'Open dailies' })
 
-map("n", "<leader>oq", function()
-  run_obsidian_command("quick_switch")
-end, { desc = "Quick switch notes" })
+map('n', '<leader>oq', function()
+  run_obsidian_command('quick_switch')
+end, { desc = 'Quick switch notes' })
 
-map("n", "<leader>om", function()
-  run_obsidian_command("new_from_template", "meeting")
-end, { desc = "Create Obsidian Meeting Note" })
+map('n', '<leader>om', function()
+  run_obsidian_command('new_from_template', 'meeting')
+end, { desc = 'Create Obsidian Meeting Note' })
 
-map("n", "<leader>on", function()
-  run_obsidian_command("new_from_template", "new")
-end, { desc = "Create New Obsidian Note" })
+map('n', '<leader>on', function()
+  run_obsidian_command('new_from_template', 'new')
+end, { desc = 'Create New Obsidian Note' })
 
-map("n", "<leader>oT", function()
-  run_obsidian_command("tags")
-end, { desc = "Open Obsidian Tags" })
+map('n', '<leader>oT', function()
+  run_obsidian_command('tags')
+end, { desc = 'Open Obsidian Tags' })
 
 --  Set smart-splits keybindings
-map("n", "<A-S-j>", require("smart-splits").resize_down)
-map("n", "<A-S-h>", require("smart-splits").resize_left)
-map("n", "<A-S-k>", require("smart-splits").resize_up)
-map("n", "<A-S-l>", require("smart-splits").resize_right)
+map('n', '<A-S-j>', require('smart-splits').resize_down)
+map('n', '<A-S-h>', require('smart-splits').resize_left)
+map('n', '<A-S-k>', require('smart-splits').resize_up)
+map('n', '<A-S-l>', require('smart-splits').resize_right)
 -- moving between splits
-map("n", "<C-h>", require("smart-splits").move_cursor_left)
-map("n", "<C-j>", require("smart-splits").move_cursor_down)
-map("n", "<C-k>", require("smart-splits").move_cursor_up)
-map("n", "<C-l>", require("smart-splits").move_cursor_right)
-map("n", "<C-\\>", require("smart-splits").move_cursor_previous)
+map('n', '<C-h>', require('smart-splits').move_cursor_left)
+map('n', '<C-j>', require('smart-splits').move_cursor_down)
+map('n', '<C-k>', require('smart-splits').move_cursor_up)
+map('n', '<C-l>', require('smart-splits').move_cursor_right)
+map('n', '<C-\\>', require('smart-splits').move_cursor_previous)
 -- swapping buffers between windows
-map("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
-map("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
-map("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
-map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
+map('n', '<leader><leader>h', require('smart-splits').swap_buf_left)
+map('n', '<leader><leader>j', require('smart-splits').swap_buf_down)
+map('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
+map('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
 
 -- Add keymap for sourcing the current file
-map("n", "<leader><leader>s", "<cmd>source %<CR>", { desc = "Source current file" })
+map('n', '<leader><leader>s', '<cmd>source %<CR>', { desc = 'Source current file' })
 
 -- Keymap to quickly parse a linear URL and paste as markdown link
-map("n", "<leader>pl", function()
-  require("config.utils").parse_linear_ticket_as_markdown()
-end, { desc = "Parse Linear ticket URL as markdown link" })
+map('n', '<leader>pl', function()
+  require('config.utils').parse_linear_ticket_as_markdown()
+end, { desc = 'Parse Linear ticket URL as markdown link' })
 
-vim.keymap.set({ "n", "x" }, "<leader>xr", function()
-  local Snacks = require("snacks")
+vim.keymap.set({ 'n', 'x' }, '<leader>xr', function()
+  local Snacks = require('snacks')
   Snacks.debug.run()
-end, { desc = "Run Lua buffer/selection" })
+end, { desc = 'Run Lua buffer/selection' })
 
 -- :NotifyTrace + <leader>uN to find where a vim.notify message originates
 -- require("config.notify-source").setup()
