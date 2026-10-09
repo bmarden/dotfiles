@@ -14,6 +14,8 @@ return {
         ["*"] = {
           keys = {
             { "<leader>r", false },
+            { "gy", false },
+            { "gT", vim.lsp.buf.type_definition, desc = "Goto Type Definition" },
             {
               "gD",
               vim.lsp.buf.declaration,
@@ -76,9 +78,9 @@ return {
             },
           },
         },
-        tsgo = {
-          enabled = true,
-        },
+        -- tsgo = {
+        --   enabled = true,
+        -- },
         pyright = {
           on_attach = function(client)
             client.handlers["textDocument/publishDiagnostics"] = function() end
