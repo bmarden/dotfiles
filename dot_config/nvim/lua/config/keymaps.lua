@@ -60,6 +60,10 @@ map({ 'n', 'v' }, '<leader>gt', function()
   claude_git.smart_msg()
 end, { desc = 'AI commit msg / PR title' })
 
+map({ 'n', 'v' }, '<leader>gT', function()
+  claude_git.smart_msg(true)
+end, { desc = 'AI extended commit msg / PR title' })
+
 -- Generate a PR summary from the branch diff vs base, insert at cursor
 map({ 'n', 'v' }, '<leader>gs', function()
   claude_git.pr_summary()
