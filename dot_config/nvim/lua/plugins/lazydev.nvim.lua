@@ -9,6 +9,11 @@ return {
         -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { path = "wezterm-types", mods = { "wezterm" } },
+        -- lazy.nvim replaces list opts, so LazyVim's entries must be repeated here
+        { path = "LazyVim", words = { "LazyVim" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
+        { path = "lazy.nvim", words = { "LazyVim" } },
+        { path = "nvim-lspconfig", words = { "lspconfig.settings" } },
       },
     },
   },

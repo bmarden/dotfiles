@@ -1,6 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+--
 
 local map = vim.keymap.set
 
@@ -22,6 +23,49 @@ map('x', 'gp', '"+P', { desc = 'Paste from system clipboard' })
 
 -- Map jk to exit
 map('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
+
+-- Extends LazyVim's normal-mode <Esc> (noh + snippet stop) to also clear
+-- multicursors, since <C-l> (the builtin clear) is taken by smart-splits
+local mc_ns = vim.api.nvim_create_namespace('nvim.multicursor')
+map('n', '<Esc>', function()
+  vim.cmd('noh')
+  vim.snippet.stop()
+  vim.api.nvim_buf_clear_namespace(0, mc_ns, 0, -1)
+end, { desc = 'Escape, clear hlsearch and multicursors' })
+
+-- Reimplements visual * (:h v_star-default) instead of remapping to it, since
+-- remap lets which-key's `z` trigger intercept zq and flakily drop it
+local function search_selection_then(keys)
+  return function()
+    local lines = vim.fn.getregion(vim.fn.getpos('v'), vim.fn.getpos('.'), { type = vim.fn.mode() })
+    local escaped = vim.tbl_map(function(l)
+      return vim.fn.escape(l, [[\]])
+    end, lines)
+    local pattern = [[\V]] .. table.concat(escaped, [[\n]])
+    vim.fn.setreg('/', pattern)
+    vim.fn.histadd('/', pattern)
+    vim.v.searchforward = 1
+    return '<Esc>' .. keys
+  end
+end
+map('x', '<leader>m', search_selection_then('zqgn'), { expr = true, desc = 'Cursor on every match of selection' })
+map('x', '<leader>M', search_selection_then('zqgngvc'), { expr = true, desc = 'Change every match of selection' })
+
+--  a "follow-once" mapping: "q-{motion}" replays {motion} at every
+-- cursor, then disables 'follow' mode again. >lua
+
+vim.keymap.set('n', 'q-', function()
+  vim.cmd('normal! 1q=')
+  vim.api.nvim_create_autocmd('CmdAtom', {
+    callback = function(ev)
+      if ev.data.lhs == 'q-' then
+        return -- Skip the mapping itself.
+      end
+      vim.cmd('normal! 2q=')
+      return true -- Delete the handler.
+    end,
+  })
+end)
 
 -- Add CMD+s to save
 map({ 'i', 'x', 'n' }, '<D-s>', '<cmd>w<CR>', { desc = 'Save file' })
@@ -84,7 +128,7 @@ end, { noremap = true, silent = true })
 
 -- Yank current filename and line number to the clipboard
 vim.keymap.set('n', '<leader>y', function()
-  vim.fn.setreg(vim.v.register, vim.fn.expand('%:p') .. ':' .. vim.fn.line('.'))
+  vim.fn.setreg('+', vim.fn.expand('%:p') .. ':' .. vim.fn.line('.'))
 end, { desc = 'Copy filename+line to clipboard' })
 
 -- use gh to move to the beginning of the line in normal mode
@@ -174,7 +218,6 @@ map('n', '<C-h>', require('smart-splits').move_cursor_left)
 map('n', '<C-j>', require('smart-splits').move_cursor_down)
 map('n', '<C-k>', require('smart-splits').move_cursor_up)
 map('n', '<C-l>', require('smart-splits').move_cursor_right)
-map('n', '<C-\\>', require('smart-splits').move_cursor_previous)
 -- swapping buffers between windows
 map('n', '<leader><leader>h', require('smart-splits').swap_buf_left)
 map('n', '<leader><leader>j', require('smart-splits').swap_buf_down)
