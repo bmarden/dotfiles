@@ -90,3 +90,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end, buf)
   end,
 })
+
+require('config.mise_missing').setup()
