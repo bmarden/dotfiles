@@ -1,41 +1,41 @@
 return {
 
   {
-    "olimorris/onedarkpro.nvim",
+    'olimorris/onedarkpro.nvim',
     opts = {
       colors = {
-        bg = "#111317", -- Custom background color
+        bg = '#111317', -- Custom background color
       },
       highlights = {
         -- Semantic token overrides
-        ["@lsp.typemod.function.declaration.typescript"] = { link = "@function" },
-        ["@lsp.typemod.function.local.typescript"] = { link = "@function" },
-        ["@lsp.typemod.variable.signature.go"] = { link = "@function" },
+        ['@lsp.typemod.function.declaration.typescript'] = { link = '@function' },
+        ['@lsp.typemod.function.local.typescript'] = { link = '@function' },
+        ['@lsp.typemod.variable.signature.go'] = { link = '@function' },
 
         -- Background overrides
         -- Normal = { bg = "${bg}" }, -- Apparently this breaks snacks.gh popup menu
-        SignColumn = { bg = "${bg}" },
-        LineNr = { bg = "${bg}" },
-        CursorLineNr = { bg = "${bg}" },
-        StatusLine = { bg = "${bg}" },
-        StatusLineNC = { bg = "${bg}" },
-        WinBar = { bg = "${bg}" },
-        WinBarNC = { bg = "${bg}" },
+        SignColumn = { bg = '${bg}' },
+        LineNr = { bg = '${bg}' },
+        CursorLineNr = { bg = '${bg}' },
+        StatusLine = { bg = '${bg}' },
+        StatusLineNC = { bg = '${bg}' },
+        WinBar = { bg = '${bg}' },
+        WinBarNC = { bg = '${bg}' },
 
         -- Visual mode highlight - blue-gray for better contrast
-        Visual = { bg = "#3e4451", fg = "#ffffff" },
+        Visual = { bg = '#3e4451', fg = '#ffffff' },
       },
     },
   },
   -- Using lazy.nvim
   {
-    "ribru17/bamboo.nvim",
+    'ribru17/bamboo.nvim',
     lazy = false,
     priority = 1000,
     opts = {
       -- style = "multiplex",
       colors = {
-        bg0 = "#111317", -- Custom background color
+        bg0 = '#111317', -- Custom background color
         -- bg0 = "#252623",
       },
       highlights = {
@@ -50,21 +50,21 @@ return {
     },
   },
   {
-    "folke/tokyonight.nvim",
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
     opts = {},
   },
+  -- {
+  --   'bmarden/horizon.nvim',
+  --   dir = '/Users/bmarden/code-personal/nvim-plugins/horizon.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   enabled = true,
+  --   opts = {},
+  -- },
   {
-    -- "bmarden/horizon.nvim",
-    dir = "/Users/bmarden/code-personal/nvim-plugins/horizon.nvim",
-    lazy = false,
-    priority = 1000,
-    enabled = false,
-    opts = {},
-  },
-  {
-    "eldritch-theme/eldritch.nvim",
+    'eldritch-theme/eldritch.nvim',
     lazy = false,
     priority = 1000,
     opts = {},
@@ -82,14 +82,14 @@ return {
   --   end,
   -- },
   {
-    "LazyVim/LazyVim",
+    'LazyVim/LazyVim',
     opts = {
       -- colorscheme = "onedark",
-      -- colorscheme = "onedark_vivid",
-      -- colorscheme = "bamboo",
-      colorscheme = "tokyonight-night",
-      -- colorscheme = "horizon",
-      -- colorscheme = "eldritch-dark",
+      -- colorscheme = 'onedark_vivid',
+      -- colorscheme = 'bamboo',
+      colorscheme = 'tokyonight-night',
+      -- colorscheme = 'horizon',
+      -- colorscheme = 'eldritch-dark',
     },
   },
 }

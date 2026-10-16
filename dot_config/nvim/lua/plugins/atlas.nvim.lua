@@ -28,6 +28,13 @@ return {
       default_delete_branch = false,
       git_transport = 'ssh', -- "https" or "ssh" for Atlas-managed Git remotes.
 
+      -- description = {
+      --   include_summary = true,
+      --   include_commit_hashes = true,
+      --   include_related = true,
+      --   include_diffstat = false,
+      -- },
+
       -- Replaces the built-in Conventional Comments templates.
       -- comment_templates = {
       --   insert_mode = true, -- Enter Insert mode after applying a template.

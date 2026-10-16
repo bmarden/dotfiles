@@ -1,9 +1,10 @@
 return {
-  "coder/claudecode.nvim",
-  dependencies = { "folke/snacks.nvim" },
+  'coder/claudecode.nvim',
+  dependencies = { 'folke/snacks.nvim' },
+  enabled = true,
   opts = {
     diff_opts = {
-      layout = "unified",
+      layout = 'unified',
       keep_terminal_focus = true,
     },
   },
