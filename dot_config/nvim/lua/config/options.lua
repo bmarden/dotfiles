@@ -3,6 +3,9 @@
 -- Add any additional options here
 vim.g.maplocalleader = ","
 
+-- Also disables pyright/basedpyright; ruff stays enabled
+vim.g.lazyvim_python_lsp = "ty"
+
 -- Avoids conflicts between prettier and biome
 vim.g.lazyvim_prettier_needs_config = true
 

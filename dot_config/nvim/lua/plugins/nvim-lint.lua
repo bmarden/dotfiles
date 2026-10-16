@@ -5,7 +5,6 @@ return {
       go = { "golangcilint" },
       sql = { "sqlfluff" },
       markdown = { "markdownlint-cli2" },
-      python = { "mypy" },
     },
     linters = {
       -- Upstream golangcilint checks `go env GOMOD` at nvim's cwd and falls

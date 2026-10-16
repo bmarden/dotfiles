@@ -78,14 +78,12 @@ return {
             },
           },
         },
+        ty = {
+          mason = false,
+        },
         -- tsgo = {
         --   enabled = true,
         -- },
-        pyright = {
-          on_attach = function(client)
-            client.handlers["textDocument/publishDiagnostics"] = function() end
-          end,
-        },
         vtsls = {
           enabled = false,
           keys = {
