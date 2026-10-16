@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Mason generated this shim; mise only installs the js-debug DAP bundle
+exec node "$(mise where github:microsoft/vscode-js-debug)/src/dapDebugServer.js" "$@"

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# nvim-tools.toml hash: {{ include "dot_config/mise/conf.d/nvim-tools.toml" | sha256sum }}
+
+if [ ! "$(command -v mise)" ]; then
+  echo "mise not installed. Skipping nvim tools install."
+  exit 0
+fi
+
+cd "$HOME" && mise install
