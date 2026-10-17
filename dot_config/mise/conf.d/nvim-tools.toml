@@ -32,5 +32,5 @@ uv = "latest"
 "npm:dockerfile-language-server-nodejs" = "latest"
 "npm:@tailwindcss/language-server" = "latest"
 "npm:@actions/languageserver" = "latest"
-"npm:@github/copilot-language-server" = "latest"
+"github:github/copilot-language-server-release" = { version = "latest", version_prefix = "" }
 "github:microsoft/vscode-js-debug" = { version = "latest", asset_pattern = "js-debug-dap-*.tar.gz" }
