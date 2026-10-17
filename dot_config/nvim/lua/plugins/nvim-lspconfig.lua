@@ -46,6 +46,8 @@ return {
           },
         },
         gh_actions_ls = {
+          -- The npm package only ships actions-languageserver; Mason added the alias
+          cmd = { "actions-languageserver", "--stdio" },
           init_options = {
             sessionToken = vim.env.GH_ACTIONS_PAT,
             repos = {},
