@@ -20,7 +20,6 @@ path=(
   "$HOME/.local/share/bob/nvim-bin"
   "$XDG_DATA_HOME/npm/bin"
   "$BUN_INSTALL_BIN"
-  "$XDG_DATA_HOME/nvim/mason/bin"
   $path
 )
 
