@@ -41,7 +41,6 @@ return {
               staticcheck = false,
               semanticTokens = true,
               buildFlags = { "-tags=integration,tools" },
-              testTags = "integration",
             },
           },
         },
