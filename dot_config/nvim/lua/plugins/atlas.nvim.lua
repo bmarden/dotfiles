@@ -52,6 +52,7 @@ return {
           hidden = true, -- Set false to show the review panel when a diff opens.
           height = 10,
         },
+        open_cmd = 'AtlasDiff',
 
         -- AtlasDiff options; external viewers use their own configuration.
         layout = 'inline', -- "inline" or "side-by-side".
@@ -136,6 +137,7 @@ return {
     keymaps = {
       pulls = {
         review = {
+          show_details = '<localleader>k',
           diff = {
             add_note = '<localleader>n',
             toggle_detail_panel = 'gS',
